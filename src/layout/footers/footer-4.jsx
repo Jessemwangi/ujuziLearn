@@ -143,7 +143,7 @@ const FooterTwo = () => {
                         <div className="col-lg-12">
                             <div className="inner text-center">
                                 <p>Copyright {new Date().getFullYear()} 
-                                <a href="https://dev.ujuzi.io" rel="noreferrer" target="_blank">Ujuzi</a> Designed By <a href="https://dev.ujuzi.io" target="_blank" rel="noreferrer">Ujuzi</a>. All Rights Reserved</p>
+                                <a href="https://dev.ujuzi.io" rel="noreferrer" target="_blank"> Ujuzi</a> Designed By <a href="https://dev.ujuzi.io" target="_blank" rel="noreferrer">Ujuzi</a>. All Rights Reserved</p>
                             </div>
                         </div>
                     </div>
