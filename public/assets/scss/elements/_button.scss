@@ -178,9 +178,9 @@ button {
     }
 }
 .btn-gradient {
-    background:linear-gradient(-90deg, #31b978 0%, #1ab69d 100%) !important;
+    background: linear-gradient(-90deg, #9C27B0 0%, #4c0f56 100%) !important;
     &::after {
-        background: linear-gradient(-90deg, #1ab69d 0%, #31b978 100%) !important; 
+        background: linear-gradient(-90deg, #9C27B0 0%, #040535d7 100%) !important; 
     }
 }
 .wishlist-btn {

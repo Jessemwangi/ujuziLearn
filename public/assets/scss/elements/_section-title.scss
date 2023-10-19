@@ -86,8 +86,8 @@
         font-family: var(--font-secondary);
         line-height: 1;
         margin-bottom: 5px;
-        background: #31B978;
-        background: linear-gradient(to left, #31B978 0%, #1AB69D 76%);
+        background: #9C27B0;
+        background: linear-gradient(-90deg, #9C27B0 0%, #440d4ef4 76%) !important; 
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         @media #{$md-layout} {
@@ -100,8 +100,8 @@
     .pre-title {
         font-size: 16px;
         font-weight: 700;
-        background: #31B978;
-        background: linear-gradient(to left, #31B978 0%, #1AB69D 76%);
+        background: #9C27B0;
+        background: linear-gradient(-90deg, #9C27B0 0%, #440d4ef4 76%) !important; 
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
     }
