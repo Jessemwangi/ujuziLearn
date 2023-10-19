@@ -77,3 +77,5 @@ __pycache__/
 .ipynb_checkpoints/
 # Ignore Next.js .next directory
 .next/
+
+.vscode
