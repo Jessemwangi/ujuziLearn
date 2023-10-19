@@ -12,7 +12,7 @@ const ErrorPage = () => {
             <SEO pageTitle={'404 Page'} />
             <Header no_top_bar={true} />
             <BreadcrumbThree title="Error-404" subtitle="Error-404" />
-            
+            <h1>error page</h1>
             <section className="section-gap-equal error-page-area">
                 <div className="container">
                     <div className="edu-error">
