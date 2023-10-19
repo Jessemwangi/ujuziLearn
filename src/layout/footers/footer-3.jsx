@@ -97,8 +97,8 @@ const FooterThree = () => {
                             <div className="inner text-center">
                                 <p>
                                     Copyright {new Date().toDateString()} 
-                                    <a href="https://1.envato.market/AoJezj" rel="noreferrer" target="_blank">EduBlink</a> Designed By <a href="https://1.envato.market/YgGJbj" target="_blank" rel="noreferrer">DevsBlink</a>. All Rights Reserved
-                                </p>
+                                   <a href="https://dev.ujuzi.io" rel="noreferrer" target="_blank">Ujuzi</a> Designed By <a href="https://dev.ujuzi.io" target="_blank" rel="noreferrer">Ujuzi</a>. All Rights Reserved</p>
+                             
                             </div>
                         </div>
                     </div>
