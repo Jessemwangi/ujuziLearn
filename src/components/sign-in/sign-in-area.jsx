@@ -1,6 +1,5 @@
 import React from 'react';
 import LoginForm from '../forms/login-form';
-import RegisterForm from '../forms/register-form';
 
 const SignInArea = () => {
   return (
@@ -14,14 +13,6 @@ const SignInArea = () => {
                             <LoginForm/>
                         </div>
                     </div>
-{/* 
-                    <div className="col-lg-5">
-                        <div className="login-form-box registration-form">
-                            <h3 className="title">Registration</h3>
-                            <p>Already have an account? <a href="#">Sign in</a></p>
-                            <RegisterForm/>
-                        </div>
-                    </div> */}
                 </div>
 
                 <ul className="shape-group">

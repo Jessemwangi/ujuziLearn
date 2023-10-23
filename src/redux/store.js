@@ -6,6 +6,7 @@ import eventSlice from './features/event-slice';
 import filterSlice from './features/filter-slice';
 import authSlice from './features/auth-slice';
 import  lessonSlice  from './features/lessons-slice';
+import loginSlice from './features/loginSlice';
 
 const rootReducer = combineReducers({
     auth:authSlice,
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
     event:eventSlice,
     filter:filterSlice,
     less:lessonSlice,
+    authLogin:loginSlice,
 })
 
 export const store = configureStore({
