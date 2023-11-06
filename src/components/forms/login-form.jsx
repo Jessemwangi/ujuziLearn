@@ -1,27 +1,37 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useFormik } from 'formik';
-import useFirebase from '../../hooks/use-firebase';
 import { loginSchema } from '../../utils/validation-schema';
 import ErrorMsg from './error-msg';
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { login } from '../../redux/features/authActions';
+import { useRouter } from 'next/router';
+
 
 const LoginForm = () => {
+    const dispatch = useDispatch()
+    const {lognError, token, user} = useSelector((state) => state.authLogin)
+    console.log('lognError : ', lognError, 'token :', token, 'user : ', user)
     const [showPass,setShowPass] = useState(false);
-    // use firebase 
-    const { loginWithEmailPassword, resetPassword } = useFirebase();
-    // use formik
+    const url = process.env.REACT_APP_SERVER_URL || 'http://localhost:1337/api';
+    const router = useRouter();
+
     const { handleChange, handleSubmit, handleBlur, errors, values, touched } = useFormik({
         initialValues: { email: '', password: '' },
         validationSchema: loginSchema,
         onSubmit: (values, { resetForm }) => {
-            loginWithEmailPassword(values.email, values.password)
+            const object ={studentName:values.email, studentPassword:values.password}
+             dispatch(login(`${url}/student/login`,object));
             resetForm()
         }
     })
+    useEffect(() => {
+        if (user !== null && token !== null) {
+          router.push('/'); 
+        }
+      }, [user, token]);
 
-    // handleResetPass
     const handleResetPass = (email) => {
-        resetPassword(email);
     }
     return (
         <form onSubmit={handleSubmit}>
@@ -31,7 +41,7 @@ const LoginForm = () => {
                     value={values.email} 
                     onChange={handleChange}
                     onBlur={handleBlur} 
-                    type="email" 
+                    type="text" 
                     name="email"
                     placeholder="Email or username" 
                 />
@@ -66,6 +76,7 @@ const LoginForm = () => {
             <div className="form-group">
                 <button type="submit" className="edu-btn btn-medium">Sign in <i className="icon-4"></i></button>
             </div>
+            <p>{lognError?.message}</p>
         </form>
     )
 }

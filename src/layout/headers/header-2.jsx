@@ -15,6 +15,7 @@ const HeaderTwo = ({ style_3, no_topBar = false }) => {
     const [isSearchOpen, setIsSearchOpen] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
     const wishlists = useSelector(wishlistItems);
+    const {token, user} = useSelector((state) => state.authLogin)
     return (
         <>
             <header className={`edu-header header-style-${style_3 ? '3' : '2'} ${no_topBar ? 'no-topbar' : ''}`}>
@@ -31,8 +32,9 @@ const HeaderTwo = ({ style_3, no_topBar = false }) => {
 
                                 <div className="header-top-right">
                                     <ul className="header-info">
-                                        <li><Link href="/sign-in"><a>Login</a></Link></li>
-                                        <li><Link href="/sign-in"><a>Register</a></Link></li>
+                                       <li>{ user ? `Hi ${user.studentName}!`: 'Welcome!'} </li> 
+                                        <li>{token ? <Link href="/sign-out"><a>LogOut</a></Link> : <Link href="/sign-in"><a>Login</a></Link>}</li> 
+                                        
                                         <li className="header-btn"><a href="#" className={`edu-btn ${style_3 ? '' : 'btn-secondary'} btn-medium`}>Apply Now <i className="icon-4"></i></a></li>
                                     </ul>
                                 </div>
