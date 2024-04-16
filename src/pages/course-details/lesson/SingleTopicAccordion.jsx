@@ -12,11 +12,13 @@ const SingleTopicAccordion = ({ title, content = 'no lesson found', parentId }) 
 
     return (
         <div className="accordion-item">
-            <h3 className="accordion-header" id={uniqueId}>
-                <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target={`#question-${uniqueId}`} aria-expanded="true">
-                    {title}
+            <h8 className="accordion-header" id={uniqueId}>
+            <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target={`#question-${uniqueId}`} aria-expanded="true">
+            <div>
+                                            <i className="icon-65"></i>  {title}
+                </div>
                 </button>
-            </h3>
+            </h8>
 
             <div id={`question-${uniqueId}`} className="accordion-collapse collapse show" data-bs-parent={`#${parentId}`}>
                 <div className="accordion-body">

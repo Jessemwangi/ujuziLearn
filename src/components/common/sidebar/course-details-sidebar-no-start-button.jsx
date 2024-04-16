@@ -4,34 +4,34 @@ import useModal from "../../../hooks/use-modal";
 import { Books } from "../../../svg";
 import VideoModal from "../popup-modal/video-modal";
 
-export const lessons = [
-  {
-      title: 'Course Introduction',
-      id:'les1',
-      headers: [
-          {
-              title: 'Header 1.1',
-              content: '<p>Content for Header 1.1</p>'
-          },
-          {
-              title: 'Header 1.2',
-              content: '<p>Content for Header 1.2</p>'
-          }
-      ]
-  },
-  {
-      title: 'Lesson 2',
-      id:'les2',
-      headers: [
-          {
-              title: 'Header 2.1',
-              content: '<p>Content for Header 2.1</p>'
-          }
-      ]
-  }
-];
+// export const lessons = [
+//   {
+//       title: 'Course Introduction',
+//       id:'les1',
+//       headers: [
+//           {
+//               title: 'Header 1.1',
+//               content: '<p>Content for Header 1.1</p>'
+//           },
+//           {
+//               title: 'Header 1.2',
+//               content: '<p>Content for Header 1.2</p>'
+//           }
+//       ]
+//   },
+//   {
+//       title: 'Lesson 2',
+//       id:'les2',
+//       headers: [
+//           {
+//               title: 'Header 2.1',
+//               content: '<p>Content for Header 2.1</p>'
+//           }
+//       ]
+//   }
+// ];
 
-const CourseDetailsSidebarNoStart = ({ course, details_2 = false }) => {
+const CourseDetailsSidebarNoStart = ({ lessons, course, details_2 = false }) => {
   const {
     img,
     certificate,
@@ -49,7 +49,6 @@ const CourseDetailsSidebarNoStart = ({ course, details_2 = false }) => {
     setShow(!show); 
   };
 
-  // const uniqueId = `header-${id}`;
   return (
     <>
       <div
@@ -81,9 +80,9 @@ const CourseDetailsSidebarNoStart = ({ course, details_2 = false }) => {
                   <Books />
                   </span>
                   <button onClick={toggleShow} className={`accordion-button ${show ? '' : 'collapsed'}`} type="button" data-bs-toggle="collapse" data-bs-target={`#header-header-${id}`} >
-                    {title}
+                   
+                 <h6> <span className="value">{title}</span></h6>
                 </button>
-                  <span className="value">{title}</span>
                 </li>
                ) }
                

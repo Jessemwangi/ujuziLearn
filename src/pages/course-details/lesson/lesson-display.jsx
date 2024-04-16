@@ -3,14 +3,15 @@ import SingleProgressbar from '../../../components/course-details/single-progres
 import SingleComment from '../../../components/course-details/single-comment';
 import SingleAccordion from './single-accordion';
 import CourseDetailsSidebar from '../../../components/common/sidebar/course-details-sidebar';
-import CourseDetailsSidebarNoStart, { lessons } from '../../../components/common/sidebar/course-details-sidebar-no-start-button';
+import CourseDetailsSidebarNoStart from '../../../components/common/sidebar/course-details-sidebar-no-start-button';
 import HeaderContentAccordion from './headerContentAccordion';
 import LessonListsAccordion from './LessonListsAccordion';
+import lessons from '../../../data/lessons';
 
 
 const LessonDisplay = ({ course }) => {
   const { course_desc, course_desc_2, learn_list, course_desc_3, curriculum_desc, course_lessons, instructor_img, instructor_title, instructor_desc, social_links, reviews, instructor, rating, rating_count,title } = course || {};
-  
+ 
     return (
         <section className="edu-section-gap course-details-area">
             <div className="container">
@@ -27,7 +28,7 @@ const LessonDisplay = ({ course }) => {
                                 <h3 className="heading-title" data-sal-delay="150" data-sal="slide-up" data-sal-duration="800">{title}</h3>
                                 <p data-sal-delay="150" data-sal="slide-up" data-sal-duration="800">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor inc idid unt ut labore et dolore magna aliqua.</p>
                                 <div className="accordion edu-accordion" id="accordionExample" data-sal-delay="150" data-sal="slide-up" data-sal-duration="800">
-<LessonListsAccordion lesson={lessons}/>
+<LessonListsAccordion lessons={lessons}/>
                                     {/* <SingleAccordion show={true} id="1" title="Course Introduction" desc={[
                                         { title: 'Introduction', icon: 'icon-68', lesson: 'electricity is good for life', },
                                          { title: 'Course Overview', icon: 'icon-68', lesson: 'electricity is good for life', },
@@ -133,7 +134,7 @@ const LessonDisplay = ({ course }) => {
                         </div>
                     </div>
                     <div className="col-lg-4">
-                        <CourseDetailsSidebarNoStart course={course} details_2={true} />
+                        <CourseDetailsSidebarNoStart  lessons={lessons} course={course} details_2={true} />
                     </div>
                 </div>
             </div>

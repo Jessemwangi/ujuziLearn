@@ -30,13 +30,15 @@ const HeaderContentAccordion = ({ id, title, headers }) => {
             <div className="accordion-body">
                 <ul>
                     {headers.map((header, index) => (
-                        <li key={index}>
+                         <div className="text" key={index}> 
+                         
+                        
                             <SingleTopicAccordion 
                                 title={header.title}
                                 content={header.content}
                                 parentId={uniqueId}
                             />
-                        </li>
+                        </div>
                     ))}
                 </ul>
             </div>
