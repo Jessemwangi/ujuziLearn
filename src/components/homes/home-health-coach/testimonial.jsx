@@ -40,7 +40,7 @@ const Testimonial = () => {
                         <div className="testimonial-heading-area">
                             <div className="section-title section-left" data-sal-delay="50" data-sal="slide-up" data-sal-duration="800">
                                 <span className="pre-title pre-textsecondary">Testimonials</span>
-                                <h2 className="title">What Our Students Have To Say</h2>
+                                <h2 className="title">What Our Students home Have To Say</h2>
                                 <span className="shape-line"><i className="icon-19"></i></span>
                             </div>
                         </div>
