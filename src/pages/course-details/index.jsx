@@ -10,7 +10,7 @@ const CourseDetails = () => {
     return (
         <Wrapper>
             <SEO pageTitle={'Course Details'} />
-            <CourseDetailsMain course={course} />
+            <CourseDetailsMain course={course} start={true} />
         </Wrapper>
     )
 }

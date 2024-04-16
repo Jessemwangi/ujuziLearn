@@ -1,10 +1,37 @@
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 import useModal from "../../../hooks/use-modal";
 import { Books } from "../../../svg";
 import VideoModal from "../popup-modal/video-modal";
 
-const CourseDetailsSidebar = ({ course, details_2 = false, start=true }) => {
+export const lessons = [
+  {
+      title: 'Course Introduction',
+      id:'les1',
+      headers: [
+          {
+              title: 'Header 1.1',
+              content: '<p>Content for Header 1.1</p>'
+          },
+          {
+              title: 'Header 1.2',
+              content: '<p>Content for Header 1.2</p>'
+          }
+      ]
+  },
+  {
+      title: 'Lesson 2',
+      id:'les2',
+      headers: [
+          {
+              title: 'Header 2.1',
+              content: '<p>Content for Header 2.1</p>'
+          }
+      ]
+  }
+];
+
+const CourseDetailsSidebarNoStart = ({ course, details_2 = false }) => {
   const {
     img,
     certificate,
@@ -14,10 +41,15 @@ const CourseDetailsSidebar = ({ course, details_2 = false, start=true }) => {
     duration,
     student,
     language,
-    id,
   } = course || {};
   const { isVideoOpen, setIsVideoOpen } = useModal();
-  console.log(start)
+  const [show, setShow] = useState(false);
+
+  const toggleShow = () => {
+    setShow(!show); 
+  };
+
+  // const uniqueId = `header-${id}`;
   return (
     <>
       <div
@@ -41,66 +73,21 @@ const CourseDetailsSidebar = ({ course, details_2 = false, start=true }) => {
               </a>
             </div>
             <div className="content">
-              <h4 className="widget-title">Course Includes:</h4>
+              <h4 className="widget-title">Course Topics:</h4>
               <ul className="course-item">
-                <li>
+              {lessons.map(({id,title} )=>
+                <li key={id}>
                   <span className="label">
-                    <i className="icon-60"></i>Price:
+                  <Books />
                   </span>
-                  <span className="value price">${course_price}</span>
+                  <button onClick={toggleShow} className={`accordion-button ${show ? '' : 'collapsed'}`} type="button" data-bs-toggle="collapse" data-bs-target={`#header-header-${id}`} >
+                    {title}
+                </button>
+                  <span className="value">{title}</span>
                 </li>
-
-                <li>
-                  <span className="label">
-                    <i className="icon-62"></i>Instrutor:
-                  </span>
-                  <span className="value">{instructor}</span>
-                </li>
-
-                <li>
-                  <span className="label">
-                    <i className="icon-61"></i>Duration:
-                  </span>
-                  <span className="value">{duration}</span>
-                </li>
-
-                <li>
-                  <span className="label">
-                    <Books />
-                    Lessons:
-                  </span>
-                  <span className="value">8</span>
-                </li>
-
-                <li>
-                  <span className="label">
-                    <i className="icon-63"></i>Enrolled:
-                  </span>
-                  <span className="value">{student} students</span>
-                </li>
-
-                <li>
-                  <span className="label">
-                    <i className="icon-59"></i>Language:
-                  </span>
-                  <span className="value">{language}</span>
-                </li>
-
-                <li>
-                  <span className="label">
-                    <i className="icon-64"></i>Certificate:
-                  </span>
-                  <span className="value">{certificate}</span>
-                </li>
+               ) }
+               
               </ul>
-
-              {start && <div className="read-more-btn">
-             <Link href={`/course-details/lesson/${id}`}>
-                  <a className="edu-btn btn-medium">
-                    Start Now<i className="icon-4"></i>
-                  </a>
-                </Link> 
-              </div>}
 
               <div className="share-area">
                 <h4 className="title">Share On:</h4>
@@ -142,5 +129,4 @@ const CourseDetailsSidebar = ({ course, details_2 = false, start=true }) => {
     </>
   );
 };
-
-export default CourseDetailsSidebar;
+export default CourseDetailsSidebarNoStart;
