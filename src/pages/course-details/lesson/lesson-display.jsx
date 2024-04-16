@@ -1,10 +1,7 @@
 import React from 'react';
 import SingleProgressbar from '../../../components/course-details/single-progressbar';
 import SingleComment from '../../../components/course-details/single-comment';
-import SingleAccordion from './single-accordion';
-import CourseDetailsSidebar from '../../../components/common/sidebar/course-details-sidebar';
 import CourseDetailsSidebarNoStart from '../../../components/common/sidebar/course-details-sidebar-no-start-button';
-import HeaderContentAccordion from './headerContentAccordion';
 import LessonListsAccordion from './LessonListsAccordion';
 import lessons from '../../../data/lessons';
 

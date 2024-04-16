@@ -29,7 +29,7 @@ const HeaderContentAccordion = ({ id, title, headers }) => {
         >
             <div className="accordion-body">
                 <ul>
-                    {headers.map((header, index) => (
+                    {Array.isArray(headers) && headers.length > 0 ?( headers.map((header, index) => (
                          <div className="text" key={index}> 
                          
                         
@@ -39,7 +39,7 @@ const HeaderContentAccordion = ({ id, title, headers }) => {
                                 parentId={uniqueId}
                             />
                         </div>
-                    ))}
+                    ))):<></>}
                 </ul>
             </div>
         </div>
