@@ -1,7 +1,10 @@
+ //course_curriculum_lesson
+
 const lessons = [
     {
       title: 'Experience 1: Exploring Basics of Current Electricity through demonstration',
       id:'les1',
+    //  course_curriculum_lesson_header
       headers: [
         {
         id:'hd1_1',

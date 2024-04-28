@@ -1,11 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { TokenService } from "../../services/token";
 
 const loginSlice = createSlice({
     name: 'authLogin',
     initialState: {
-      user: null,
-      token: null,
-      lognError:null
+      user: TokenService.getUser(),  // Get user from secure storage
+      token: TokenService.getToken(),  // Get token from secure storage
+      loginError:null
     },
     reducers: {
       setUser: (state, action) => {
@@ -15,7 +16,7 @@ const loginSlice = createSlice({
         state.token = action.payload;
       },
       setError: (state, action) => {
-        state.lognError = action.payload;
+        state.loginError = action.payload;
       },
       clearUser: (state) => {
         state.user = null;
@@ -24,7 +25,7 @@ const loginSlice = createSlice({
         state.token = null;
       },
       clearError: (state) => {
-        state.lognError = null;
+        state.loginError = null;
       },
     },
   });
