@@ -30,7 +30,7 @@ export const fetchCourses = createAsyncThunk(
           if (response.status === 400) {
             return thunkAPI.rejectWithValue(response);
           }
-          return response;
+          return response.data.data;
         } else {
           return thunkAPI.rejectWithValue({message: 'invalid token session'});
         }

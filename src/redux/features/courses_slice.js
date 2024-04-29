@@ -2,9 +2,9 @@ import { createSlice } from "@reduxjs/toolkit";
 import { fetchCourse, fetchCourses } from "../../services/course_redux_thunk";
 
 const initialState = {
-    courses: [],
-    course: {},
-    error: {},
+    courses: '',
+    course: '',
+    error: '',
     status: 'idle', // Add a status field to handle the loading state
 };
 

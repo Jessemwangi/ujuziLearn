@@ -13,8 +13,8 @@ const HeaderTopRight = () => {
     const {token, user} = useSelector((state) => state.authLogin)
     return (
         <ul className="header-info">
-                                       <li>{ user ? `Hi ${user.studentName}!`: 'Welcome!'} </li> 
-                                        <li>{token ? <Link href="/sign-out"><a>LogOut</a></Link> : <Link href="/sign-in"><a>Login</a></Link>}</li> 
+                                       <li>{ token && user ? `Hi ${user.studentName}!`: 'Welcome!'} </li> 
+                                        <li>{token && user ? <Link href="/sign-out"><a>LogOut</a></Link> : <Link href="/sign-in"><a>Login</a></Link>}</li> 
             <li><a href="tel:+358469045739"><i className="icon-phone"></i>Call: +358 46 9045739</a></li>
             <li><a href="mailto:info@ujuzi.io" rel="noreferrer" target="_blank"><i className="icon-envelope"></i>Email: info@ujuzi.io</a></li>
             <li className="social-icon">
