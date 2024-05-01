@@ -10,7 +10,7 @@ const index = ({courses, course, start}) => {
             <div id="main-wrapper" className="main-wrapper">
                 <Header no_top_bar={true} />
                 <CourseBreadcrumb courses={courses} course={course} subtitle="Course Details"  />
-               <CourseDetailsArea courses={courses} course={course} start={start} />
+              {courses && <CourseDetailsArea courses={courses} course={course} start={start} />}
                 <Footer style_2={'footer-dark bg-image footer-style-2'} />
             </div>
         </div>
