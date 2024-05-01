@@ -17,6 +17,7 @@ const course_data = [
     instructor_img:'team-01.webp',
     instructor_title:'Founder & CEO',
     instructor_desc:'Consectetur adipisicing elit, sed do eiusmod tempor incididunt labore et dolore magna aliqua enim minim veniam quis nostrud exercitation ulla mco laboris nisi ut aliquip ex ea commodo consequat. duis aute irure dolor in reprehenderit in voluptate.',
+   //courses_feature
     features: [
       'Build fully-fledged websites and web apps for your business.',
       'After the course you will be able to build ANY website you want.',
@@ -36,10 +37,14 @@ const course_data = [
     learn_list: ['Learn to use Python professionally, learning both Python 2 & Python 3!', 'Build 6 beautiful real-world projects for your portfolio (not boring toy apps)', 'Understand the Theory behind Vue.js and use it in Real Projects', 'Create responsive, accessible, and beautiful layouts'],
     course_desc_3: 'Consectetur adipisicing elit, sed do eiusmod tempor inc idid unt ut labore et dolore magna aliqua enim ad minim veniam quis nostrud exerec tation ullamco laboris nis aliquip commodo consequat duis aute irure dolor.',
     curriculum_desc: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor inc idid unt ut labore et dolore magna aliqua enim ad minim veniam, quis nostrud exerec tation ullamco laboris nis aliquip commodo consequat.',
+    
+    //course_curriculum
     course_lessons: [
       {
         title: 'Week 1-4',
         text: 'Advanced story telling techniques for writers: Personas, Characters & Plots',
+       
+        //course_curriculum_lesson
         lessons: [
           { title: 'Introduction', icon: 'icon-68' },
           { title: 'Course Overview', icon: 'icon-68' },

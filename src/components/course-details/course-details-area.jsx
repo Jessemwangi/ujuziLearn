@@ -3,10 +3,27 @@ import CourseDetailsSidebar from '../common/sidebar/course-details-sidebar';
 import CommentFormCourse from '../forms/comment-form-course';
 import SingleComment from './single-comment';
 import SingleProgressbar from './single-progressbar';
+import { server } from '../../utils/envVariable';
 
-const CourseDetailsArea = ({ course, start=true }) => {
+const CourseDetailsArea = ({ courses ,course, start=true }) => {
+
   const { course_desc, course_desc_2, learn_list, course_desc_3, curriculum_desc, course_lessons, instructor_img, instructor_title, instructor_desc, social_links, reviews, instructor, rating, rating_count } = course || {};
-    return (
+const {short_desc,
+     createdAt,
+     updatedAt,
+     publishedAt,
+     locale,
+     course_outline,
+     rating_count:rate_c,
+     language,
+     certificate,
+     quizes,
+     level,
+     short_desc_2,
+     short_desc_3,
+     course_learn_lists,courses_instructors,
+     course_target_groups,course_qualification_equirements,courses_weekly_curricula,weekly_curriculum_intro,}=courses
+  return (
         <section className="edu-section-gap course-details-area">
             <div className="container">
                 <div className="row row--30">
@@ -15,7 +32,7 @@ const CourseDetailsArea = ({ course, start=true }) => {
                             <ul className="nav nav-tabs" id="myTab" role="tablist">
                                 <li className="nav-item" role="presentation">
                                     <button className="nav-link active" id="overview-tab" data-bs-toggle="tab" data-bs-target="#overview"
-                                    type="button" role="tab" aria-controls="overview" aria-selected="true">Overview</button>
+                                    type="button"  aria-controls="overview" aria-selected="true">Overview</button>
                                 </li>
                                 <li className="nav-item" role="presentation">
                                     <button className="nav-link" id="carriculam-tab" data-bs-toggle="tab" data-bs-target="#carriculam"
@@ -36,27 +53,22 @@ const CourseDetailsArea = ({ course, start=true }) => {
                                     <div className="course-tab-content">
                                         <div className="course-overview">
                                             <h3 className="heading-title">Course Description</h3>
-                                            <p>{course_desc}</p>
-                                            <p className="mb--60">{course_desc_2}</p>
+                                            <p>{short_desc}</p>
+                                            {short_desc_2 && <p className="mb--60">{short_desc_2}</p>}
                                             <h5 className="title">What You’ll Learn?</h5>
                                             <ul className="mb--60">
-                                                {learn_list?.map((l, i) => <li key={i}>{l}</li>)}
+                                                {course_learn_lists?.data?.map(({attributes,id}) => <li key={id}>{attributes?.learn_list_name}</li>)}
                                             </ul>
-                                            <p>{course_desc_3}</p>
-                                            <h3 className="heading-title" data-sal-delay="150" data-sal="slide-up" data-sal-duration="800">Requirements</h3>
-                                <ul className="mb--90" data-sal-delay="150" data-sal="slide-up" data-sal-duration="800">
-                                    <li>No prior knowledge of Wordpress is required as everything will be covered in this course.</li>
-                                    <li>Basic HTML and CSS knowledge helps, but {"isn't"} a must-have</li>
-                                    <li>You {"don't"} need any coding experience at all. That is the beauty of Wordpress.</li>
-                                    <li>Basic JavaScript knowledge is required</li>
+                                            {short_desc_3 && <p>{short_desc_3}</p>}
+                                            <h3 className="heading-title" data-sal-delay="150" data-sal-duration="100">Requirements</h3>
+                                <ul className="mb--90" data-sal-delay="10" data-sal-duration="100">
+                                    {course_qualification_equirements && course_qualification_equirements.data.map(({id,attributes}) =>
+                                    <li key={id}>{attributes?.qualification_name}</li>)}
                                 </ul>
 
-                                <h3 className="heading-title" data-sal-delay="150" data-sal="slide-up" data-sal-duration="800">Target Audience</h3>
-                                <ul className="mb--90" data-sal-delay="150" data-sal="slide-up" data-sal-duration="800">
-                                    <li>Newcomer as well as experienced frontend developers interested in learning a modern JavaScript framework</li>
-                                    <li>If you want to learn to master Wordpress without getting bogged down with technical jargon, this course is for you.</li>
-                                    <li>This course is for you if you want to build a website, whether for personal or business reasons.</li>
-                                    <li>This course is perfect for you if you are taking over an existing Wordpress website, or want to build one from</li>
+                                <h3 className="heading-title" data-sal-delay="10" data-sal-duration="100">Target Audience</h3>
+                                <ul className="mb--90" data-sal-delay="10" data-sal-duration="100">
+                                    {course_target_groups && course_target_groups?.data?.map(({id,attributes}) => <li key={id}>{attributes?.target_group_name}</li>)}
                                 </ul>
                                         </div>
                                         
@@ -67,35 +79,28 @@ const CourseDetailsArea = ({ course, start=true }) => {
                                     <div className="course-tab-content">
                                         <div className="course-curriculam">
                                             <h3 className="heading-title">Course Curriculum</h3>
-                                            <p>{curriculum_desc}</p>
-                                            {course_lessons.map((lesson, i) => (
-                                                <div key={i} className="course-lesson">
-                                                    <h5 className="title">{lesson?.title}</h5>
-                                                    <p>{lesson?.text}</p>
+                                            <p>{weekly_curriculum_intro}</p>
+                                            {courses_weekly_curricula?.data.map(({attributes,id,curriculum_reg}) => (
+                                                <div key={`${curriculum_reg}${id}`} className="course-lesson">
+                                                    <h5 className="title">{attributes?.curriculum_title}</h5>
+                                                    <p>{attributes?.curriculum_desc}</p>
                                                     <ul>
-                                                        {lesson?.lessons?.map((list, i) => (
-                                                            <li key={i}>
-                                                                {list.title && 
+                                                        {/* {attributes?.curriculum_lesson_headers?.data?.map(({attributes, id}) => (
+                                                            <li key={id}>
+                                                                {attributes.curriculum_lesson_header_title && 
                                                                     <div className="text">
                                                                         <i className="icon-65"></i>
-                                                                        {list.title}
+                                                                        {attributes.curriculum_lesson_header_title}
                                                                     </div>
                                                                 }
 
-                                                                {!list?.badge_list && 
+                                                              
                                                                     <div className="icon">
                                                                         <i className={list?.icon}></i>
                                                                     </div>
-                                                                }
-
-                                                                {list?.badge_list && 
-                                                                    <div className="badge-list">
-                                                                        <span className="badge badge-primary">{list?.question} Question</span>
-                                                                        <span className="badge badge-secondary">{list?.minutes} Minutes</span>
-                                                                    </div>
-                                                                }
+                                                               
                                                             </li>
-                                                        ))}
+                                                        ))} */}
                                                     </ul>
                                                 </div>
                                             ))}
@@ -105,25 +110,48 @@ const CourseDetailsArea = ({ course, start=true }) => {
 
                                 <div className="tab-pane fade" id="instructor" role="tabpanel" aria-labelledby="instructor-tab">
                                     <div className="course-tab-content">
-                                        <div className="course-instructor">
+                                        {courses_instructors?.data?.map(({id,attributes}) =>
+                                        <div className="course-instructor" key={id}>
                                             <div className="thumbnail">
-                                                <img src={`/assets/images/team/team-02/${instructor_img}`} alt="team images" />
+                                                <img src={`http://localhost:1337${attributes?.instructor_img?.data?.attributes?.formats?.thumbnail?.url}`} alt="team images" />
                                             </div>
                                             <div className="author-content">
-                                                <h6 className="title">{instructor}</h6>
-                                                <span className="subtitle">{instructor_title}</span>
-                                                <p>{instructor_desc}</p>
+                                                <h6 className="title">{attributes?.instructor_name}</h6>
+                                                <span className="subtitle">{attributes?.instructor_title}</span>
+                                                <p>{attributes?.instructor_desc}</p>
+                                                <p>{attributes?.country}</p>
                                                 <ul className="social-share">
-                                                    {social_links?.map((social, i) => (
-                                                        <li key={i}>
-                                                            <a href={social.link} target={social.target ? social.target : ''}>
-                                                                <i className={social.icon}></i>
+                                                    <li>{attributes?.instructor_email}</li>
+                                                    <li>{attributes?.contact}</li>
+                                                </ul>
+                                                <ul className="social-share">
+                                                   
+                                                        <li >
+                                                            <a href={attributes?.instructor_linkedIn} target='_blank'>
+                                                                <i className='icon-linkedin2'></i>
                                                             </a>
                                                         </li>
-                                                    ))}
+                                                        <li >
+                                                            <a href={attributes?.instructor_fb} target='_blank'>
+                                                                <i className='icon-facebook'></i>
+                                                            </a>
+                                                        </li>
+                                                        <li >
+                                                            <a href={attributes?.instructor_x} target='_blank'>
+                                                                <i className='icon-twitter'></i>
+                                                            </a>
+                                                            
+                                                        </li>
+                                                        <li >
+                                                            <a href={attributes?.instructor_youtube} target='_blank'>
+                                                                <i className='icon-youtube'></i>
+                                                            </a>
+                                                        </li>
+                                                  
                                                 </ul>
                                             </div>
                                         </div>
+                                )}
                                     </div>
                                 </div>
 

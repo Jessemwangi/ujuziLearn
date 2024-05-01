@@ -10,8 +10,8 @@ import { useRouter } from 'next/router';
 
 const LoginForm = () => {
     const dispatch = useDispatch()
-    const {lognError, token, user} = useSelector((state) => state.authLogin)
-    console.log('lognError : ', lognError, 'token :', token, 'user : ', user)
+    const {loginError, token, user} = useSelector((state) => state.authLogin)
+    console.log('loginError : ', loginError, 'token :', token, 'user : ', user)
     const [showPass,setShowPass] = useState(false);
     const url = process.env.REACT_APP_SERVER_URL || 'http://localhost:1337/api';
     const router = useRouter();
@@ -76,7 +76,7 @@ const LoginForm = () => {
             <div className="form-group">
                 <button type="submit" className="edu-btn btn-medium">Sign in <i className="icon-4"></i></button>
             </div>
-            <p>{lognError?.message}</p>
+            <p>{loginError?.message}</p>
         </form>
     )
 }

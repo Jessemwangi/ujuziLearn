@@ -11,7 +11,7 @@ const HeaderContentAccordion = ({ id, title, headers }) => {
         <div className="accordion-item">
         <h3 className="accordion-header" id={uniqueId}>
             <button 
-                className="accordion-button" 
+                className="accordion-button collapsed" 
                 type="button" 
                 onClick={() => setOpenAccordion(openAccordion === uniqueId ? null : uniqueId)}
                 data-bs-toggle="collapse" 

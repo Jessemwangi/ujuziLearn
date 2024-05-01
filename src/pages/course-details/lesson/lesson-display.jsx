@@ -122,9 +122,9 @@ const LessonDisplay = ({ course }) => {
                                 <div className="comment-area">
                                     <h3 className="heading-title">Reviews</h3>
                                     <div className="comment-list-wrapper">
-                                        {reviews?.map((review, i) => (
+                                        {/* {reviews?.map((review, i) => (
                                             <SingleComment key={i} review={review} />
-                                        ))}
+                                        ))} */}
                                     </div>
                                 </div>
                             </div>

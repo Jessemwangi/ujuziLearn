@@ -1,5 +1,7 @@
+import { TokenService } from '../../services/token';
 import postD from '../../utils/getData' 
 import { setError, setToken, setUser } from './loginSlice';
+
 export const login = (apiUrl , object) => async (dispatch) => {
 
     try {
@@ -10,6 +12,8 @@ export const login = (apiUrl , object) => async (dispatch) => {
       }
       else{
         const { user, token } = response;
+        TokenService .setUser(user);  // Store user in secure storage
+        TokenService.setToken(token);  // Store token in secure storage
         dispatch(setUser(user));
         dispatch(setToken(token));
         dispatch(setError(null))
