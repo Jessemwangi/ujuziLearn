@@ -4,10 +4,10 @@ import { course_data } from '../../data';
 import SortingArea from '../course-filter/sorting-area';
 import CourseTypeSix from '../course/course-type-six';
 
-const CourseTwoArea = () => {
+const CourseTwoArea = ({_courses}) => {
     const coursePerView = 6;
     const [next, setNext] = useState(coursePerView);
-    const [courses,setCourses] = useState(course_data);
+    const [courses,setCourses] = useState(_courses);
     // handleLoadData
     const handleLoadData = () => {
         setNext(value => value + 3)
@@ -15,14 +15,15 @@ const CourseTwoArea = () => {
     return (
         <div className="edu-course-area course-area-1 gap-tb-text">
             <div className="container">
-                <SortingArea course_items={course_data} num={courses?.slice(0,next)?.length} setCourses={setCourses} courses={courses} />
+               {_courses.length > 0 && <SortingArea course_items={_courses} num={courses?.slice(0,next)?.length} setCourses={setCourses} courses={courses} />}
 
                 <div className="row g-5">
-                    {courses?.slice(0, next)?.map((course) => (
-                        <div key={course.id} className="col-md-6 col-lg-4">
-                            <CourseTypeSix data={course} classes="course-box-shadow" />
+                    {_courses.length > 0 ?
+                    (_courses?.map(({attributes,id}) => (
+                        <div key={id} className="col-md-6 col-lg-4">
+                            <CourseTypeSix data={attributes} id={id} classes="course-box-shadow" />
                         </div>
-                    ))}
+                    ))):<p>No courses available for viewing</p>}
                 </div>
 
                 {next < courses.length && 

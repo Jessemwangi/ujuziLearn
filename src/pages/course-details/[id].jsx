@@ -17,15 +17,17 @@ const DynamicCourseDetails = () => {
     const status = useSelector((state) => state.courses.status);
     const error = useSelector((state) => state.courses.error);
   const query =`populate=courses_subcategories&populate=courses_weekly_curricula.course_lessons.curriculum_lesson_headers&populate=courses_categories&populate=courses_instructors.instructor_img&populate=course_intro_video&populate=course_intro_img&populate=course_target_groups&populate=course_learn_lists&populate=course_qualification_equirements&populate=subscription_packages&populate=course_reviews&populate=courses_features&populate=localizations`
-    useEffect(() => {
-      if (status === 'idle') {
-        dispatch(fetchCourse(`/courses/${id}?${query}`)); // replace with your actual endpoint
-      }
-    }, [status, dispatch]);
+  useEffect(() => {
+    if (!courses || !courses.attributes || courses.attributes.id !== id) {
+        dispatch(fetchCourse(`/courses/${id}?${query}`));
+    }
+}, [id,dispatch]);
+
+
     return (
         <Wrapper>
             <SEO pageTitle={'Course Details'} />
-          {courses &&  <CourseDetailsMain courses={courses.attributes} course={course} start={true}/>}
+          {courses.attributes &&  <CourseDetailsMain courses={courses.attributes} course={course} start={true}/>}
         </Wrapper>
     )
 }

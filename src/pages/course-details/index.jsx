@@ -4,15 +4,15 @@ import { Wrapper } from '../../layout';
 import CourseDetailsMain from '../../components/course-details';
 import { course_data } from '../../data';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectCourse } from '../../redux/features/courses_slice';
-import { fetchCourse } from '../../services/course_redux_thunk';
+import { selectCourse, selectCourses } from '../../redux/features/courses_slice';
+import {  fetchCourses } from '../../services/course_redux_thunk';
 
 const course = course_data[0];
 
 const CourseDetails = () => {
    
     const dispatch = useDispatch();
-    const courses = useSelector(selectCourse);
+    const courses = useSelector(selectCourses);
     const status = useSelector((state) => state.courses.status);
     const error = useSelector((state) => state.courses.error);
   
