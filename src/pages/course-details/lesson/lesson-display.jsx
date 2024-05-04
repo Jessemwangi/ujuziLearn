@@ -6,9 +6,26 @@ import LessonListsAccordion from './LessonListsAccordion';
 import lessons from '../../../data/lessons';
 
 
-const LessonDisplay = ({ course }) => {
+const LessonDisplay = ({ course,courses }) => {
   const { course_desc, course_desc_2, learn_list, course_desc_3, curriculum_desc, course_lessons, instructor_img, instructor_title, instructor_desc, social_links, reviews, instructor, rating, rating_count,title } = course || {};
- 
+
+  const {id,attributes} = courses
+  const {short_desc,
+    createdAt,
+    updatedAt,
+    publishedAt,
+    locale,
+    course_outline,
+    duration,
+    rating_count:rate_c,
+    language,
+    certificate,
+    quizes,
+    level,
+    short_desc_2,
+    short_desc_3,
+    course_learn_lists,courses_instructors,
+    course_target_groups,course_qualification_equirements,courses_weekly_curricula,weekly_curriculum_intro,} = attributes
     return (
         <section className="edu-section-gap course-details-area">
             <div className="container">
@@ -17,8 +34,9 @@ const LessonDisplay = ({ course }) => {
                         <div className="course-details-content course-details-2">
                             <div className="course-overview">
                                 <h3 className="heading-title" data-sal-delay="150" data-sal="slide-up" data-sal-duration="800">About This Course</h3>
-                                <p data-sal-delay="150" data-sal="slide-up" data-sal-duration="800">{course_desc}</p>
-                                <p data-sal-delay="150" data-sal="slide-up" data-sal-duration="800">{course_desc_2}</p>
+                                <p data-sal-delay="150" data-sal="slide-up" data-sal-duration="800">{short_desc}</p>
+                                <p data-sal-delay="150" data-sal="slide-up" data-sal-duration="800">{short_desc_2}</p>
+                                <p data-sal-delay="150" data-sal="slide-up" data-sal-duration="800">{short_desc_3}</p>
                             </div>
 
                             <div className="course-curriculam mb--90">

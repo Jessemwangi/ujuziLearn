@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import { server_url } from '../../services/courses-service';
 
 const CourseTypeSix = ({ data, classes ,id}) => {
     return (
@@ -8,7 +9,7 @@ const CourseTypeSix = ({ data, classes ,id}) => {
                 <div className="thumbnail">
                     <Link href={`/course-details/${id}`}>
                         <a>
-                            <img src={`/assets/images/course/course-04/${data?.img}`} alt="Course Meta" />
+                            <img src={`${server_url}/assets/images/course/course-04/${data?.img}`} alt="Course Meta" />
                         </a>
                     </Link>
                     <div className="time-top">
