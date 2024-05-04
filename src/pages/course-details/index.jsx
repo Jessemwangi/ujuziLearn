@@ -2,10 +2,8 @@ import React, { useEffect } from 'react';
 import SEO from '../../components/seo';
 import { Wrapper } from '../../layout';
 import CourseDetailsMain from '../../components/course-details';
-import { course_data } from '../../data';
-import useCoursesData from '../../hooks/useCourseQuery';
+import useCoursesData from '../../hooks/useCoursesQuery';
 
-const course = course_data[0];
 
 const CourseDetails = () => {
   const { courses_list, isLoading } = useCoursesData();

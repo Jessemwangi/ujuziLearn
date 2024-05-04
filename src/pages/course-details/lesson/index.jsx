@@ -1,8 +1,8 @@
 import React from 'react';
 import { Footer, Header } from '../../../layout';
-import useCoursesData from '../../../hooks/useCourseQuery';
 import BreadcrumbThree from '../../../components/breadcrumb/breadcrumb-3';
 import CourseTwoArea from '../../../components/course-style-2/course-2-area';
+import useCoursesData from '../../../hooks/useCoursesQuery';
 
 const index = () => {
     const { courses_list, isLoading } = useCoursesData();

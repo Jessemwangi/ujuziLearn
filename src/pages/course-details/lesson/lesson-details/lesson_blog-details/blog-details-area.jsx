@@ -1,7 +1,4 @@
 import React from 'react';
-import BlogSidebar from '../blog/blog-sidebar';
-import BlogCommentForm from '../forms/blog-comment-form';
-import CommentArea from './comment-area';
 
 const BlogDetailsArea = ({blog}) => {
     return (
@@ -144,12 +141,12 @@ const BlogDetailsArea = ({blog}) => {
                         </div>
 
                         {/*  Start Comment Area  */}
-                        <CommentArea />
+                        {/* <CommentArea /> */}
                         {/*  End Comment Area  */}
                         <div className="comment-form-area">
                             <h3 className="heading-title">Leave Your Comment Here</h3>
                             {/* form start */}
-                            <BlogCommentForm />
+                            {/* <BlogCommentForm /> */}
                             {/* form end */}
                         </div>
                     </div>
