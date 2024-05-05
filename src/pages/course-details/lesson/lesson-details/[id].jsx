@@ -17,7 +17,7 @@ const DynamicBlogDetails = () => {
     return (
         <Wrapper>
             <SEO pageTitle={'Learning is fun'} />
-            {/* <LessonBlogDetails blog={blog} /> */}
+             <LessonBlogDetails course={courses_list} /> 
         </Wrapper>
     )
 }

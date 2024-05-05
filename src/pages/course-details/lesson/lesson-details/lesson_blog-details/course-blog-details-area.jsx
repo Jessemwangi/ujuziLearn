@@ -1,6 +1,8 @@
 import React from 'react';
+import BlogSidebar from '../../../../../components/blog/blog-sidebar';
+import CommentArea from './comment-area';
 
-const BlogDetailsArea = ({blog}) => {
+const CourseBlogDetailsArea = ({course}) => {
     return (
         <div className="blog-details-area section-gap-equal">
             <div className="container">
@@ -9,10 +11,10 @@ const BlogDetailsArea = ({blog}) => {
                         <div className="blog-details-content">
                             <div className="entry-content">
                                 <span className="category">Developer</span>
-                                <h3 className="title">{blog?.title}</h3>
+                                <h3 className="title">{course?.course_name}</h3>
                                 <ul className="blog-meta">
-                                    <li><i className="icon-27"></i>{blog?.date}</li>
-                                    <li><i className="icon-28"></i>Com {blog?.comment}</li>
+                                    <li><i className="icon-27"></i>{course?.createdAt}</li>
+                                    <li><i className="icon-28"></i>Com {course?.rating_count}</li>
                                 </ul>
                                 <div className="thumbnail">
                                     <img src="/assets/images/blog/blog-large-1.jpg" alt="Blog Image" />
@@ -141,7 +143,7 @@ const BlogDetailsArea = ({blog}) => {
                         </div>
 
                         {/*  Start Comment Area  */}
-                        {/* <CommentArea /> */}
+                        <CommentArea />
                         {/*  End Comment Area  */}
                         <div className="comment-form-area">
                             <h3 className="heading-title">Leave Your Comment Here</h3>
@@ -162,4 +164,4 @@ const BlogDetailsArea = ({blog}) => {
     )
 }
 
-export default BlogDetailsArea;
+export default CourseBlogDetailsArea;

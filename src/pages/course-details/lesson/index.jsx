@@ -12,7 +12,7 @@ const index = () => {
                 lesson will be here
                 <Header no_top_bar={true} /> 
                 <BreadcrumbThree title="Subscribed Course" subtitle="My Courses" />
-              {!isLoading  && <CourseTwoArea courses={courses_list || []}/>}
+              {!isLoading  && <CourseTwoArea courses={courses_list || []} lst={true}/>}
              <Footer style_2={'footer-dark bg-image footer-style-2'} />
             </div>
         </div>

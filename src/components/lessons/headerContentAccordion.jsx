@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import SingleTopicAccordion from './SingleTopicAccordion';
 
-const HeaderContentAccordion = ({ id, title, headers }) => {
+const HeaderContentAccordion = ({ id, title, course_lessons }) => {
     // Generate a unique id for the HeaderContentAccordion
     const uniqueId = `header-${id}`;
     const [openAccordion, setOpenAccordion] = useState(id === 0 ? uniqueId : null);

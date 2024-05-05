@@ -4,13 +4,13 @@ import HeaderContentAccordion from "./headerContentAccordion";
 const LessonListsAccordion = ({ lessons }) => {
   return (
     <div className="accordion-item">
-      {lessons &&
-        lessons.map((lesson, index) => (
+      {lessons?.data &&
+        lessons?.data.map(({id,attributes}) => (
           <HeaderContentAccordion
-            key={index}
-            id={lesson.id}
-            title={lesson.title}
-            headers={lesson.headers}
+            key={attributes.curriculum_reg}
+            id={id}
+            title={attributes.curriculum_lesson_title}
+            course_lessons={attributes.course_lessons}
           />
         ))}
 {/* 
