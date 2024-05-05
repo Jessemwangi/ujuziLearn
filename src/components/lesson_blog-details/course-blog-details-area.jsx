@@ -1,9 +1,11 @@
 import React from 'react';
-import BlogSidebar from '../../../../../components/blog/blog-sidebar';
+import BlogSidebar from '../blog/blog-sidebar';
 import CommentArea from './comment-area';
 import DOMPurify from 'dompurify';
+import { getLocalStorage } from '../../utils/localstorage';
 
-const CourseBlogDetailsArea = ({lessons, title}) => {
+const CourseBlogDetailsArea = ({lessons}) => {
+    const title = getLocalStorage('course')
     const {
         curriculum_lesson_desc,
         curriculum_lesson_title,
@@ -36,7 +38,7 @@ const CourseBlogDetailsArea = ({lessons, title}) => {
                                 {/* <h5 className="author">verified</h5> */}
                             </blockquote>
 {curriculum_lesson_headers?.data?.map(({attributes,id}) =>
-<>
+<div key={id}>
 <h3 className="title">{attributes?.curriculum_lesson_header_title}</h3>
 <p dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(attributes?.course_curriculum_lesson_header_content) }}></p>
 
@@ -52,7 +54,7 @@ const CourseBlogDetailsArea = ({lessons, title}) => {
                             </div>}
 
                             {attributes?.content_2 && <p dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(attributes?.content_2) }}></p>}
-</>
+</div>
 )}
                             <div className="blog-share-area">
                                 <div className="row align-items-center">

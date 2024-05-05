@@ -8,6 +8,7 @@ import BreadcrumbSix from '../../../components/breadcrumb/breadcrumb-6';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchCourse } from '../../../services/course_redux_thunk';
 import { selectCourse } from '../../../redux/features/courses_slice';
+import { setLocalStorage } from '../../../utils/localstorage';
 
 const DynamicCourseDetails = () => {
     const router = useRouter();
@@ -23,7 +24,8 @@ const DynamicCourseDetails = () => {
     }
 }, [id,dispatch]);
     // const course = course_data.find(item => Number(item.id) === Number(id))
-
+console.log(status)
+if(status==='succeeded'){setLocalStorage('course',{name:course?.attributes?.course_name,id:course.id })}
     return (
         <Wrapper>
             <Header no_top_bar={true} /> 

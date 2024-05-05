@@ -9,7 +9,6 @@ const latest_blog = blog_data.slice(0, 3);
 const BlogSidebar = ({id}) => {
     const course = useSelector(selectCourse);
     const status = useSelector((state) => state.courses.status);
-    console.log(status,course)
     return (
         <div className="edu-blog-sidebar">
             <div className="edu-blog-widget widget-search">

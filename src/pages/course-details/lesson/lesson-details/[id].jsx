@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import LessonBlogDetails from '../../../../components/lesson_blog-details';
 import useCourseLessonData from '../../../../hooks/use_Course_Lesson_Query';
 import { QUERY_STRINGS } from '../../../../queries/endpoints';
@@ -10,12 +10,18 @@ import { getLocalStorage } from '../../../../utils/localstorage';
 
 const DynamicBlogDetails = () => {
     const router = useRouter();
-    let title ='My lesson';
+    const [title, setTitle] = useState('My Lesson');
+
+    useEffect(() => {
+      const course = getLocalStorage('course');
+      if (course) {
+        setTitle(course?.name);
+      }
+    }, []);
     const { id } = router.query;
     const q = QUERY_STRINGS.courses.lessonList.url;
     const { courses_list, isLoading } = useCourseLessonData(id,q)
-    const course = getLocalStorage('course') ;
-    if (course){title = course?.name};
+   
     return (
         <Wrapper>
             <SEO pageTitle={title} />
