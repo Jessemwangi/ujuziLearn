@@ -23,13 +23,13 @@ const DynamicCourseDetails = () => {
     }
 }, [id,dispatch]);
     // const course = course_data.find(item => Number(item.id) === Number(id))
-    console.log('courses in ',course)
+
     return (
         <Wrapper>
             <Header no_top_bar={true} /> 
-            <BreadcrumbSix title="Course Details" page="Fun learning with Ujuzi" />
-            {course.attributes && <SEO pageTitle={course.attributes.course_name} />}
-           {course.attributes && <LessonDisplay course={course}  />}
+            <BreadcrumbSix title={course?.attributes?.course_name || 'My Course'} page={course?.attributes?.course_name || 'My Course'} />
+            {course.attributes && <SEO pageTitle={course?.attributes?.course_name} />}
+           {course?.attributes && <LessonDisplay course={course}  />}
             <Footer style_2={'footer-dark bg-image footer-style-2'} />
         </Wrapper>
     )

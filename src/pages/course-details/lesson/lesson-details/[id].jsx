@@ -7,17 +7,16 @@ import SEO from '../../../../components/seo';
 import { blog_data } from '../../../../data';
 import { Wrapper } from '../../../../layout';
 
-const DynamicBlogDetails = () => {
+const DynamicBlogDetails = ({title="non"}) => {
     const router = useRouter();
     const { id } = router.query;
     const blog = blog_data.find(item => Number(item.id) === Number(id))
     const q = QUERY_STRINGS.courses.lessonList.url;
     const { courses_list, isLoading } = useCourseLessonData(id,q)
-    console.log(courses_list)
     return (
         <Wrapper>
-            <SEO pageTitle={'Learning is fun'} />
-             <LessonBlogDetails course={courses_list} /> 
+            <SEO pageTitle={title} />
+             <LessonBlogDetails lessons={courses_list} title={title} /> 
         </Wrapper>
     )
 }

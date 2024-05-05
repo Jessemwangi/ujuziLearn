@@ -3,12 +3,9 @@ import SingleProgressbar from '../course-details/single-progressbar';
 import SingleComment from '../course-details/single-comment';
 import CourseDetailsSidebarNoStart from '../common/sidebar/course-details-sidebar-no-start-button';
 import LessonListsAccordion from './LessonListsAccordion';
-import lessons from '../../data/lessons';
 
 
 const LessonDisplay = ({ course }) => {
-//   const { course_desc, course_desc_2, learn_list, course_desc_3, curriculum_desc, course_lessons, instructor_img, instructor_title, instructor_desc, social_links, reviews, instructor, rating, rating_count,title } = course || {};
-
   const {id,attributes} = course
   const {short_desc,
     createdAt,
@@ -35,17 +32,17 @@ const LessonDisplay = ({ course }) => {
                     <div className="col-lg-8">
                         <div className="course-details-content course-details-2">
                             <div className="course-overview">
-                                <h3 className="heading-title" data-sal-delay="150" data-sal="slide-up" data-sal-duration="800">About This Course</h3>
-                                <p data-sal-delay="150" data-sal="slide-up" data-sal-duration="800">{short_desc}</p>
-                                <p data-sal-delay="150" data-sal="slide-up" data-sal-duration="800">{short_desc_2}</p>
-                                <p data-sal-delay="150" data-sal="slide-up" data-sal-duration="800">{short_desc_3}</p>
+                                <h3 className="heading-title" data-sal-delay="150" data-sal-duration="800">About This Course</h3>
+                                <p data-sal-delay="150" data-sal-duration="800">{short_desc}</p>
+                                <p data-sal-delay="150" data-sal-duration="800">{short_desc_2}</p>
+                                <p data-sal-delay="150" data-sal-duration="800">{short_desc_3}</p>
                             </div>
 
                             <div className="course-curriculam mb--90">
-                                <h3 className="heading-title" data-sal-delay="150" data-sal="slide-up" data-sal-duration="800">{course_name}</h3>
-                                <p data-sal-delay="150" data-sal="slide-up" data-sal-duration="800">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor inc idid unt ut labore et dolore magna aliqua.</p>
-                                <div className="accordion edu-accordion" id="accordionExample" data-sal-delay="150" data-sal="slide-up" data-sal-duration="800">
-<LessonListsAccordion lessons={courses_weekly_curricula}/>
+                                <h3 className="heading-title" data-sal-delay="150" data-sal-duration="800">Start Learning</h3>
+                                <p data-sal-delay="150" data-sal-duration="800">{weekly_curriculum_intro}</p>
+                                <div className="accordion edu-accordion" id="accordionExample" data-sal-delay="150"  data-sal-duration="800">
+<LessonListsAccordion weekly_curriculum={courses_weekly_curricula?.data}/>
                                     {/* <SingleAccordion show={true} id="1" title="Course Introduction" desc={[
                                         { title: 'Introduction', icon: 'icon-68', lesson: 'electricity is good for life', },
                                          { title: 'Course Overview', icon: 'icon-68', lesson: 'electricity is good for life', },
@@ -105,7 +102,7 @@ const LessonDisplay = ({ course }) => {
                                     </div>
                                 </div>
 
-                            <div className="course-review" data-sal-delay="150" data-sal="slide-up" data-sal-duration="800">
+                            <div className="course-review" data-sal-delay="150"  data-sal-duration="800">
                                 <h3 className="heading-title">Student Feedback</h3>
                                 <p>{course_ratings?.data?.length} average rating based on {course_ratings?.data?.length} rating</p>
                                 <div className="row g-0 align-items-center">
@@ -143,7 +140,7 @@ const LessonDisplay = ({ course }) => {
                         </div>
                     </div>
                     <div className="col-lg-4">
-                    <CourseDetailsSidebarNoStart  lessons={lessons} course={course} details_2={true} />
+                    <CourseDetailsSidebarNoStart  lessons={courses_weekly_curricula?.data} course={attributes} details_2={true} />
                     </div>
                 </div>
             </div>

@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import SingleTopicAccordion from './SingleTopicAccordion';
 
-const HeaderContentAccordion = ({ id, title, course_lessons }) => {
+const HeaderContentAccordion = ({ _id, serial, title, course_lessons }) => {
     // Generate a unique id for the HeaderContentAccordion
-    const uniqueId = `header-${id}`;
-    const [openAccordion, setOpenAccordion] = useState(id === 0 ? uniqueId : null);
+    const uniqueId = serial;
+    const [openAccordion, setOpenAccordion] = useState(serial === 0 ? uniqueId : null);
 
 
     return (
@@ -15,7 +15,7 @@ const HeaderContentAccordion = ({ id, title, course_lessons }) => {
                 type="button" 
                 onClick={() => setOpenAccordion(openAccordion === uniqueId ? null : uniqueId)}
                 data-bs-toggle="collapse" 
-                data-bs-target={`#header-${uniqueId}`} 
+                data-bs-target={uniqueId} 
                 aria-expanded={openAccordion === uniqueId ? 'true' : 'false'}
             >
                 {title}
@@ -23,23 +23,25 @@ const HeaderContentAccordion = ({ id, title, course_lessons }) => {
         </h3>
 
         <div 
-            id={`header-${uniqueId}`} 
+            id={uniqueId} 
             className={`accordion-collapse collapse ${openAccordion === uniqueId ? 'show' : ''}`} 
             data-bs-parent="#lessonListAccordion"
         >
             <div className="accordion-body">
                 <ul>
-                    {Array.isArray(headers) && headers.length > 0 ?( headers.map((header, index) => (
-                         <div className="text" key={index}> 
+                    {course_lessons?.data && course_lessons?.data.map(({attributes,id}) => (
+                         <div className="text" key={attributes.curriculum_lesson_reg}> 
 
 
                             <SingleTopicAccordion 
-                                title={header.title}
-                                content={header.content}
+                                title={attributes.curriculum_lesson_title}
+                                content={attributes.curriculum_lesson_desc}
                                 parentId={uniqueId}
+                                id={id}
+                                weekly_id ={_id}
                             />
                         </div>
-                    ))):<></>}
+                    ))}
                 </ul>
             </div>
         </div>

@@ -1,6 +1,6 @@
 import httpClient from "./http-client";
 import { server } from "../utils/envVariable"; // ... /api
-import { BASE_URL, COURSES_ENDPOINT } from "../queries/endpoints";
+import { BASE_URL, COURSES_ENDPOINT, COURSES_LESSON } from "../queries/endpoints";
 const endpoint  = COURSES_ENDPOINT
 export const server_url = BASE_URL || `http://localhost:1337/api`
 // const token =
@@ -13,8 +13,13 @@ export const COURSES_SERVICES= {
 
     return res?.data;
   },
-  async getSingleCourse(id, query) {
+  async getSingleCourses(id,query) {
     const res = await httpClient.get(`${server_url}${endpoint}/${id}?${query}`);
+
+    return res?.data;
+  },
+  async getSingleLesson(id, query) {
+    const res = await httpClient.get(`${server_url}${COURSES_LESSON}/${id}?${query}`);
 
     return res?.data;
   },

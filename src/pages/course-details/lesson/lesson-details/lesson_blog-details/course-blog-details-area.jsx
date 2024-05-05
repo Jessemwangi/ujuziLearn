@@ -1,8 +1,18 @@
 import React from 'react';
 import BlogSidebar from '../../../../../components/blog/blog-sidebar';
 import CommentArea from './comment-area';
+import DOMPurify from 'dompurify';
 
-const CourseBlogDetailsArea = ({course}) => {
+const CourseBlogDetailsArea = ({lessons, title}) => {
+    const {
+        curriculum_lesson_desc,
+        curriculum_lesson_title,
+        curriculum_lesson_reg,
+        intro_pic,
+        curriculum_lesson_headers,
+        createdAt,
+        id,
+    }=lessons || {};
     return (
         <div className="blog-details-area section-gap-equal">
             <div className="container">
@@ -10,62 +20,40 @@ const CourseBlogDetailsArea = ({course}) => {
                     <div className="col-lg-8">
                         <div className="blog-details-content">
                             <div className="entry-content">
-                                <span className="category">Developer</span>
-                                <h3 className="title">{course?.course_name}</h3>
+                                <span className="category">Experiential learning</span>
+                                <h3 className="title">{ curriculum_lesson_title}</h3>
                                 <ul className="blog-meta">
-                                    <li><i className="icon-27"></i>{course?.createdAt}</li>
-                                    <li><i className="icon-28"></i>Com {course?.rating_count}</li>
+                                    <li><i className="icon-27"></i>{createdAt}</li>
+                                    <li><i className="icon-28"></i> Topics {curriculum_lesson_headers?.data?.length}</li>
                                 </ul>
                                 <div className="thumbnail">
-                                    <img src="/assets/images/blog/blog-large-1.jpg" alt="Blog Image" />
+                                    <img src={intro_pic?.data?.attributes?.url} alt="intro Image" />
                                 </div>
                             </div>
-
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor inc idid unt ut labore et dolore magna aliqua enim ad minim veniam, quis nostrud exerec tation ullamco laboris nis aliquip commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit sed quia consequuntur magni dolores. </p>
-
-                            <p>Excepteur sint occaecat cupidatat non proident sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium totam rem aperiam.</p>
-                            <ul>
-                                <li>Aute irure dolor in reprehenderit</li>
-                                <li>Occaecat cupidatat non proident sunt in culpa</li>
-                                <li>Pariatur enim ipsam.</li>
-                            </ul>
 
                             <blockquote>
-                                <p>Lorem ipsum dolor amet con sectur elitadicing elit sed do usmod tempor uincididunt enim minim veniam nostrud.</p>
-                                <h5 className="author">Simon Baker</h5>
+                                <p>{curriculum_lesson_desc}</p>
+                                {/* <h5 className="author">verified</h5> */}
                             </blockquote>
+{curriculum_lesson_headers?.data?.map(({attributes,id}) =>
+<>
+<h3 className="title">{attributes?.curriculum_lesson_header_title}</h3>
+<p dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(attributes?.course_curriculum_lesson_header_content) }}></p>
 
-                            <h3 className="title">The Complete Camtasia</h3>
-                            <p>Excepteur sint occaecat cupidatat non proident sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium totam rem aperiam. </p>
-
-                            <div className="features-image">
+                          {attributes?.content_img?.data &&  <div className="features-image">
                                 <div className="row g-md-5">
-                                    <div className="col-6">
-                                        <div className="thumb">
-                                            <img src="/assets/images/blog/features-1.jpg" alt="Features Images" />
-                                        </div>
-                                    </div>
-                                    <div className="col-6">
-                                        <div className="thumb">
-                                            <img src="/assets/images/blog/features-2.jpg" alt="Features Images" />
+                                    <div className="col-12">
+                                        <div className="thumbnail">
+                                            <img src={attributes?.content_img.attributes?.url} alt="Features Images" />
+                                        <p>image description will be here</p>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div>}
 
-                            <p>Consectetur adipisicing elit, sed do eiusmod tempor inc idid unt ut labore et dolore magna aliqua enim ad minim veniam, quis nostrud exerec tation ullamco laboris nis aliquip commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit sed quia consequuntur magni dolores. </p>
-
-                            <p>Excepteur sint occaecat cupidatat non proident sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium totam rem aperiam.</p>
-
-                            <h3 className="title">Intrinsic Motivation</h3>
-                            <p>Excepteur sint occaecat cupidatat non proident sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium totam rem aperiam. </p>
-
-                            <ul>
-                                <li>Aute irure dolor in reprehenderit</li>
-                                <li>Occaecat cupidatat non proident sunt in culpa</li>
-                                <li>Pariatur enim ipsam.</li>
-                            </ul>
-
+                            {attributes?.content_2 && <p dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(attributes?.content_2) }}></p>}
+</>
+)}
                             <div className="blog-share-area">
                                 <div className="row align-items-center">
                                     <div className="col-md-7">
@@ -96,27 +84,6 @@ const CourseBlogDetailsArea = ({course}) => {
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-
-                        <div className="blog-author">
-                            <div className="thumbnail">
-                                <img src="/assets/images/blog/author-01.jpg" alt="Author Images" />
-                            </div>
-                            <div className="author-content">
-                                <h5 className="title">Edward Norton</h5>
-                                <p>Enim ad minim veniam quis nostrud exercitation lamco laboris nisi ex commodo consequat aute irure.</p>
-                                <ul className="social-share icon-transparent">
-                                    <li>
-                                        <a href="#"><i className="icon-facebook"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i className="icon-twitter"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i className="icon-instagram"></i></a>
-                                    </li>
-                                </ul>
                             </div>
                         </div>
 
@@ -155,7 +122,7 @@ const CourseBlogDetailsArea = ({course}) => {
 
                     <div className="col-lg-4">
                         {/* sidebar start */}
-                        <BlogSidebar />
+                        <BlogSidebar id={id} />
                         {/* sidebar end */}
                     </div>
                 </div>
