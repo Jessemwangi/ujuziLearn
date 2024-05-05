@@ -105,7 +105,7 @@ const Header = ({ header_style, no_top_bar, disable_full_width, disable_category
                                             <i className="icon-2"></i>
                                         </a>
                                     </li>
-                                    <li className="icon">
+                                    {/* <li className="icon">
                                         <Link href="/wishlist">
                                             <a className="wishlist">
                                                 <i className="icon-22"></i>
@@ -121,7 +121,7 @@ const Header = ({ header_style, no_top_bar, disable_full_width, disable_category
                                             </a>
                                         </Link>
                                         <Cart />
-                                    </li>
+                                    </li> */}
                                     <li className="header-btn">
                                         <Link href="/contact-us">
                                             <a className="edu-btn btn-medium">Try for free

@@ -3,9 +3,8 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useMouseMoveUI } from '../../contexts/mouse-move-context';
 
-const CourseBreadcrumb = ({ courses, course, subtitle }) => {
-    const { title, instructor } = course || {};
-    const { course_name, courses_instructors, language, rating_count }  = courses || {};
+const CourseBreadcrumb = ({ course, subtitle }) => {
+        const { course_name, courses_instructors, language, rating_count }  = course || {};
     const { mouseDirection, mouseReverse } = useMouseMoveUI();
     return (
         <div className="edu-breadcrumb-area breadcrumb-style-3">

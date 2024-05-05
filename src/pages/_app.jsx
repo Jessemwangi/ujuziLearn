@@ -12,6 +12,7 @@ import Theme from '../components/common/theme';
 import { MouseMoveProvider } from '../contexts/mouse-move-context';
 import SEO from '../components/seo';
 import { TokenService } from '../services/token';
+import ReactQueryConfig from '../services/react-query';
 
 function MyApp( { Component, pageProps } ) {
     const router = useRouter();
@@ -28,7 +29,9 @@ function MyApp( { Component, pageProps } ) {
             <Provider store={ store }>
                 <ThemeProvider defaultTheme="light">
                     <MouseMoveProvider>
+                    <ReactQueryConfig pageProps={pageProps}>
                         <Component { ...pageProps } />
+                        </ReactQueryConfig>
                     </MouseMoveProvider>
                     <Theme />
                 </ThemeProvider>

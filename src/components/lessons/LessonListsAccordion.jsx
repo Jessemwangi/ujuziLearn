@@ -1,16 +1,18 @@
 import React from "react";
 import HeaderContentAccordion from "./headerContentAccordion";
 
-const LessonListsAccordion = ({ lessons }) => {
+const LessonListsAccordion = ({ weekly_curriculum:lessons }) => {
+  console.log('weekly_curriculum:lessons :' ,lessons)
   return (
     <div className="accordion-item">
       {lessons &&
-        lessons.map((lesson, index) => (
+        lessons?.map(({attributes,id}) => (
           <HeaderContentAccordion
-            key={index}
-            id={lesson.id}
-            title={lesson.title}
-            headers={lesson.headers}
+            key={attributes.curriculum_reg}
+            serial={`${attributes.curriculum_reg}${id}`}
+            title={attributes.curriculum_title}
+            course_lessons={attributes.course_lessons}
+            _id={id}
           />
         ))}
 {/* 

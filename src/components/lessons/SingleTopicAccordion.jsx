@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 
-const SingleTopicAccordion = ({ title, content = 'no lesson found', parentId }) => {
+const SingleTopicAccordion = ({ title, content = 'no lesson found',weekly_id, parentId }) => {
     const [show, setShow] = useState(true);
-    // const uniqueId = `topic-${parentId}`;
     const uniqueId = `topic-${Math.random().toString(36).substr(2, 9)}`;
 
     const toggleShow = () => {
@@ -12,13 +11,13 @@ const SingleTopicAccordion = ({ title, content = 'no lesson found', parentId }) 
 
     return (
         <div className="accordion-item">
-            <h8 className="accordion-header" id={uniqueId}>
+            <h4 className="accordion-header" style={{fontSize:14}} id={uniqueId}>
             <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target={`#question-${uniqueId}`} aria-expanded="true">
             <div>
                                             <i className="icon-65"></i>  {title}
                 </div>
                 </button>
-            </h8>
+            </h4>
 
             <div id={`question-${uniqueId}`} className="accordion-collapse collapse show" data-bs-parent={`#${parentId}`}>
                 <div className="accordion-body">

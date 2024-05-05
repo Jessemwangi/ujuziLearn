@@ -4,33 +4,6 @@ import useModal from "../../../hooks/use-modal";
 import { Books } from "../../../svg";
 import VideoModal from "../popup-modal/video-modal";
 
-// export const lessons = [
-//   {
-//       title: 'Course Introduction',
-//       id:'les1',
-//       headers: [
-//           {
-//               title: 'Header 1.1',
-//               content: '<p>Content for Header 1.1</p>'
-//           },
-//           {
-//               title: 'Header 1.2',
-//               content: '<p>Content for Header 1.2</p>'
-//           }
-//       ]
-//   },
-//   {
-//       title: 'Lesson 2',
-//       id:'les2',
-//       headers: [
-//           {
-//               title: 'Header 2.1',
-//               content: '<p>Content for Header 2.1</p>'
-//           }
-//       ]
-//   }
-// ];
-
 const CourseDetailsSidebarNoStart = ({ lessons, course, details_2 = false }) => {
   const {
     img,
@@ -74,14 +47,14 @@ const CourseDetailsSidebarNoStart = ({ lessons, course, details_2 = false }) => 
             <div className="content">
               <h4 className="widget-title">Course Topics:</h4>
               <ul className="course-item">
-              {lessons.map(({id,title} )=>
-                <li key={id}>
+              {lessons.map(({attributes,id} )=>
+                <li key={attributes.curriculum_reg}>
                   <span className="label">
                   <Books />
                   </span>
-                  <button onClick={toggleShow} className={`accordion-button ${show ? '' : 'collapsed'}`} type="button" data-bs-toggle="collapse" data-bs-target={`#header-header-${id}`} >
+                  <button onClick={toggleShow} className={`accordion-button ${show ? '' : 'collapsed'}`} type="button" data-bs-toggle="collapse" data-bs-target={`${attributes.curriculum_reg}${id}`} >
                    
-                 <h6> <span className="value">{title}</span></h6>
+                 <h6> <span className="value">{attributes.curriculum_lesson_title}</span></h6>
                 </button>
                 </li>
                ) }

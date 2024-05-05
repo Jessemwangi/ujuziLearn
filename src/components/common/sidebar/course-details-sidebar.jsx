@@ -4,7 +4,7 @@ import useModal from "../../../hooks/use-modal";
 import { Books } from "../../../svg";
 import VideoModal from "../popup-modal/video-modal";
 
-const CourseDetailsSidebar = ({ course, details_2 = false, start=true }) => {
+const CourseDetailsSidebar = ({id, course, details_2 = false, start=true }) => {
   const {
     img,
     certificate,
@@ -14,10 +14,8 @@ const CourseDetailsSidebar = ({ course, details_2 = false, start=true }) => {
     duration,
     student,
     language,
-    id,
   } = course || {};
   const { isVideoOpen, setIsVideoOpen } = useModal();
-  console.log(start)
   return (
     <>
       <div

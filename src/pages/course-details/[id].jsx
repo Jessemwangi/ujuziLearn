@@ -11,21 +11,26 @@ import { fetchCourse } from '../../services/course_redux_thunk';
 const DynamicCourseDetails = () => {
     const router = useRouter();
     const { id } = router.query;
-    const course = course_data.find(item => Number(item.id) === Number(id))
+    // const course = course_data.find(item => Number(item.id) === Number(id))
     const dispatch = useDispatch();
-    const courses = useSelector(selectCourse);
+    const course = useSelector(selectCourse);
     const status = useSelector((state) => state.courses.status);
     const error = useSelector((state) => state.courses.error);
-  const query =`populate=courses_subcategories&populate=courses_weekly_curricula.course_lessons.curriculum_lesson_headers&populate=courses_categories&populate=courses_instructors.instructor_img&populate=course_intro_video&populate=course_intro_img&populate=course_target_groups&populate=course_learn_lists&populate=course_qualification_equirements&populate=subscription_packages&populate=course_reviews&populate=courses_features&populate=localizations`
-    useEffect(() => {
-      if (status === 'idle') {
-        dispatch(fetchCourse(`/courses/${id}?${query}`)); // replace with your actual endpoint
-      }
-    }, [status, dispatch]);
+  const query =`populate=courses_subcategories&populate=courses_weekly_curricula.course_lessons.curriculum_lesson_headers
+  &populate=courses_categories&populate=courses_instructors.instructor_img&populate=course_intro_video
+  &populate=course_intro_img&populate=course_target_groups&populate=course_learn_lists
+  &populate=course_qualification_equirements&populate=subscription_packages&populate=course_reviews
+  &populate=courses_features&populate=localizations&populate=course_ratings`
+  useEffect(() => {
+    if (!course || !course.attributes || course.attributes.id !== id) {
+        dispatch(fetchCourse(`/courses/${id}?${query}`));
+    }
+}, [id,dispatch]);
+
     return (
         <Wrapper>
             <SEO pageTitle={'Course Details'} />
-          {courses &&  <CourseDetailsMain courses={courses.attributes} course={course} start={true}/>}
+          {course.attributes &&  <CourseDetailsMain id={course.id} course={course.attributes} start={true}/>}
         </Wrapper>
     )
 }

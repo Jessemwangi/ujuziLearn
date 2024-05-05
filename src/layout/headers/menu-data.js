@@ -1,7 +1,7 @@
 const menu_data = [
     {
         title: 'Home',
-        link: '#',
+        link: '/',
         mega_menu: false,
         // submenus: [
         //     { title: 'EduBlink Education', link: '/', hot: true },
