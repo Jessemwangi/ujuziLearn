@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import SingleTopicAccordion from './SingleTopicAccordion';
 
-const HeaderContentAccordion = ({ _id, serial, title, course_lessons }) => {
+const HeaderContentAccordion = ({ serial, title, course_lessons }) => {
     // Generate a unique id for the HeaderContentAccordion
     const uniqueId = serial;
     const [openAccordion, setOpenAccordion] = useState(serial === 0 ? uniqueId : null);
@@ -38,7 +38,7 @@ const HeaderContentAccordion = ({ _id, serial, title, course_lessons }) => {
                                 content={attributes.curriculum_lesson_desc}
                                 parentId={uniqueId}
                                 id={id}
-                                weekly_id ={_id}
+                                
                             />
                         </div>
                     ))}

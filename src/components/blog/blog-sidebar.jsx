@@ -1,12 +1,21 @@
 import Link from 'next/link';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { blog_data } from '../../data';
 import { useSelector } from 'react-redux';
 import { selectCourse } from '../../redux/features/courses_slice';
+import { getLocalStorage } from '../../utils/localstorage';
 
 const latest_blog = blog_data.slice(0, 3);
 
 const BlogSidebar = ({id}) => {
+    const [course_, setCourse] = useState({});
+
+    useEffect(() => {
+      const LST_course = getLocalStorage('course');
+      if (LST_course) {
+        setCourse(LST_course);
+      }
+    }, []);
     const course = useSelector(selectCourse);
     const status = useSelector((state) => state.courses.status);
     return (
@@ -14,7 +23,7 @@ const BlogSidebar = ({id}) => {
             <div className="edu-blog-widget widget-search">
                 <div className="inner">
                 <div className="header-btn">
-                                        <Link href={`/</li>course-details/lesson/${id}`}>
+                                        <Link href={`/course-details/lesson/${course_?.id}`}>
                                             <a className="edu-btn btn-medium btn-rounded">back to lessons <i className="icon-1"></i></a>
                                         </Link>
                                     </div>

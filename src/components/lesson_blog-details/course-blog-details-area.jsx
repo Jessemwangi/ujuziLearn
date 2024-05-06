@@ -2,10 +2,8 @@ import React from 'react';
 import BlogSidebar from '../blog/blog-sidebar';
 import CommentArea from './comment-area';
 import DOMPurify from 'dompurify';
-import { getLocalStorage } from '../../utils/localstorage';
 
 const CourseBlogDetailsArea = ({lessons}) => {
-    const title = getLocalStorage('course')
     const {
         curriculum_lesson_desc,
         curriculum_lesson_title,
