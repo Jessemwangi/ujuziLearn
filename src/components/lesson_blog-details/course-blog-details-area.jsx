@@ -1,9 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import BlogSidebar from '../blog/blog-sidebar';
 import CommentArea from './comment-area';
 import DOMPurify from 'dompurify';
+import Link from 'next/link';
+import MarkoutOutPut from '../../ui/markoutOutPut';
+import VideoModal from '../common/popup-modal/video-modal';
+import useModal from '../../hooks/use-modal';
+import { extractVideoCode } from '../../utils/extractVideoIdFromUrl';
 
 const CourseBlogDetailsArea = ({lessons}) => {
+    const { isVideoOpen, setIsVideoOpen } = useModal();
+    const [video_url,setVideo_url] = useState()
     const {
         curriculum_lesson_desc,
         curriculum_lesson_title,
@@ -14,6 +21,7 @@ const CourseBlogDetailsArea = ({lessons}) => {
         id,
     }=lessons || {};
     return (
+        <>
         <div className="blog-details-area section-gap-equal">
             <div className="container">
                 <div className="row row--30">
@@ -26,9 +34,9 @@ const CourseBlogDetailsArea = ({lessons}) => {
                                     <li><i className="icon-27"></i>{createdAt}</li>
                                     <li><i className="icon-28"></i> Topics {curriculum_lesson_headers?.data?.length}</li>
                                 </ul>
-                                <div className="thumbnail">
+                              {intro_pic?.data?.attributes?.url &&  <div className="thumbnail">
                                     <img src={intro_pic?.data?.attributes?.url} alt="intro Image" />
-                                </div>
+                                </div>}
                             </div>
 
                             <blockquote>
@@ -38,7 +46,9 @@ const CourseBlogDetailsArea = ({lessons}) => {
 {curriculum_lesson_headers?.data?.map(({attributes,id}) =>
 <div key={id}>
 <h3 className="title">{attributes?.curriculum_lesson_header_title}</h3>
-<p dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(attributes?.course_curriculum_lesson_header_content) }}></p>
+    <div>
+    <MarkoutOutPut content={attributes?.course_curriculum_lesson_header_content} />
+    </div>
 
                           {attributes?.content_img?.data &&  <div className="features-image">
                                 <div className="row g-md-5">
@@ -51,8 +61,35 @@ const CourseBlogDetailsArea = ({lessons}) => {
                                 </div>
                             </div>}
 
-                            {attributes?.content_2 && <p dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(attributes?.content_2) }}></p>}
+                            {attributes?.content_2 &&   <MarkoutOutPut content={attributes?.content_2} />}
+                            {/* //display video if available */}
+
+                          {attributes?.video_url && 
+                                  <div className="edu-course-widget widget-course-summery col-5">
+                                  <div className="inner">
+                          <div className="thumbnail">
+              <img
+                src={attributes?.content_img?.data?.attributes?.url || 'https://res.cloudinary.com/dk4ruyonq/image/upload/v1715297668/video_Thumb_d8700518fc.png'}
+                alt="Watch Video"
+                width={100}
+              />
+              <a
+                onClick={() => {
+                    setVideo_url(attributes?.video_url)
+                    setIsVideoOpen(true)
+                }
+                }
+                style={{ cursor: "pointer" }}
+                className="play-btn video-popup-activation"
+              >
+                <i className="icon-18"></i>
+              </a>
+            </div>
+            </div></div>
+}
 </div>
+
+
 )}
                             <div className="blog-share-area">
                                 <div className="row align-items-center">
@@ -89,35 +126,47 @@ const CourseBlogDetailsArea = ({lessons}) => {
 
                         <div className="blog-pagination">
                             <div className="row g-5">
-                                <div className="col-lg-6">
+                            { curriculum_lesson_headers?.data?.length > id   ? (  <div className="col-lg-6">
                                     <div className="blog-pagination-list prev-post">
-                                        <a href="#">
+                                      <Link href={`/course-details/lesson/lesson-details/${id-1}`}>
+                                       <a >
                                             <i className="icon-west"></i>
                                             <span>Instructional Design and Adult Learners</span>
                                         </a>
+                                       </Link>
                                     </div>
-                                </div>
+                                </div>) : 
+                                       (<p>
+                                       </p>)
+                                       }
 
-                                <div className="col-lg-6">
+                                {
+                                    id < curriculum_lesson_headers?.data?.length ? ( <div className="col-lg-6">
                                     <div className="blog-pagination-list next-post">
-                                        <a href="#">
-                                            <span>Qualification for Students Satisfaction Rate</span>
+                                    <Link href={`/course-details/lesson/lesson-details/${id+1}`}>
+                                       <a >
                                             <i className="icon-east"></i>
+                                            <span>Instructional Design and Adult Learners</span>
                                         </a>
+                                       </Link>
                                     </div>
-                                </div>
+                                </div>)
+                                    :(<>
+
+</>)
+}
                             </div>
                         </div>
 
                         {/*  Start Comment Area  */}
                         <CommentArea />
                         {/*  End Comment Area  */}
-                        <div className="comment-form-area">
-                            <h3 className="heading-title">Leave Your Comment Here</h3>
+                        {/* <div className="comment-form-area">
+                            <h3 className="heading-title">Leave Your Comment Here</h3> */}
                             {/* form start */}
                             {/* <BlogCommentForm /> */}
                             {/* form end */}
-                        </div>
+                        {/* </div> */}
                     </div>
 
                     <div className="col-lg-4">
@@ -128,6 +177,14 @@ const CourseBlogDetailsArea = ({lessons}) => {
                 </div>
             </div>
         </div>
+        {
+            <VideoModal 
+            isVideoOpen ={isVideoOpen}
+            setIsVideoOpen ={setIsVideoOpen}
+            videoId={extractVideoCode(video_url)}
+            />
+        }
+        </>
     )
 }
 

@@ -10,22 +10,22 @@ import { getLocalStorage } from '../../../../utils/localstorage';
 
 const DynamicBlogDetails = () => {
     const router = useRouter();
-    const [title, setTitle] = useState('My Lesson');
+    const [_course, setCourse] = useState();
 
     useEffect(() => {
       const course = getLocalStorage('course');
       if (course) {
-        setTitle(course?.name);
+        setCourse(course);
       }
     }, []);
     const { id } = router.query;
     const q = QUERY_STRINGS.courses.lessonList.url;
     const { courses_list, isLoading } = useCourseLessonData(id,q)
-   
+  
     return (
         <Wrapper>
-            <SEO pageTitle={title} />
-             <LessonBlogDetails lessons={courses_list} title={title} /> 
+            <SEO pageTitle={_course?.title} />
+            { !isLoading && <LessonBlogDetails lessons={courses_list} course_Id = {_course?.id} title={_course?.title || 'My Lessons'} /> }
         </Wrapper>
     )
 }

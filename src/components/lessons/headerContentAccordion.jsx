@@ -9,7 +9,7 @@ const HeaderContentAccordion = ({ serial, title, course_lessons }) => {
 
     return (
         <div className="accordion-item">
-        <h3 className="accordion-header" id={uniqueId}>
+        <h3 className="accordion-header" id={`#${uniqueId}`}>
             <button 
                 className="accordion-button collapsed" 
                 type="button" 

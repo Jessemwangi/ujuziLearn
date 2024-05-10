@@ -3,12 +3,13 @@ import React from "react";
 import useModal from "../../../hooks/use-modal";
 import { Books } from "../../../svg";
 import VideoModal from "../popup-modal/video-modal";
+import { extractVideoCode } from "../../../utils/extractVideoIdFromUrl";
 
 const CourseDetailsSidebar = ({id, course, details_2 = false, start=true }) => {
   const {
     img,
     certificate,
-    videoId,
+    video_url,
     course_price,
     instructor,
     duration,
@@ -27,7 +28,7 @@ const CourseDetailsSidebar = ({id, course, details_2 = false, start=true }) => {
           <div className="inner">
             <div className="thumbnail">
               <img
-                src={`/assets/images/course/course-01/${img}`}
+                src={course?.course_intro_img?.data?.attributes?.url}
                 alt="Course Thumb"
               />
               <a
@@ -134,7 +135,7 @@ const CourseDetailsSidebar = ({id, course, details_2 = false, start=true }) => {
       <VideoModal
         isVideoOpen={isVideoOpen}
         setIsVideoOpen={setIsVideoOpen}
-        videoId={videoId}
+        videoId={extractVideoCode(video_url)}
       />
       {/* video modal end */}
     </>

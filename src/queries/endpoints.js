@@ -2,6 +2,7 @@ const BASE_URL = process.env.REACT_APP_SERVER_API_URL || 'http://localhost:1337/
 
 const COURSES_ENDPOINT = "/courses";
 const COURSES_LESSON = '/crs-cur-lessons';
+const COURSES_WK_CURRICULUM = '/courses-weekly-curriculums'
 const USERS_ENDPOINT = "/users";
 const LOGIN_ENDPOINT = "/login";
 
@@ -18,7 +19,23 @@ const QUERY_STRINGS = {
     lessonList:{
         desc:'get only the lesson minimal data',
         url:'populate=curriculum_lesson_headers&populate=curriculum_lesson_headers.content_img&populate=courses_weekly_curricula&populate=intro_pic'
-    }
+    },
+    all_curriculum_list_populate:{
+        desc:'populate all next layer',
+        url:'populate=*'
+    },
+    weekly_curriculum_from_root_course:{
+        desc:'get courses and weekly curriculum only',
+        url:'populate=courses_weekly_curricula.course_lessons'
+    },
+    all_curriculum_list:{
+        desc:'',
+        url:''
+    },
+    video_pic_curriculum_list_only:{
+    desc:'get video and pic',
+    url:'populate=course_lessons&populate=intro_pic'
+},
 }
 };
 
@@ -28,5 +45,6 @@ export {
   USERS_ENDPOINT,
   LOGIN_ENDPOINT,
   QUERY_STRINGS,
-  COURSES_LESSON
+  COURSES_LESSON,
+  COURSES_WK_CURRICULUM,
 };

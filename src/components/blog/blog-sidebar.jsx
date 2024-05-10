@@ -1,9 +1,9 @@
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import { blog_data } from '../../data';
-import { useSelector } from 'react-redux';
-import { selectCourse } from '../../redux/features/courses_slice';
 import { getLocalStorage } from '../../utils/localstorage';
+import {useSingleWkCourseData} from '../../hooks/use-course_weekly_curi';
+import { QUERY_STRINGS } from '../../queries/endpoints';
 
 const latest_blog = blog_data.slice(0, 3);
 
@@ -16,8 +16,7 @@ const BlogSidebar = ({id}) => {
         setCourse(LST_course);
       }
     }, []);
-    const course = useSelector(selectCourse);
-    const status = useSelector((state) => state.courses.status);
+    const { wk_curri_list, isLoading } = useSingleWkCourseData(id,QUERY_STRINGS.courses.video_pic_curriculum_list_only);
     return (
         <div className="edu-blog-sidebar">
             <div className="edu-blog-widget widget-search">
@@ -59,7 +58,7 @@ const BlogSidebar = ({id}) => {
                 </div>
             </div>
 
-            <div className="edu-blog-widget widget-categories">
+            {/* <div className="edu-blog-widget widget-categories">
                 <div className="inner">
                     <h4 className="widget-title">Archives</h4>
                     <div className="content">
@@ -72,7 +71,7 @@ const BlogSidebar = ({id}) => {
                         </ul>
                     </div>
                 </div>
-            </div>
+            </div> */}
 
             <div className="edu-blog-widget widget-tags">
                 <div className="inner">

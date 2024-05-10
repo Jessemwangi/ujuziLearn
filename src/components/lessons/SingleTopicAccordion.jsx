@@ -34,12 +34,7 @@ const SingleTopicAccordion = ({
           aria-expanded="true"
         >
           <div>
-          
-        
-                                                       
-                                                        <i className="icon-65"></i> {title}
-                                                      
-            
+          <i className="icon-65"></i> {title}
           </div>
         </button>
       </h4>
@@ -48,7 +43,7 @@ const SingleTopicAccordion = ({
     id={`question-${uniqueId}`} 
     className="accordion-collapse collapse show" 
     data-bs-parent={`#${parentId}`}
-    style={{ cursor: 'pointer', transition: 'color 0.3s, transform 0.3s' }}
+    style={{ cursor: 'pointer', transition: 'color 0.3s, transform 0.3s', color:'blue' }}
     onMouseEnter={(e) => { e.target.style.color = '#9C27B0'; e.target.style.transform = 'scale(1.05)'; }}
     onMouseLeave={(e) => { e.target.style.color = ''; e.target.style.transform = ''; }}
   >
