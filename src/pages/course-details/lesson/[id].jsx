@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchCourse } from '../../../services/course_redux_thunk';
 import { selectCourse } from '../../../redux/features/courses_slice';
 import { setLocalStorage } from '../../../utils/localstorage';
+import { QUERY_STRINGS } from '../../../queries/endpoints';
 
 const DynamicCourseDetails = () => {
     const router = useRouter();
@@ -17,21 +18,20 @@ const DynamicCourseDetails = () => {
     const course = useSelector(selectCourse);
     const status = useSelector((state) => state.courses.status);
     const error = useSelector((state) => state.courses.error);
-  const query =`populate=courses_subcategories&populate=courses_weekly_curricula.course_lessons.curriculum_lesson_headers&populate=courses_categories&populate=courses_instructors.instructor_img&populate=course_intro_video&populate=course_intro_img&populate=course_target_groups&populate=course_learn_lists&populate=course_qualification_equirements&populate=subscription_packages&populate=course_reviews&populate=courses_features&populate=localizations`
+  const query =  QUERY_STRINGS.courses.all.url;
   useEffect(() => {
     if (!course || !course?.attributes || course?.attributes?.id !== id) {
         dispatch(fetchCourse(`/courses/${id}?${query}`));
     }
 }, [id,dispatch]);
     // const course = course_data.find(item => Number(item.id) === Number(id))
-console.log(status)
 if(status==='succeeded'){setLocalStorage('course',{name:course?.attributes?.course_name,id:course.id })}
     return (
         <Wrapper>
             <Header no_top_bar={true} /> 
-            <BreadcrumbSix title={course?.attributes?.course_name || 'My Course'} page={course?.attributes?.course_name || 'My Course'} />
-            {course.attributes && <SEO pageTitle={course?.attributes?.course_name} />}
-           {course?.attributes && <LessonDisplay course={course}  />}
+            <BreadcrumbSix intro_mage={course?.attributes?.course_intro_img?.data?.attributes?.url} title={course?.attributes?.course_name || 'My Course'} course={course?.attributes?.course_name || 'My Course'} />
+             <SEO pageTitle={course?.attributes?.course_name} />
+           {course?.attributes ? (<LessonDisplay course={course}/>  ):<p>Fail to load the course</p>}
             <Footer style_2={'footer-dark bg-image footer-style-2'} />
         </Wrapper>
     )

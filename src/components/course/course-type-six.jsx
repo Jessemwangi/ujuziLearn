@@ -9,7 +9,7 @@ const CourseTypeSix = ({ data, classes ,id}) => {
                 <div className="thumbnail">
                     <Link href={`/course-details/${id}`}>
                         <a>
-                            <img src={`${server_url}/assets/images/course/course-04/${data?.img}`} alt="Course Meta" />
+                            <img src={data?.course_intro_img?.data?.attributes.url} alt="Course Meta" />
                         </a>
                     </Link>
                     <div className="time-top">

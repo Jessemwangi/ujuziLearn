@@ -12,7 +12,7 @@ const LessonListsAccordion = ({ weekly_curriculum:lessons }) => {
             serial={`${attributes.curriculum_reg}${id}`}
             title={attributes.curriculum_title}
             course_lessons={attributes.course_lessons}
-            _id={id}
+           
           />
         ))}
 {/* 

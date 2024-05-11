@@ -1,9 +1,9 @@
 import Link from 'next/link';
 import React from 'react';
 
-const BreadcrumbSix = ({ title, page }) => {
+const BreadcrumbSix = ({ intro_mage,title, page }) => {
     return (
-        <div className="edu-breadcrumb-area breadcrumb-style-2 bg-image bg-image--21">
+        <div className="edu-breadcrumb-area breadcrumb-style-2 bg-image" style={{backgroundImage:`url(${intro_mage})`}}>
             <div className="container">
                 <div className="breadcrumb-inner">
                     <div className="page-title">
@@ -16,7 +16,7 @@ const BreadcrumbSix = ({ title, page }) => {
                             </Link>
                         </li>
                         <li className="separator"><i className="icon-angle-right"></i></li>
-                        <li className="breadcrumb-item"><a href="#">Pages</a></li>
+                        <li className="breadcrumb-item"><a href="#">Courses</a></li>
                         <li className="separator"><i className="icon-angle-right"></i></li>
                         <li className="breadcrumb-item active" aria-current="page">{page}</li>
                     </ul>

@@ -3,6 +3,7 @@ import CourseDetailsSidebar from '../common/sidebar/course-details-sidebar';
 import CommentFormCourse from '../forms/comment-form-course';
 import SingleComment from './single-comment';
 import SingleProgressbar from './single-progressbar';
+import { server } from '../../utils/envVariable';
 
 const CourseDetailsArea = ({ id, course, start=true }) => {
 
@@ -114,7 +115,7 @@ const {short_desc,
                                         {courses_instructors?.data?.map(({id,attributes}) =>
                                         <div className="course-instructor" key={id}>
                                             <div className="thumbnail">
-                                                <img src={`http://localhost:1337${attributes?.instructor_img?.data?.attributes?.formats?.thumbnail?.url}`} alt="team images" />
+                                                <img src={`${server}${attributes?.instructor_img?.data?.attributes?.formats?.thumbnail?.url}`} alt="team images" />
                                             </div>
                                             <div className="author-content">
                                                 <h6 className="title">{attributes?.instructor_name}</h6>

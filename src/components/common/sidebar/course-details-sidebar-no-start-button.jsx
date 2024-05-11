@@ -52,9 +52,10 @@ const CourseDetailsSidebarNoStart = ({ lessons, course, details_2 = false }) => 
                   <span className="label">
                   <Books />
                   </span>
-                  <button onClick={toggleShow} className={`accordion-button ${show ? '' : 'collapsed'}`} type="button" data-bs-toggle="collapse" data-bs-target={`${attributes.curriculum_reg}${id}`} >
+                  <button onClick={toggleShow} className={`accordion-button ${show ? '' : 'collapsed'}`} 
+                  type="button" data-bs-toggle="collapse" data-bs-target={`#${attributes.curriculum_reg}${id}`} >
                    
-                 <h6> <span className="value">{attributes.curriculum_lesson_title}</span></h6>
+                 <h6> <span className="value">{attributes.curriculum_title}</span></h6>
                 </button>
                 </li>
                ) }

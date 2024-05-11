@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../../redux/features/authActions';
 import { useRouter } from 'next/router';
+import { BASE_URL } from '../../queries/endpoints';
 
 
 const LoginForm = () => {
@@ -13,7 +14,7 @@ const LoginForm = () => {
     const {loginError, token, user} = useSelector((state) => state.authLogin)
     console.log('loginError : ', loginError, 'token :', token, 'user : ', user)
     const [showPass,setShowPass] = useState(false);
-    const url = process.env.REACT_APP_SERVER_URL || 'http://localhost:1337/api';
+    const url = BASE_URL;
     const router = useRouter();
 
     const { handleChange, handleSubmit, handleBlur, errors, values, touched } = useFormik({
