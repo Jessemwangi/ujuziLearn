@@ -1,4 +1,4 @@
-const BASE_URL = process.env.REACT_APP_SERVER_API_URL || 'http://localhost:1337/api';
+const BASE_URL = process.env.REACT_APP_SERVER_API_URL || 'https://ujuziapi.onrender.com/api';
 
 const COURSES_ENDPOINT = "/courses";
 const COURSES_LESSON = '/crs-cur-lessons';

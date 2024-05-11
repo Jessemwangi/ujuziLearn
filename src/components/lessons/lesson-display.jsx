@@ -3,6 +3,7 @@ import SingleProgressbar from '../course-details/single-progressbar';
 import SingleComment from '../course-details/single-comment';
 import CourseDetailsSidebarNoStart from '../common/sidebar/course-details-sidebar-no-start-button';
 import LessonListsAccordion from './LessonListsAccordion';
+import { server } from '../../utils/envVariable';
 
 
 const LessonDisplay = ({ course }) => {
@@ -60,7 +61,7 @@ const LessonDisplay = ({ course }) => {
                                         {courses_instructors?.data?.map(({id,attributes}) =>
                                         <div className="course-instructor" key={id}>
                                             <div className="thumbnail">
-                                                <img src={`http://localhost:1337${attributes?.instructor_img?.data?.attributes?.formats?.thumbnail?.url}`} alt="team images" />
+                                                <img src={`${server}${attributes?.instructor_img?.data?.attributes?.formats?.thumbnail?.url}`} alt="team images" />
                                             </div>
                                             <div className="author-content">
                                                 <h6 className="title">{attributes?.instructor_name}</h6>
