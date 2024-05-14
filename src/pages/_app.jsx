@@ -20,7 +20,7 @@ function MyApp( { Component, pageProps } ) {
         sal( { threshold: 0.1, once: true } );
     }, [router.asPath] );
     if (!TokenService.hasToken()){
-        TokenService.setToken(process.env.REACT_APP_BACKEND_TEST_TOKEN)
+        TokenService.setToken(process.env.NEXT_PUBLIC_BACKEND_TEST_TOKEN)
     }
     useEffect( () => {
         sal();

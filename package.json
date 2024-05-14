@@ -17,6 +17,7 @@
         "bootstrap": "^5.2.0",
         "caniuse-lite": "^1.0.30001559",
         "dompurify": "^3.1.2",
+        "dotenv": "^16.4.5",
         "emailjs-com": "^3.2.0",
         "firebase": "^9.12.1",
         "formik": "^2.2.9",
