@@ -1,4 +1,6 @@
-const BASE_URL = process.env.REACT_APP_SERVER_API_URL || 'https://ujuziapi.onrender.com/api';
+import { apiServer } from "../utils/envVariable";
+
+const BASE_URL = apiServer;
 
 const COURSES_ENDPOINT = "/courses";
 const COURSES_LESSON = '/crs-cur-lessons';

@@ -1,6 +1,5 @@
 import React from 'react';
 import Link from 'next/link';
-import { server_url } from '../../services/courses-service';
 
 const CourseTypeSix = ({ data, classes ,id}) => {
     return (
