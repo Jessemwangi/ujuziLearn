@@ -1,5 +1,4 @@
 import httpClient from "./http-client";
-import { server } from "../utils/envVariable"; // ... /api
 import { BASE_URL, COURSES_ENDPOINT, COURSES_LESSON, COURSES_WK_CURRICULUM } from "../queries/endpoints";
 const endpoint  = COURSES_ENDPOINT
 export const server_url = BASE_URL
@@ -8,7 +7,6 @@ export const server_url = BASE_URL
 
 export const COURSES_SERVICES= {
   async getAllCourses(query) {
-    console.log(server)
     const res = await httpClient.get(`${server_url}${endpoint}?${query}`);
 
     return res?.data;

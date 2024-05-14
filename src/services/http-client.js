@@ -2,7 +2,7 @@ import axios from "axios";
 import { TokenService } from "./token";
 import { apiServer } from "../utils/envVariable";
 
-const URL = apiServer || 'https://ujuziapi.onrender.com/api';
+const URL = apiServer;
 
 const httpClient = axios.create({
   baseURL: URL,
