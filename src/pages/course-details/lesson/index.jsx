@@ -9,7 +9,6 @@ const index = () => {
     return (
         <div className='sticky-header'>
             <div id="main-wrapper" className="main-wrapper">
-                lesson will be here
                 <Header no_top_bar={true} /> 
                 <BreadcrumbThree title="Subscribed Course" subtitle="My Courses" />
               {!isLoading  && <CourseTwoArea courses={courses_list || []} lst={true}/>}

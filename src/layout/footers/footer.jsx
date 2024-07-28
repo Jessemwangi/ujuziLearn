@@ -4,10 +4,10 @@ import FooterSocial from "./component/footer-social";
 const footer_contents = {
     logoLight: '/assets/images/logo/logo-dark.png',
     logoDark: '/assets/images/logo/logo-white.png',
-    desc: 'Lorem ipsum dolor amet consecto adi pisicing elit sed eiusm tempor incidid unt labore dolore.',
-    add: '70-80 Upper St Norwich NR2',
-    call: '+01 123 5641 231',
-    email: 'info@edublink.com',
+    desc: 'A Finnish company which deals with scientific and technical research and development.',
+    add: 'Simonkyläntie 11 B 9 01390 Vantaa',
+    call: '+358 46 904 5739',
+    email: 'info@ujuzi.io',
     widgets: [
         {
             col: '3',
@@ -38,7 +38,6 @@ const footer_contents = {
     ]
 
 }
-
 const { logoDark, logoLight, desc, add, call, email, widgets } = footer_contents;
 
 const Footer = ({ style_2, dark_bg,home_4 }) => {
