@@ -125,7 +125,7 @@ const CourseBlogDetailsArea = ({lessons}) => {
                         </div>
 
                         <div className="blog-pagination">
-                            <div className="row g-5">
+                            <div className="row g-5" style={{marginBottom:"20px"}}>
                             { curriculum_lesson_headers?.data?.length > id   ? (  <div className="col-lg-6">
                                     <div className="blog-pagination-list prev-post">
                                       <Link href={`/course-details/lesson/lesson-details/${id-1}`}>
