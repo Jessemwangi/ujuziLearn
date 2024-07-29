@@ -54,7 +54,7 @@ const CourseBlogDetailsArea = ({lessons}) => {
                                 <div className="row g-md-5">
                                     <div className="col-12">
                                         <div className="thumbnail">
-                                            <img src={attributes?.content_img.attributes?.url} alt="Features Images" />
+                                            <img src={attributes?.content_img.data?.attributes?.url} alt="Features Images" />
                                         <p>image description will be here</p>
                                         </div>
                                     </div>
