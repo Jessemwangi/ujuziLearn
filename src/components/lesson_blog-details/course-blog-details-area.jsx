@@ -127,35 +127,52 @@ const CourseBlogDetailsArea = ({lessons, courseLessons}) => {
 
                         <div className="blog-pagination">
                             <div className="row g-5" style={{marginBottom:"20px"}}>
-                            { curriculum_lesson_headers?.data?.length > id   ? (  <div className="col-lg-6">
-                                    <div className="blog-pagination-list prev-post">
-                                      <Link href={`/course-details/lesson/lesson-details/${id-1}`}>
-                                       <a >
-                                            <i className="icon-west"></i>
-                                            <span>Instructional Design and Adult Learners</span>
-                                        </a>
-                                       </Link>
-                                    </div>
-                                </div>) : 
-                                       (<p>
-                                       </p>)
-                                       }
+                            {courseLessons && (
+  <div className="row">
+    {(() => {
+      // Find the current lesson index
+      const currentIndex = courseLessons.findIndex((lesson) => lesson.id === id);
 
-                                {
-                                    id < curriculum_lesson_headers?.data?.length ? ( <div className="col-lg-6">
-                                    <div className="blog-pagination-list next-post">
-                                    <Link href={`/course-details/lesson/lesson-details/${id+1}`}>
-                                       <a >
-                                            <i className="icon-east"></i>
-                                            <span>Instructional Design and Adult Learners</span>
-                                        </a>
-                                       </Link>
-                                    </div>
-                                </div>)
-                                    :(<>
+      // Get the previous and next lessons based on the index
+      const prevLesson = courseLessons[currentIndex - 1];
+      const nextLesson = courseLessons[currentIndex + 1];
 
-</>)
-}
+      return (
+        <>
+          {/* Previous Lesson Button */}
+          {prevLesson && (
+            <div className="col-lg-6">
+              <div className="blog-pagination-list prev-post">
+                <Link href={`/course-details/lesson/lesson-details/${prevLesson.id}`}>
+                  <a>
+                    <i className="icon-west"></i>
+                    <span>{prevLesson.curriculum_lesson_title || "Previous Lesson"}</span>
+                  </a>
+                </Link>
+              </div>
+            </div>
+          )}
+
+          {/* Next Lesson Button */}
+          {nextLesson && (
+            <div className="col-lg-6">
+              <div className="blog-pagination-list next-post">
+                <Link href={`/course-details/lesson/lesson-details/${nextLesson.id}`}>
+                  <a>
+                    <i className="icon-east"></i>
+                    <span>{nextLesson.curriculum_lesson_title || "Next Lesson"}</span>
+                  </a>
+                </Link>
+              </div>
+            </div>
+          )}
+        </>
+      );
+    })()}
+  </div>
+)}
+
+
                             </div>
                         </div>
 

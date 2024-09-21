@@ -36,7 +36,7 @@ const BlogSidebar = ({id, lessons}) => {
                         {lessons && lessons?.map((blog) => (
                             <div key={blog.id} className="latest-post">
                                 <div className="thumbnail">
-                                    <Link href={`/blog-details/${blog.id}`}>
+                                    <Link href={`/course-details/lesson/lesson-details/${blog.id}`}>
                                         <a>
                                             <img src={blog.img} alt="Blog Images" />
                                         </a>
@@ -44,7 +44,7 @@ const BlogSidebar = ({id, lessons}) => {
                                 </div>
                                 <div className="post-content">
                                     <h6 className="title">
-                                        <Link href={`/blog-details/${blog.id}`}>
+                                        <Link href={`/course-details/lesson/lesson-details/${blog.id}`}>
                                             <a>{blog.curriculum_lesson_title.substring(0, 25)}...</a>
                                         </Link>
                                     </h6>
