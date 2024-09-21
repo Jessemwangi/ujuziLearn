@@ -8,7 +8,7 @@ import VideoModal from '../common/popup-modal/video-modal';
 import useModal from '../../hooks/use-modal';
 import { extractVideoCode } from '../../utils/extractVideoIdFromUrl';
 
-const CourseBlogDetailsArea = ({lessons}) => {
+const CourseBlogDetailsArea = ({lessons, courseLessons}) => {
     const { isVideoOpen, setIsVideoOpen } = useModal();
     const [video_url,setVideo_url] = useState()
     const {
@@ -20,6 +20,7 @@ const CourseBlogDetailsArea = ({lessons}) => {
         createdAt,
         id,
     }=lessons || {};
+    console.log(`weekly lessons headers ----- :`,curriculum_lesson_headers)
     return (
         <>
         <div className="blog-details-area section-gap-equal">
@@ -171,7 +172,7 @@ const CourseBlogDetailsArea = ({lessons}) => {
 
                     <div className="col-lg-4">
                         {/* sidebar start */}
-                        <BlogSidebar id={id} />
+                        <BlogSidebar id={id} lessons={courseLessons} />
                         {/* sidebar end */}
                     </div>
                 </div>

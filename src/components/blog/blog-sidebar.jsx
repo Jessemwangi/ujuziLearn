@@ -7,7 +7,7 @@ import { QUERY_STRINGS } from '../../queries/endpoints';
 
 const latest_blog = blog_data.slice(0, 3);
 
-const BlogSidebar = ({id}) => {
+const BlogSidebar = ({id, lessons}) => {
     const [course_, setCourse] = useState({});
 
     useEffect(() => {
@@ -33,7 +33,7 @@ const BlogSidebar = ({id}) => {
                 <div className="inner">
                     <h4 className="widget-title">More Course Units</h4>
                     <div className="content latest-post-list">
-                        {latest_blog.map((blog) => (
+                        {lessons && lessons?.map((blog) => (
                             <div key={blog.id} className="latest-post">
                                 <div className="thumbnail">
                                     <Link href={`/blog-details/${blog.id}`}>
@@ -45,11 +45,11 @@ const BlogSidebar = ({id}) => {
                                 <div className="post-content">
                                     <h6 className="title">
                                         <Link href={`/blog-details/${blog.id}`}>
-                                            <a>{blog.title.substring(0, 25)}...</a>
+                                            <a>{blog.curriculum_lesson_title.substring(0, 25)}...</a>
                                         </Link>
                                     </h6>
                                     <ul className="blog-meta">
-                                        <li><i className="icon-27"></i>{blog.date}</li>
+                                        <li><i className="icon-27"></i>{blog?.publishedAt}</li>
                                     </ul>
                                 </div>
                             </div>

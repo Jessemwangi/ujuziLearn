@@ -29,7 +29,7 @@ return {id,...attributes}
             <div id="main-wrapper" className="main-wrapper">
                 <Header no_top_bar={true} />
                 <BreadcrumbThree title={title} subtitle={title} />
-                <CourseBlogDetailsArea lessons={lessons} title={title}/>
+                <CourseBlogDetailsArea lessons={lessons} title={title} courseLessons={courseLessons}/>
                 <Footer style_2={'footer-dark bg-image footer-style-2'} />
             </div>
         </div>
