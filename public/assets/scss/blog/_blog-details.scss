@@ -203,18 +203,24 @@ blockquote {
         }
     }
     &:hover {
-        background-color: #f0f4f5;
+        background-color:#9C27B0;
         border-color: #f0f4f5; 
         
     }
 
     &.next-post {
         text-align: right;
+        background-color:#edbaf3; 
         a {
             i {
                 margin-right: 0;
                 margin-left: 20px;
             }
+        }
+        &:hover {
+            background-color:#9C27B0;
+            border-color: #f0f4f5; 
+            
         }
     }
 }
