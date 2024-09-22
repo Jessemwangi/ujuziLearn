@@ -2,7 +2,12 @@
     Blog Details Styles  
 ---------------------------*/
 // Details Content
-
+div.blog-details-content p,
+div.blog-details-content ul,
+div.blog-details-content ol,
+div.blog-details-content li {
+    color: var(--color-black);
+}
 .blog-details-content {
     border-bottom: 1px solid var(--color-border);
     padding-bottom: 70px;
@@ -32,11 +37,15 @@
     }
     >p {
         margin-bottom: 26px;
+        color: var(--color-black) !important;
+    }
+    >ol li {
+        color: var(--color-black) !important;
     }
     >ul {
         list-style: disc;
         li {
-            color: var(--color-heading);
+            color: var(--color-black) !important;
             margin-top: 12px;
             margin-bottom: 12px;
         }
@@ -93,6 +102,7 @@
 blockquote {
     box-shadow: 0px 5px 50px 0px rgba(26,46,85,0.1);
     background-color: var(--color-white);
+    color: var(--color-black);
     border-radius: 10px;
     padding: 35px 40px 35px 120px;
     position: relative;

@@ -62,7 +62,8 @@ const CourseBlogDetailsArea = ({lessons, courseLessons}) => {
                                 </div>
                             </div>}
 
-                            {attributes?.content_2 &&   <MarkoutOutPut content={attributes?.content_2} />}
+                            {attributes?.content_2 &&   
+                            <MarkoutOutPut content={attributes?.content_2} />}
                             {/* //display video if available */}
 
                           {attributes?.video_url && 
