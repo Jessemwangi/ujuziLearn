@@ -62,7 +62,7 @@ const Header = ({ header_style, no_top_bar, disable_full_width, disable_category
                                     </Link>
                                 </div>
 
-                                { ! disable_category &&
+                                {/* { ! disable_category &&
                                     <div className="header-category">
                                         <nav className="mainmenu-nav">
                                             <ul className="mainmenu">
@@ -81,7 +81,7 @@ const Header = ({ header_style, no_top_bar, disable_full_width, disable_category
                                             </ul>
                                         </nav>
                                     </div>
-                                }
+                                } */}
                             </div>
                             <div className="header-mainnav">
                                 <nav className="mainmenu-nav">
