@@ -20,7 +20,7 @@ const index = () => {
                 <Header/>
                 <HeroArea/>
                 <CategoryArea/>
-                <TopCategories/>
+                {/* <TopCategories/>
                 <AboutArea/>
                 <CourseArea/>
                 <CounterUpArea/>
@@ -29,7 +29,7 @@ const index = () => {
                 <TeamArea/>
                 <AdBanner/>
                 <BrandArea/>
-                <BlogArea/>
+                <BlogArea/> */}
                 <Footer/>
             </div>
         </div>
