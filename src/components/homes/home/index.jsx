@@ -21,13 +21,15 @@ const index = () => {
                 <HeroArea/>
                 <CategoryArea/>
                 {/* <TopCategories/>
-                <AboutArea/>
-                <CourseArea/>
+                <AboutArea/>*/}
+                <AdBanner/>
+                {/* <CourseArea/> */}
+
                 <CounterUpArea/>
                 <TestimonialArea/>
-                <CtaArea/>
+              {/*   <CtaArea/>
                 <TeamArea/>
-                <AdBanner/>
+                
                 <BrandArea/>
                 <BlogArea/> */}
                 <Footer/>

@@ -2,9 +2,9 @@ import React from 'react';
 import Counter from '../../common/counter';
 
 const counter_data = [
-    {color:'primary-color',number:10,text:'*',title:'Meterial Rating',decimal: 1},
-    {color:'secondary-color',number:9,text:'+',title:'Countries Approved',decimal: 1},
-    {color:'extra05-color',number:18,text:'+',title:'Top Instructors'},
+    {color:'primary-color',number:27,text:'W+',title:'Workshops',decimal: 1},
+    {color:'secondary-color',number:900,text:'+',title:'Impacted Students'},
+    {color:'extra05-color',number:25,text:'+',title:'Top Instructors',decimal: 1},
     {color:'extra02-color',number:100,text:'%',title:'Satisfaction Rate'},
 ];
 
