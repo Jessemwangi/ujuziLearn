@@ -20,10 +20,10 @@ const ContactUsForm = () => {
             'user_8Lx0gfI1ktOoeEN8DTV10'
         )
         .then( ( result ) => {
-            console.log( result.text );
+          
             }, 
             ( error ) => {
-                console.log( error.text );
+               
             }
         );
         e.target.reset();

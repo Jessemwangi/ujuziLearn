@@ -20,7 +20,7 @@ const CourseBlogDetailsArea = ({lessons, courseLessons}) => {
         createdAt,
         id,
     }=lessons || {};
-    console.log(`weekly lessons headers ----- :`,curriculum_lesson_headers)
+   
     return (
         <>
         <div className="blog-details-area section-gap-equal">

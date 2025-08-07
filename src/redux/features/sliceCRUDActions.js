@@ -6,7 +6,7 @@ export const CRUD_Action_Get = (endpoint, setData, setError) => async (dispatch)
     try {
       if (TokenService.hasToken()) {
         const response = await httpClient.get(`${endpoint}`);
-       console.log(response)
+    
       if(response.status === 400) {
         dispatch(setError(response))
       }

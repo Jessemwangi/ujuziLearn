@@ -16,12 +16,10 @@ const Url = process.env.NEXT_PUBLIC_SERVER_API_URL;
 const postData = async (url, postObject) => {
 
 try {
-        console.log(postObject)
+        
         const { data } = await axios.post(url, postObject);
-        console.log('our data after loging',data)
         return data;
 } catch (error) {
-    console.log(error.response.data.error)
    return error?.response?.data?.error
 }
   };

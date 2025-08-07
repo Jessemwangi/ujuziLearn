@@ -6,8 +6,7 @@ export const login = (apiUrl , object) => async (dispatch) => {
 
     try {
       const response = await postD.postData(apiUrl, object);
-      console.log(response)
-      if(response.status === 400) {
+           if(response.status === 400) {
         dispatch(setError(response))
       }
       else{

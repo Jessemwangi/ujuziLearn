@@ -10,7 +10,6 @@ export const lessonSlice = createSlice({
     initialState,
     reducers:{
         setLessons: (state,action)=>{
-            console.log(action.payload)
                            state.lessonsData = action.payload;
 
             }

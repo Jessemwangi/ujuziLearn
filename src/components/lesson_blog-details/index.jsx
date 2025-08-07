@@ -23,7 +23,6 @@ return {id,...attributes}
                 setCourseLessons(lessons);
             }
     },[isLoading])
-    console.log('all the lessons in this course weeklyList_list',courseLessons ,isLoading)
     return (
         <div className='sticky-header'>
             <div id="main-wrapper" className="main-wrapper">

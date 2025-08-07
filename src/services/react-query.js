@@ -14,7 +14,7 @@ function ReactQueryConfig({ children, pageProps }) {
         if (query.state.data !== undefined) {
           // alert
         }
-        // console.log(error);
+      
       },
     }),
     defaultOptions: {

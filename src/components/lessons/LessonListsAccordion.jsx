@@ -2,7 +2,7 @@ import React from "react";
 import HeaderContentAccordion from "./headerContentAccordion";
 
 const LessonListsAccordion = ({ weekly_curriculum:lessons }) => {
-  console.log('weekly_curriculum:lessons :' ,lessons)
+ 
   return (
     <div className="accordion-item">
       {lessons &&

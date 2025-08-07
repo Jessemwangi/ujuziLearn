@@ -10,7 +10,7 @@ const index = () => {
     return (
         <div className='sticky-header'>
             <div id="main-wrapper" className="main-wrapper">
-                <Header no_top_bar={true} />
+                <Header no_top_bar={false} />
                 <BreadcrumbThree title="All Course" subtitle="All Courses" />
               {!isLoading  && <CourseTwoArea courses={courses_list || []}/>} 
                 <Footer style_2={'footer-dark bg-image footer-style-2'} />

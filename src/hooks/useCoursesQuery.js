@@ -1,13 +1,12 @@
 import { useQuery } from 'react-query';
 import { COURSES_SERVICES } from '../services/courses-service';
+import { QUERY_STRINGS } from '../queries/endpoints';
 
 const useCoursesData = () => {
-    const q = `populate=courses_subcategories&populate=courses_weekly_curricula.course_lessons.curriculum_lesson_headers&populate=courses_categories&populate=courses_instructors.instructor_img&populate=course_intro_video&populate=course_intro_img&populate=course_target_groups&populate=course_learn_lists&populate=course_qualification_equirements
-    &populate=subscription_packages&populate=course_reviews&populate=courses_features&populate=localizations&populate=course_ratings`;
 
     const { data: courses_list, isLoading } = useQuery(
         ["courses-all"],
-        () => COURSES_SERVICES.getAllCourses(q).then((data) => {
+        () => COURSES_SERVICES.getAllCourses(QUERY_STRINGS.courses.all.url).then((data) => {
             const courses_data = data?.data?.map((x) => ({
                 id: x.id,
                 ...x?.attributes,
@@ -25,4 +24,28 @@ const useCoursesData = () => {
     return { courses_list, isLoading };
 };
 
+export const useSubscribedCourses = (studentId) => {
+
+   try {
+     const { data: courses_list, isLoading } = useQuery(
+         ["courses-Subscribed"],
+         () => COURSES_SERVICES.getSubscibedCourses(studentId).then((data) => {
+            
+ 
+                 const courses_data =data.data.courses
+            
+ 
+             return courses_data;
+         }),
+         {
+             refetchOnWindowFocus: false,
+         }
+     );
+ 
+     return { courses_list, isLoading };
+   } catch (error) {
+    throw new Error(error.message || "Error Fetching Courses");
+    
+   }
+};
 export default useCoursesData;

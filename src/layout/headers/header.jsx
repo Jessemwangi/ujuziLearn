@@ -9,20 +9,6 @@ import useSticky from '../../hooks/use-sticky';
 import { wishlistItems } from '../../redux/features/wishlist-slice';
 import useCartInfo from '../../hooks/use-cart-info';
 import OffCanvas from '../../components/common/sidebar/off-canvas';
-import Cart from './component/cart';
-
-const categories = [
-    { link: '/course-style-1', title: 'Design' },
-    { link: '/course-style-1', title: 'Development' },
-    { link: '/course-style-1', title: 'Architecture' },
-    { link: '/course-style-1', title: 'Life Style' },
-    { link: '/course-style-1', title: 'Data Science' },
-    { link: '/course-style-1', title: 'Marketing' },
-    { link: '/course-style-1', title: 'Music' },
-    { link: '/course-style-1', title: 'Photography' },
-    { link: '/course-style-1', title: 'Finance' },
-    { link: '/course-style-1', title: 'Motivation' }
-]
 
 const Header = ({ header_style, no_top_bar, disable_full_width, disable_category }) => {
     const { sticky } = useSticky();
@@ -61,27 +47,6 @@ const Header = ({ header_style, no_top_bar, disable_full_width, disable_category
                                         </a>
                                     </Link>
                                 </div>
-
-                                {/* { ! disable_category &&
-                                    <div className="header-category">
-                                        <nav className="mainmenu-nav">
-                                            <ul className="mainmenu">
-                                                <li className="has-droupdown">
-                                                    <a href="#"><i className="icon-1"></i>Category</a>
-                                                    <ul className="submenu">
-                                                        {
-                                                            categories.map((category, i) => (
-                                                                <li key={i}>
-                                                                    <Link href={`${category.link}`}><a>{category.title}</a></Link>
-                                                                </li>
-                                                            ) )
-                                                        }
-                                                    </ul>
-                                                </li>
-                                            </ul>
-                                        </nav>
-                                    </div>
-                                } */}
                             </div>
                             <div className="header-mainnav">
                                 <nav className="mainmenu-nav">
@@ -105,23 +70,6 @@ const Header = ({ header_style, no_top_bar, disable_full_width, disable_category
                                             <i className="icon-2"></i>
                                         </a>
                                     </li>
-                                    {/* <li className="icon">
-                                        <Link href="/wishlist">
-                                            <a className="wishlist">
-                                                <i className="icon-22"></i>
-                                                <span className="count">{wishlists?.length}</span>
-                                            </a>
-                                        </Link>
-                                    </li>
-                                    <li className="icon cart-icon">
-                                        <Link href="/cart">
-                                            <a className="cart-icon">
-                                                <i className="icon-3"></i>
-                                                <span className="count">{quantity}</span>
-                                            </a>
-                                        </Link>
-                                        <Cart />
-                                    </li> */}
                                     <li className="header-btn">
                                         <Link href="/contact-us">
                                             <a className="edu-btn btn-medium">Try for free
