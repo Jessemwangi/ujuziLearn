@@ -19,9 +19,9 @@ function MyApp( { Component, pageProps } ) {
     useEffect( () => {
         sal( { threshold: 0.1, once: true } );
     }, [router.asPath] );
-    if (!TokenService.hasToken()){
-        TokenService.setToken(process.env.NEXT_PUBLIC_BACKEND_TEST_TOKEN)
-    }
+    // if (!TokenService.hasToken()){
+    //     TokenService.setToken(process.env.NEXT_PUBLIC_BACKEND_TEST_TOKEN)
+    // }
     useEffect( () => {
         sal();
     }, [] );

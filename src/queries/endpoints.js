@@ -10,6 +10,10 @@ const LOGIN_ENDPOINT = "/login";
 
 const QUERY_STRINGS = {
     courses:{
+                subscribed:{
+            desc:'get all courses the student can access',
+            url:`students/courses`
+    },
         all:{
             desc:'get all courses and related data in them, can also be used to get single course info',
             url:`populate=courses_subcategories&populate=courses_weekly_curricula.course_lessons.

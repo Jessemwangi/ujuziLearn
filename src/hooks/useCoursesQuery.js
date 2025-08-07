@@ -24,4 +24,28 @@ const useCoursesData = () => {
     return { courses_list, isLoading };
 };
 
+export const useSubscribedCourses = (studentId) => {
+
+   try {
+     const { data: courses_list, isLoading } = useQuery(
+         ["courses-Subscribed"],
+         () => COURSES_SERVICES.getSubscibedCourses(studentId).then((data) => {
+            
+ 
+                 const courses_data =data.data.courses
+            
+ 
+             return courses_data;
+         }),
+         {
+             refetchOnWindowFocus: false,
+         }
+     );
+ 
+     return { courses_list, isLoading };
+   } catch (error) {
+    throw new Error(error.message || "Error Fetching Courses");
+    
+   }
+};
 export default useCoursesData;

@@ -12,7 +12,6 @@ import { BASE_URL } from '../../queries/endpoints';
 const LoginForm = () => {
     const dispatch = useDispatch()
     const {loginError, token, user} = useSelector((state) => state.authLogin)
-    console.log('loginError : ', loginError, 'token :', token, 'user : ', user)
     const [showPass,setShowPass] = useState(false);
     const url = BASE_URL;
     const router = useRouter();

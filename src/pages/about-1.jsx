@@ -12,8 +12,7 @@ const AboutOne = () => {
       }, [dispatch]);
       let lessonList = useSelector((state) => state.less.lessonsData);
       let isloading = useSelector((state) => state.less.isLoading)
-      console.log(lessonList.data)
-//   if (isloading) return <>Loading data ................</>data.attributes.description data.attributes.description
+     
       return (
         <Wrapper>
             <SEO pageTitle={'About One'} />
