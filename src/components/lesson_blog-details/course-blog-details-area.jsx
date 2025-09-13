@@ -145,10 +145,10 @@ const CourseBlogDetailsArea = ({lessons, courseLessons}) => {
             <div className="col-lg-6">
               <div className="blog-pagination-list prev-post">
                 <Link href={`/course-details/lesson/lesson-details/${prevLesson.id}`}>
-                  <a>
+                 
                     <i className="icon-west"></i>
                     <span>{prevLesson.curriculum_lesson_title || "Previous Lesson"}</span>
-                  </a>
+                  
                 </Link>
               </div>
             </div>
@@ -159,10 +159,10 @@ const CourseBlogDetailsArea = ({lessons, courseLessons}) => {
             <div className="col-lg-6">
               <div className="blog-pagination-list next-post">
                 <Link href={`/course-details/lesson/lesson-details/${nextLesson.id}`}>
-                  <a>
+                 
                     <i className="icon-east"></i>
                     <span>{nextLesson.curriculum_lesson_title || "Next Lesson"}</span>
-                  </a>
+                  
                 </Link>
               </div>
             </div>

@@ -7,14 +7,14 @@ const CourseTypeSeven = ({ data, classes }) => {
             <div className="inner">
                 <div className="thumbnail">
                     <Link href={`/course-details/${data.id}`}>
-                        <a>
+                      
                             <img src={`/assets/images/course/course-04/${data.img}`} alt="Course Meta" />
-                        </a>
+                        
                     </Link>
                     <div className="course-price">${data.course_price}</div>
                     <div className="read-more-btn">
-                        <Link href={`/course-details/${data.id}`}>
-                            <a className="btn-icon-round"><i className="icon-4"></i></a>
+                        <Link href={`/course-details/${data.id}`} className="btn-icon-round">
+                        <i className="icon-4"></i>
                         </Link>
                     </div>
                 </div>
@@ -25,9 +25,9 @@ const CourseTypeSeven = ({ data, classes }) => {
                 <div className="content">
                     <h6 className="title">
                         <Link href={`/course-details/${data.id}`}>
-                            <a>
+                         
                                 {data.title}
-                            </a>
+                          
                         </Link>
                     </h6>
                     <p className="text">{data.short_desc}</p>

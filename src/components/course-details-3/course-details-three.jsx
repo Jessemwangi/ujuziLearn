@@ -54,7 +54,7 @@ const CourseDetailsThree = () => {
                                         <div className="login-btn">
                                             <span>or</span>
                                             <Link href="/sign-in">
-                                                <a>Login</a>
+                                                Login
                                             </Link>
                                         </div>
                                     </div>

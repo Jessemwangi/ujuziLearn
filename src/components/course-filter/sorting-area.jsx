@@ -56,17 +56,17 @@ const SortingArea = ({
           <label>{course_list ? "List" : "Grid"}</label>
           <ul className="switcher-btn">
             <li>
-              <Link href="/course-style-2">
-                <a className={!course_list ? "active" : ""}>
+              <Link href="/course-style-2"
+               className={!course_list ? "active" : ""}>
                   <i className="icon-53"></i>
-                </a>
+               
               </Link>
             </li>
             <li>
-              <Link href="/course-style-2">
-                <a className={course_list ? "active" : ""}>
+              <Link href="/course-style-2"
+               className={course_list ? "active" : ""}>
                   <i className="icon-54"></i>
-                </a>
+               
               </Link>
             </li>
           </ul>

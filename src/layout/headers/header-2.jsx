@@ -33,7 +33,8 @@ const HeaderTwo = ({ style_3, no_topBar = false }) => {
                                 <div className="header-top-right">
                                     <ul className="header-info">
                                        <li>{ user ? `Hi ${user.studentName}!`: 'Welcome!'} </li> 
-                                        <li>{token ? <Link href="/sign-out"><a>LogOut</a></Link> : <Link href="/sign-in"><a>Login</a></Link>}</li> 
+                                        <li>{token ? <Link href="/sign-out">LogOut</Link> : 
+                                        <Link href="/sign-in">Login</Link>}</li> 
                                         
                                         <li className="header-btn"><a href="#" className={`edu-btn ${style_3 ? '' : 'btn-secondary'} btn-medium`}>Apply Now <i className="icon-4"></i></a></li>
                                     </ul>
@@ -50,11 +51,11 @@ const HeaderTwo = ({ style_3, no_topBar = false }) => {
                         <div className="header-navbar">
                             <div className="header-brand">
                                 <div className="logo">
-                                    <Link href="/">
-                                        <a>
+                                    <Link href={'/'}>
+                                        
                                             <img className="logo-light" src={style_3 ? '/assets/images/logo/logo-dark.png' : "/assets/images/logo/logo-dark-2.png"} alt="Corporate Logo" />
                                             <img className="logo-dark" src={style_3 ? '/assets/images/logo/logo-white.png' : "/assets/images/logo/logo-light-2.png"} alt="Corporate Logo" />
-                                        </a>
+                                        
                                     </Link>
                                 </div>
                             </div>
@@ -74,20 +75,18 @@ const HeaderTwo = ({ style_3, no_topBar = false }) => {
                                     </li>
 
                                     <li className="icon">
-                                        <Link href="/wishlist">
-                                            <a className="wishlist">
+                                        <Link href="/wishlist" className="wishlist">
                                                 <i className="icon-22"></i>
                                                 <span className="count">{wishlists?.length}</span>
-                                            </a>
+                                           
                                         </Link>
                                     </li>
 
                                     <li className="icon cart-icon">
-                                        <Link href="/cart">
-                                            <a className="cart-icon">
+                                        <Link href="/cart" className="cart-icon">
                                                 <i className="icon-3"></i>
                                                 <span className="count">{quantity}</span>
-                                            </a>
+                                            
                                         </Link>
                                         <Cart />
                                     </li>

@@ -49,9 +49,9 @@ const SingleCourseTwo = ({ course }) => {
                 <div className="inner">
                     <div className="thumbnail">
                         <Link href={`/course-details/${id}`}>
-                            <a>
+                            
                                 <img src={`/assets/images/course/${img}`} alt="Course Meta" />
-                            </a>
+                            
                         </Link>
                         <div className="time-top">
                             <span className="duration"><i className="icon-61"></i>{duration}</span>
@@ -98,7 +98,7 @@ const SingleCourseTwo = ({ course }) => {
 
                         <h6 className="title">
                             <Link href={`/course-details/${id}`}>
-                                <a>{title}</a>
+                                {title}
                             </Link>
                         </h6>
 

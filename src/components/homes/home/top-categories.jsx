@@ -82,9 +82,9 @@ const TopCategories = () => {
                                 </div>
                                 <div className="content">
                                     <Link href="/course-style-1">
-                                        <a>
+                                      
                                             <h5 className="title">{item.title}</h5>
-                                        </a>
+                                     
                                     </Link>
                                 </div>
                             </div>

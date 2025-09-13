@@ -22,7 +22,7 @@ const OffCanvas = ({ isOpen, setIsOpen }) => {
           <div className="header-top">
             <div className="logo">
               <Link href="/">
-                <a>
+               
                   <img
                     className="logo-light"
                     src="/assets/images/logo/logo-dark.png"
@@ -33,7 +33,7 @@ const OffCanvas = ({ isOpen, setIsOpen }) => {
                     src="/assets/images/logo/logo-white.png"
                     alt="logo"
                   />
-                </a>
+               
               </Link>
             </div>
 

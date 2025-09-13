@@ -94,10 +94,10 @@ const CourseDetailsSidebar = ({id, course, details_2 = false, start=true }) => {
               </ul>
 
               {start && <div className="read-more-btn">
-             <Link href={`/course-details/lesson/${id}`}>
-                  <a className="edu-btn btn-medium">
+             <Link href={`/course-details/lesson/${id}`} className="edu-btn btn-medium">
+                  
                     Start Now<i className="icon-4"></i>
-                  </a>
+                  
                 </Link> 
               </div>}
 
