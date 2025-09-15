@@ -6,9 +6,9 @@ const CourseTypeSix = ({ data, classes ,id}) => {
         <div className={`edu-course course-style-3 ${ classes ? classes : '' }`}>
             <div className="inner">
                 <div className="thumbnail">
-                    <Link href={`/course-details/${id}`}>
+                    <Link href={`/course-details/${id}?docId=${data.documentId}`}>
                        
-                            <img src={data?.course_intro_img?.data?.attributes.url} alt="Course Meta" />
+                            <img src={data?.course_intro_img?.url} alt="Course Meta" />
                       
                     </Link>
                     <div className="time-top">
@@ -19,7 +19,7 @@ const CourseTypeSix = ({ data, classes ,id}) => {
                 <div className="content">
                     <span className="course-level">{data?.level}</span>
                     <h5 className="title">
-                        <Link href={`/course-details/${id}`}>
+                        <Link href={`/course-details/${id}?docId=${data.documentId}`}>
                             {data?.course_name}
                         </Link>
                     </h5>
@@ -36,7 +36,7 @@ const CourseTypeSix = ({ data, classes ,id}) => {
                     </div>
                     <div className="read-more-btn">
                         <Link className="edu-btn btn-small btn-secondary" 
-                        href={`/course-details/${id}`} 
+                        href={`/course-details/${id}?docId=${data.documentId}`} 
                         style={{ cursor: 'pointer' }}
                          >{data.course_name}
                             <i className="icon-4"></i>

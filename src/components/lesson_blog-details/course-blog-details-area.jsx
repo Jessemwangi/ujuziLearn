@@ -35,8 +35,8 @@ const CourseBlogDetailsArea = ({lessons, courseLessons}) => {
                                     <li><i className="icon-27"></i>{createdAt}</li>
                                     <li><i className="icon-28"></i> Topics {curriculum_lesson_headers?.data?.length}</li>
                                 </ul>
-                              {intro_pic?.data?.attributes?.url &&  <div className="thumbnail">
-                                    <img src={intro_pic?.data?.attributes?.url} alt="intro Image" />
+                              {intro_pic?.url &&  <div className="thumbnail">
+                                    <img src={intro_pic?.url} alt="intro Image" />
                                 </div>}
                             </div>
 
