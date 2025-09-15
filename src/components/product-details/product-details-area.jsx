@@ -35,8 +35,7 @@ const ProductDetailsArea = ({ item }) => {
                                 </div>
 
                                 <div className="add-to-cart-btn">
-                                    <Link href="/cart">
-                                        <a className="edu-btn btn-medium">Add To Cart</a>
+                                    <Link href="/cart" className="edu-btn btn-medium">Add To Cart
                                     </Link>
                                     <a href="#" className="wishlist-btn"><i className="icon-22"></i></a>
                                 </div>

@@ -19,15 +19,15 @@ const ListArea = () => {
                                     <div className="inner">
                                         <div className="thumbnail">
                                             <Link href={`/blog-details/${id}`}>
-                                                <a>
+                                                
                                                     <img src={img} alt="Blog Images" />
-                                                </a>
+                                                
                                             </Link>
                                         </div>
                                         <div className="content">
                                             <h5 className="title">
                                                 <Link href={`/blog-details/${id}`}>
-                                                    <a>{title}...</a>
+                                                    {title}...
                                                 </Link>
                                             </h5>
                                             <ul className="blog-meta">
@@ -36,8 +36,8 @@ const ListArea = () => {
                                             </ul>
                                             <p>{desc}</p>
                                             <div className="read-more-btn">
-                                                <Link href={`/blog-details/${id}`}>
-                                                    <a className="edu-btn btn-border btn-medium">Learn More <i className="icon-4"></i></a>
+                                                <Link href={`/blog-details/${id}`} className="edu-btn btn-border btn-medium">
+                                                    Learn More <i className="icon-4"></i>
                                                 </Link>
                                             </div>
                                         </div>

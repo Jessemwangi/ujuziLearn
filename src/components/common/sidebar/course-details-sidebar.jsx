@@ -5,7 +5,7 @@ import { Books } from "../../../svg";
 import VideoModal from "../popup-modal/video-modal";
 import { extractVideoCode } from "../../../utils/extractVideoIdFromUrl";
 
-const CourseDetailsSidebar = ({id, course, details_2 = false, start=true }) => {
+const CourseDetailsSidebar = ({id, course, details_2 = false,docId, start=true }) => {
   const {
     img,
     certificate,
@@ -28,7 +28,7 @@ const CourseDetailsSidebar = ({id, course, details_2 = false, start=true }) => {
           <div className="inner">
             <div className="thumbnail">
               <img
-                src={course?.course_intro_img?.data?.attributes?.url}
+                src={course?.course_intro_img?.url}
                 alt="Course Thumb"
               />
               <a
@@ -94,10 +94,10 @@ const CourseDetailsSidebar = ({id, course, details_2 = false, start=true }) => {
               </ul>
 
               {start && <div className="read-more-btn">
-             <Link href={`/course-details/lesson/${id}`}>
-                  <a className="edu-btn btn-medium">
+             <Link href={`/course-details/lesson/${docId}`} className="edu-btn btn-medium">
+                  
                     Start Now<i className="icon-4"></i>
-                  </a>
+                  
                 </Link> 
               </div>}
 

@@ -22,8 +22,8 @@ const BlogSidebar = ({id, lessons}) => {
             <div className="edu-blog-widget widget-search">
                 <div className="inner">
                 <div className="header-btn">
-                                        <Link href={`/course-details/lesson/${course_?.id}`}>
-                                            <a className="edu-btn btn-medium btn-rounded">back to lessons <i className="icon-1"></i></a>
+                                        <Link href={`/course-details/lesson/${course_?.id}`} className="edu-btn btn-medium btn-rounded">
+                                            back to lessons <i className="icon-1"></i>
                                         </Link>
                                     </div>
                 </div>
@@ -37,15 +37,15 @@ const BlogSidebar = ({id, lessons}) => {
                             <div key={blog.id} className="latest-post">
                                 <div className="thumbnail">
                                     <Link href={`/course-details/lesson/lesson-details/${blog.id}`}>
-                                        <a>
+                                        
                                             <img src={blog.img} alt="Blog Images" />
-                                        </a>
+                                        
                                     </Link>
                                 </div>
                                 <div className="post-content">
                                     <h6 className="title">
                                         <Link href={`/course-details/lesson/lesson-details/${blog.id}`}>
-                                            <a>{blog.curriculum_lesson_title.substring(0, 25)}...</a>
+                                            {blog.curriculum_lesson_title.substring(0, 25)}...
                                         </Link>
                                     </h6>
                                     <ul className="blog-meta">

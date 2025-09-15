@@ -7,9 +7,9 @@ const EventItem = ({ item }) => {
         <div className="inner">
             <div className="thumbnail">
                 <Link href={`/event-details/${id}`}>
-                    <a>
+                   
                         <img src={img} alt="Blog Images" />
-                    </a>
+                    
                 </Link>
                 <div className="event-time">
                     <span><i className="icon-33"></i>{time}</span>
@@ -22,7 +22,7 @@ const EventItem = ({ item }) => {
                 </div>
                 <h5 className="title">
                     <Link href={`/event-details/${id}`}>
-                        <a>{title}</a>
+                       {title}
                     </Link>
                 </h5>
                 <p>{sm_desc}</p>
@@ -30,10 +30,10 @@ const EventItem = ({ item }) => {
                     <li><i className="icon-40"></i>{event_meta}</li>
                 </ul>
                 <div className="read-more-btn">
-                    <Link href={`/event-details/${id}`}>
-                        <a className="edu-btn btn-small btn-secondary">
+                    <Link href={`/event-details/${id}`}
+                    className="edu-btn btn-small btn-secondary">
                             Learn More <i className="icon-4"></i>
-                        </a>
+                        
                     </Link>
                 </div>
             </div>

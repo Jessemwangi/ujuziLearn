@@ -6,7 +6,9 @@ import useCoursesData from '../../hooks/useCoursesQuery';
 
 const index = () => {
   const { courses_list, isLoading } = useCoursesData();
-
+if (isLoading) {
+    return <div>Loading...</div>; // or a spinner, or any loading indicator
+  }
     return (
         <div className='sticky-header'>
             <div id="main-wrapper" className="main-wrapper">

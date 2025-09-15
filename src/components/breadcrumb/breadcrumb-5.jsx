@@ -3,7 +3,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useMouseMoveUI } from '../../contexts/mouse-move-context';
 
-const CourseBreadcrumb = ({ course, subtitle }) => {
+const CourseBreadcrumb = ({ course, subtitle,docId }) => {
         const { course_name, courses_instructors, language, rating_count }  = course || {};
     const { mouseDirection, mouseReverse } = useMouseMoveUI();
     return (
@@ -13,13 +13,13 @@ const CourseBreadcrumb = ({ course, subtitle }) => {
                     <ul className="edu-breadcrumb">
                         <li className="breadcrumb-item">
                             <Link href="/">
-                                <a>Home</a>
+                                Home
                             </Link>
                         </li>
                         <li className="separator"><i className="icon-angle-right"></i></li>
                         <li className="breadcrumb-item">
-                            <Link href="/course-style-1">
-                                <a>Courses</a>
+                            <Link href="/course-style-2">
+                                Courses
                             </Link>
                         </li>
                         <li className="separator"><i className="icon-angle-right"></i></li>
@@ -29,7 +29,7 @@ const CourseBreadcrumb = ({ course, subtitle }) => {
                         <h1 className="title">{course_name}</h1>
                     </div>
                     <ul className="course-meta">
-                        <li><i className="icon-58"></i>Number of Instructors <b> {` : ${courses_instructors?.data?.length}`}</b></li>
+                        <li><i className="icon-58"></i>Number of Instructors <b> {` : ${courses_instructors?.length}`}</b></li>
                         <li><i className="icon-59"></i>{language}</li>
                         <li className="course-rating">
                         <div className="rating">

@@ -6,10 +6,10 @@ const CourseTypeSix = ({ data, classes ,id}) => {
         <div className={`edu-course course-style-3 ${ classes ? classes : '' }`}>
             <div className="inner">
                 <div className="thumbnail">
-                    <Link href={`/course-details/${id}`}>
-                        <a>
-                            <img src={data?.course_intro_img?.data?.attributes.url} alt="Course Meta" />
-                        </a>
+                    <Link href={`/course-details/${id}?docId=${data.documentId}`}>
+                       
+                            <img src={data?.course_intro_img?.url} alt="Course Meta" />
+                      
                     </Link>
                     <div className="time-top">
                         <span className="duration"><i className="icon-61"></i>{data?.course_outline}</span>
@@ -19,8 +19,8 @@ const CourseTypeSix = ({ data, classes ,id}) => {
                 <div className="content">
                     <span className="course-level">{data?.level}</span>
                     <h5 className="title">
-                        <Link href={`/course-details/${id}`}>
-                            <a>{data?.course_name}</a>
+                        <Link href={`/course-details/${id}?docId=${data.documentId}`}>
+                            {data?.course_name}
                         </Link>
                     </h5>
                     <p>{data?.short_desc}</p>
@@ -35,10 +35,12 @@ const CourseTypeSix = ({ data, classes ,id}) => {
                         <span className="rating-count">({data.rating} /{data.rating_count} Rating)</span>
                     </div>
                     <div className="read-more-btn">
-                        <Link className="edu-btn btn-small btn-secondary" href={`/course-details/${id}`} style={{ cursor: 'pointer' }}>
-                        <a className="edu-btn btn-small btn-secondary">{data.course_name}
+                        <Link className="edu-btn btn-small btn-secondary" 
+                        href={`/course-details/${id}?docId=${data.documentId}`} 
+                        style={{ cursor: 'pointer' }}
+                         >{data.course_name}
                             <i className="icon-4"></i>
-                            </a>
+                            
                         </Link>
                     </div>
                 </div>

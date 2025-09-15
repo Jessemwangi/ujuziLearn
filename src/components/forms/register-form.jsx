@@ -45,7 +45,7 @@ const RegisterForm = () => {
                     <input value={values.terms} onChange={handleChange} onBlur={handleBlur} type="checkbox" name='terms' id="terms-condition" />
                     <label htmlFor="terms-condition">I agree the User Agreement and
                         <Link href="/terms-condition">
-                            <a>Terms & Condition.</a>
+                            Terms & Condition.
                         </Link>
                     </label>
                 </div>

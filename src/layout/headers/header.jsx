@@ -41,10 +41,10 @@ const Header = ({ header_style, no_top_bar, disable_full_width, disable_category
                             <div className="header-brand">
                                 <div className="logo">
                                     <Link href={'/'}>
-                                        <a>
+                                       
                                             <img className="logo-light" src='/assets/images/logo/logo-dark.png' alt="logo" />
                                             <img className="logo-dark" src='/assets/images/logo/logo-white.png' alt="logo" />
-                                        </a>
+                                        
                                     </Link>
                                 </div>
                             </div>
@@ -71,9 +71,8 @@ const Header = ({ header_style, no_top_bar, disable_full_width, disable_category
                                         </a>
                                     </li>
                                     <li className="header-btn">
-                                        <Link href="/contact-us">
-                                            <a className="edu-btn btn-medium">Try for free
-                                            <i className="icon-4"></i></a>
+                                        <Link href="/contact-us" className="edu-btn btn-medium">Try for free
+                                            <i className="icon-4"></i>
                                         </Link>
                                     </li>
                                     <li className="mobile-menu-bar d-block d-xl-none">

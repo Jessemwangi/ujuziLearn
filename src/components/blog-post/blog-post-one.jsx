@@ -7,25 +7,26 @@ const BlogPostOne = ({ param }) => {
             <div className="inner">
                 <div className="thumbnail">
                     <Link href={`/blog-details/${param.id}`}>
-                        <a>
+                        
                             <img src={param.img} alt="Blog Images" />
-                        </a>
+                        
                     </Link>
                 </div>
                 <div className="content position-top">
                     <div className="read-more-btn">
-                        <Link href={`/blog-details/${param.id}`}>
-                            <a className="btn-icon-round">
+                        <Link href={`/blog-details/${param.id}`} className="btn-icon-round">
+                           
                                 <i className="icon-4"></i>
-                            </a>
+                            
                         </Link>
                     </div>
                     <div className="category-wrap">
-                        <a href="#" className="blog-category">{param.category}</a>
+                        <Link href="#" className="blog-category">{param.category}
+                        </Link>
                     </div>
                     <h5 className="title">
                         <Link href={`/blog-details/${param.id}`}>
-                            <a>{param.title}</a>
+                            {param.title}
                         </Link>
                     </h5>
                     <ul className="blog-meta">

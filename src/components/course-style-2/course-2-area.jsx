@@ -11,6 +11,7 @@ const CourseTwoArea = ({courses:_courses, lst=false}) => {
     const handleLoadData = () => {
         setNext(value => value + 3)
     }
+   
     return (
         <div className="edu-course-area course-area-1 gap-tb-text">
             <div className="container">
@@ -20,7 +21,7 @@ const CourseTwoArea = ({courses:_courses, lst=false}) => {
                     {courses.length > 0 ?
                     (courses?.map((course) => (
                         <div key={course.id} className="col-md-6 col-lg-4">
-                            <CourseTypeSix data={course} id={course.id} classes="course-box-shadow" />
+                            <CourseTypeSix data={course} id={course.id} docId={course.documentId} classes="course-box-shadow" />
                         </div>
                     ))):<p>No courses available for viewing</p>}
                 </div>

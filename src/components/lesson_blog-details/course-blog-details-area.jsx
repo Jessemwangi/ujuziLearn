@@ -35,8 +35,8 @@ const CourseBlogDetailsArea = ({lessons, courseLessons}) => {
                                     <li><i className="icon-27"></i>{createdAt}</li>
                                     <li><i className="icon-28"></i> Topics {curriculum_lesson_headers?.data?.length}</li>
                                 </ul>
-                              {intro_pic?.data?.attributes?.url &&  <div className="thumbnail">
-                                    <img src={intro_pic?.data?.attributes?.url} alt="intro Image" />
+                              {intro_pic?.url &&  <div className="thumbnail">
+                                    <img src={intro_pic?.url} alt="intro Image" />
                                 </div>}
                             </div>
 
@@ -145,10 +145,10 @@ const CourseBlogDetailsArea = ({lessons, courseLessons}) => {
             <div className="col-lg-6">
               <div className="blog-pagination-list prev-post">
                 <Link href={`/course-details/lesson/lesson-details/${prevLesson.id}`}>
-                  <a>
+                 
                     <i className="icon-west"></i>
                     <span>{prevLesson.curriculum_lesson_title || "Previous Lesson"}</span>
-                  </a>
+                  
                 </Link>
               </div>
             </div>
@@ -159,10 +159,10 @@ const CourseBlogDetailsArea = ({lessons, courseLessons}) => {
             <div className="col-lg-6">
               <div className="blog-pagination-list next-post">
                 <Link href={`/course-details/lesson/lesson-details/${nextLesson.id}`}>
-                  <a>
+                 
                     <i className="icon-east"></i>
                     <span>{nextLesson.curriculum_lesson_title || "Next Lesson"}</span>
-                  </a>
+                  
                 </Link>
               </div>
             </div>

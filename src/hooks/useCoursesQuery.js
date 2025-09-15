@@ -7,12 +7,7 @@ const useCoursesData = () => {
     const { data: courses_list, isLoading } = useQuery(
         ["courses-all"],
         () => COURSES_SERVICES.getAllCourses(QUERY_STRINGS.courses.all.url).then((data) => {
-            const courses_data = data?.data?.map((x) => ({
-                id: x.id,
-                ...x?.attributes,
-                // lessons: x?.attributes?.course_lessons,
-                // carriculum: x?.attributes?.courses_weekly_curricula
-            }));
+            const courses_data = data?.data;
 
             return courses_data;
         }),
