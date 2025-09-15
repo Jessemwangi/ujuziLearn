@@ -10,23 +10,23 @@ const CourseOverview = ({ course }) => {
         {short_desc_2 && <p className="mb--60">{short_desc_2}</p>}
         <h5 className="title">What You’ll Learn?</h5>
         <ul className="mb--60">
-          {course_learn_lists?.data?.map(({ attributes, id }) => (
-            <li key={id}>{attributes?.learn_list_name}</li>
+          {course_learn_lists?.map(({ learn_list_name, id }) => (
+            <li key={id}>{learn_list_name}</li>
           ))}
         </ul>
         {short_desc_3 && <p>{short_desc_3}</p>}
         
         <h3 className="heading-title">Requirements</h3>
         <ul className="mb--90">
-          {course_qualification_equirements?.data?.map(({ id, attributes }) => (
-            <li key={id}>{attributes?.qualification_name}</li>
+          {course_qualification_equirements?.map(({ id, qualification_name }) => (
+            <li key={id}>{qualification_name}</li>
           ))}
         </ul>
 
         <h3 className="heading-title">Target Audience</h3>
         <ul className="mb--90">
-          {course_target_groups?.data?.map(({ id, attributes }) => (
-            <li key={id}>{attributes?.target_group_name}</li>
+          {course_target_groups?.map(({ id, target_group_name }) => (
+            <li key={id}>{target_group_name}</li>
           ))}
         </ul>
       </div>
