@@ -10,12 +10,18 @@ const menu_data = [
         mega_menu: false,
   
     },
-
-    {
+// to be enabled when courses listing page is ready, and production ready, 
+    // {
+    //     title: 'Courses',
+    //     link: '/course-details/lesson',
+    //     mega_menu: false,
+    // },
+      {
         title: 'Courses',
-        link: '/course-details/lesson',
+        link: '/course-style-2',
         mega_menu: false,
     },
+   
 ]
 
 export default menu_data;
