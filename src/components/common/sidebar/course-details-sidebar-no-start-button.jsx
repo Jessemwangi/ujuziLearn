@@ -6,7 +6,7 @@ import VideoModal from "../popup-modal/video-modal";
 
 const CourseDetailsSidebarNoStart = ({ lessons, course, details_2 = false }) => {
   const {
-    img,
+    course_intro_img,
     certificate,
     videoId,
     course_price,
@@ -15,6 +15,7 @@ const CourseDetailsSidebarNoStart = ({ lessons, course, details_2 = false }) => 
     student,
     language,
   } = course || {};
+  console.log("CourseDetailsSidebarNoStart course data:", course); // Debugging line to check data structure
   const { isVideoOpen, setIsVideoOpen } = useModal();
   const [show, setShow] = useState(false);
 
@@ -33,7 +34,7 @@ const CourseDetailsSidebarNoStart = ({ lessons, course, details_2 = false }) => 
           <div className="inner">
             <div className="thumbnail">
               <img
-                src={`/assets/images/course/course-01/${img}`}
+                src={`${course_intro_img?.url}`}
                 alt="Course Thumb"
               />
               <a
@@ -47,15 +48,15 @@ const CourseDetailsSidebarNoStart = ({ lessons, course, details_2 = false }) => 
             <div className="content">
               <h4 className="widget-title">Course Topics:</h4>
               <ul className="course-item">
-              {lessons.map(({attributes,id} )=>
-                <li key={attributes.curriculum_reg}>
+              {lessons.map(({curriculum_reg,id,curriculum_title,documentId} )=>
+                <li key={documentId}>
                   <span className="label">
                   <Books />
                   </span>
                   <button onClick={toggleShow} className={`accordion-button ${show ? '' : 'collapsed'}`} 
-                  type="button" data-bs-toggle="collapse" data-bs-target={`#${attributes.curriculum_reg}${id}`} >
+                  type="button" data-bs-toggle="collapse" data-bs-target={`#${curriculum_reg}${id}`} >
                    
-                 <h6> <span className="value">{attributes.curriculum_title}</span></h6>
+                 <h6> <span className="value">{curriculum_title}</span></h6>
                 </button>
                 </li>
                ) }

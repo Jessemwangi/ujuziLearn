@@ -2,7 +2,7 @@ import React from "react";
 import { server } from "../../../utils/envVariable";
 
 const CourseInstructor = ({ instructors }) => {
-  console.log("Instructors data:", instructors); // Debugging line to check data structure
+ 
   if (!instructors || instructors.length === 0) {
     return <p>No instructors available for this course.</p>;
   }
