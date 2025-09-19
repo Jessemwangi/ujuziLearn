@@ -19,8 +19,9 @@ const CourseBlogDetailsArea = ({lessons, courseLessons}) => {
         curriculum_lesson_headers,
         createdAt,
         id,
+        documentId
     }=lessons || {};
-   
+   console.log('CourseBlogDetailsArea Rendered', courseLessons);
     return (
         <>
         <div className="blog-details-area section-gap-equal">
@@ -33,7 +34,7 @@ const CourseBlogDetailsArea = ({lessons, courseLessons}) => {
                                 <h3 className="title">{ curriculum_lesson_title}</h3>
                                 <ul className="blog-meta">
                                     <li><i className="icon-27"></i>{createdAt}</li>
-                                    <li><i className="icon-28"></i> Topics {curriculum_lesson_headers?.data?.length}</li>
+                                    <li><i className="icon-28"></i> Topics {curriculum_lesson_headers?.length}</li>
                                 </ul>
                               {intro_pic?.url &&  <div className="thumbnail">
                                     <img src={intro_pic?.url} alt="intro Image" />
@@ -44,40 +45,43 @@ const CourseBlogDetailsArea = ({lessons, courseLessons}) => {
                                 <p>{curriculum_lesson_desc}</p>
                                 {/* <h5 className="author">verified</h5> */}
                             </blockquote>
-{curriculum_lesson_headers?.data?.map(({attributes,id}) =>
+{curriculum_lesson_headers?.map(({curriculum_lesson_header_title,
+id,course_curriculum_lesson_header_content,content_img,content_2
+,video_url,
+}) =>
 <div key={id}>
-<h3 className="title">{attributes?.curriculum_lesson_header_title}</h3>
+<h3 className="title">{curriculum_lesson_header_title}</h3>
     <div>
-    <MarkoutOutPut content={attributes?.course_curriculum_lesson_header_content} />
+    <MarkoutOutPut content={course_curriculum_lesson_header_content} />
     </div>
 
-                          {attributes?.content_img?.data &&  <div className="features-image">
+                          {content_img &&  <div className="features-image">
                                 <div className="row g-md-5">
                                     <div className="col-12">
                                         <div className="thumbnail">
-                                            <img src={attributes?.content_img.data?.attributes?.url} alt="Features Images" />
-                                        <p>{attributes?.content_img.data?.attributes?.caption}</p>
+                                            <img src={content_img.url} alt="Features Images" />
+                                        <p>{content_img.caption}</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>}
 
-                            {attributes?.content_2 &&   
-                            <MarkoutOutPut content={attributes?.content_2} />}
+                            {content_2 &&   
+                            <MarkoutOutPut content={content_2} />}
                             {/* //display video if available */}
 
-                          {attributes?.video_url && 
+                          {video_url && 
                                   <div className="edu-course-widget widget-course-summery col-5">
                                   <div className="inner">
                           <div className="thumbnail">
               <img
-                src={attributes?.content_img?.data?.attributes?.url || 'https://res.cloudinary.com/dk4ruyonq/image/upload/v1715297668/video_Thumb_d8700518fc.png'}
+                src={content_img?.url || 'https://res.cloudinary.com/dk4ruyonq/image/upload/v1715297668/video_Thumb_d8700518fc.png'}
                 alt="Watch Video"
                 width={100}
               />
               <a
                 onClick={() => {
-                    setVideo_url(attributes?.video_url)
+                    setVideo_url(video_url)
                     setIsVideoOpen(true)
                 }
                 }

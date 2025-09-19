@@ -6,7 +6,7 @@ import { QUERY_STRINGS } from '../../queries/endpoints';
 import useGetAllWkCourseData from '../../hooks/use_weekly_curriculum';
 
 
-const index = ({lessons, title, course_Id}) => {
+const index = ({lessons, title, course_Id,docId}) => {
     const q = `populate=course_lessons&filters[courses]=${course_Id}`;
     const { all_wk_curri_list, isLoading } = useGetAllWkCourseData(q);
     const [courseLessons,setCourseLessons] = useState([]);

@@ -15,7 +15,7 @@ const CourseDetailsSidebarNoStart = ({ lessons, course, details_2 = false }) => 
     student,
     language,
   } = course || {};
-  console.log("CourseDetailsSidebarNoStart course data:", course); // Debugging line to check data structure
+// Debugging line to check data structure
   const { isVideoOpen, setIsVideoOpen } = useModal();
   const [show, setShow] = useState(false);
 

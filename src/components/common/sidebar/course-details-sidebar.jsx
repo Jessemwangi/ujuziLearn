@@ -16,7 +16,7 @@ const CourseDetailsSidebar = ({id, course, details_2 = false,docId, start=true }
     student,
     language,
   } = course || {};
-  console.log("CourseDetailsSidebar course data:", course); // Debugging line to check data structure
+ // Debugging line to check data structure
   const { isVideoOpen, setIsVideoOpen } = useModal();
   return (
     <>

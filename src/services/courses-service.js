@@ -17,8 +17,8 @@ export const COURSES_SERVICES= {
 
     return res?.data;
   },
-  async getSingleCourses(id,query) {
-    const res = await httpClient.get(`${server_url}${endpoint}/${id}?${query}`);
+  async getSingleCourses(docId,query) {
+    const res = await httpClient.get(`${server_url}${endpoint}/${docId}?${query}`);
 
     return res?.data;
   },
@@ -27,13 +27,13 @@ export const COURSES_SERVICES= {
 
     return res?.data;
   },
-  async getSingleWkCurriculum(id, query){
-    const res = await httpClient.get(`${server_url}${COURSES_WK_CURRICULUM}/${id}?${query}`);
+  async getSingleWkCurriculum(docId, query){
+    const res = await httpClient.get(`${server_url}${COURSES_WK_CURRICULUM}/${docId}?${query}`);
 
     return res?.data;
   },
-  async getSingleLesson(id, query) {
-    const res = await httpClient.get(`${server_url}${COURSES_LESSON}/${id}?${query}`);
+  async getSingleLesson(docId, query) {
+    const res = await httpClient.get(`${server_url}${COURSES_LESSON}/${docId}?${query}`);
 
     return res?.data;
   },
