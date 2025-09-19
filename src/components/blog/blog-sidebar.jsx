@@ -1,64 +1,79 @@
-import Link from 'next/link';
-import React, { useEffect, useState } from 'react';
-import { blog_data } from '../../data';
-import { getLocalStorage } from '../../utils/localstorage';
-import {useSingleWkCourseData} from '../../hooks/use-course_weekly_curi';
-import { QUERY_STRINGS } from '../../queries/endpoints';
+import Link from "next/link";
+import React, { useEffect, useState } from "react";
+import { blog_data } from "../../data";
+import { getLocalStorage } from "../../utils/localstorage";
+import { useSingleWkCourseData } from "../../hooks/use-course_weekly_curi";
+import { QUERY_STRINGS } from "../../queries/endpoints";
 
 const latest_blog = blog_data.slice(0, 3);
 
-const BlogSidebar = ({id, lessons}) => {
-    const [course_, setCourse] = useState({});
+const BlogSidebar = ({ id, lessons }) => {
+  const [course_, setCourse] = useState({});
 
-    useEffect(() => {
-      const LST_course = getLocalStorage('course');
-      if (LST_course) {
-        setCourse(LST_course);
-      }
-    }, []);
-    const { wk_curri_list, isLoading } = useSingleWkCourseData(id,QUERY_STRINGS.courses.video_pic_curriculum_list_only);
-    return (
-        <div className="edu-blog-sidebar">
-            <div className="edu-blog-widget widget-search">
-                <div className="inner">
-                <div className="header-btn">
-                                        <Link href={`/course-details/lesson/${course_?.id}`} className="edu-btn btn-medium btn-rounded">
-                                            back to lessons <i className="icon-1"></i>
-                                        </Link>
-                                    </div>
+  useEffect(() => {
+    const LST_course = getLocalStorage("course");
+    if (LST_course) {
+      setCourse(LST_course);
+    }
+  }, []);
+  const { wk_curri_list, isLoading } = useSingleWkCourseData(
+    id,
+    QUERY_STRINGS.courses.video_pic_curriculum_list_only
+  );
+
+//   console.log("BlogSidebar Rendered", 'id :',id, 'Lessons : ',
+//      lessons, 'courses : ',course_, 'wk curri list : ',wk_curri_list);
+  return (
+    <div className="edu-blog-sidebar">
+      <div className="edu-blog-widget widget-search">
+        <div className="inner">
+          <div className="header-btn">
+            <Link
+              href={`/course-details/lesson/${course_?.documentId}`}
+              className="edu-btn btn-medium btn-rounded"
+            >
+              back to lessons <i className="icon-1"></i>
+            </Link>
+          </div>
+        </div>
+      </div>
+
+      <div className="edu-blog-widget widget-latest-post">
+        <div className="inner">
+          <h4 className="widget-title">More Course Units</h4>
+          <div className="content latest-post-list">
+            {lessons &&
+              lessons?.map((blog) => (
+                <div key={blog.documentId} className="latest-post">
+                  <div className="thumbnail">
+                    <Link
+                      href={`/course-details/lesson/lesson-details/${blog.documentId}`}
+                    >
+                      <img src={blog.img} alt="Blog Images" />
+                    </Link>
+                  </div>
+                  <div className="post-content">
+                    <h6 className="title">
+                      <Link
+                        href={`/course-details/lesson/lesson-details/${blog.documentId}`}
+                      >
+                        {blog.curriculum_lesson_title.substring(0, 25)}...
+                      </Link>
+                    </h6>
+                    <ul className="blog-meta">
+                      <li>
+                        <i className="icon-27"></i>
+                        {blog?.publishedAt}
+                      </li>
+                    </ul>
+                  </div>
                 </div>
-            </div>
+              ))}
+          </div>
+        </div>
+      </div>
 
-            <div className="edu-blog-widget widget-latest-post">
-                <div className="inner">
-                    <h4 className="widget-title">More Course Units</h4>
-                    <div className="content latest-post-list">
-                        {lessons && lessons?.map((blog) => (
-                            <div key={blog.id} className="latest-post">
-                                <div className="thumbnail">
-                                    <Link href={`/course-details/lesson/lesson-details/${blog.id}`}>
-                                        
-                                            <img src={blog.img} alt="Blog Images" />
-                                        
-                                    </Link>
-                                </div>
-                                <div className="post-content">
-                                    <h6 className="title">
-                                        <Link href={`/course-details/lesson/lesson-details/${blog.id}`}>
-                                            {blog.curriculum_lesson_title.substring(0, 25)}...
-                                        </Link>
-                                    </h6>
-                                    <ul className="blog-meta">
-                                        <li><i className="icon-27"></i>{blog?.publishedAt}</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </div>
-
-            {/* <div className="edu-blog-widget widget-categories">
+      {/* <div className="edu-blog-widget widget-categories">
                 <div className="inner">
                     <h4 className="widget-title">Archives</h4>
                     <div className="content">
@@ -73,22 +88,22 @@ const BlogSidebar = ({id, lessons}) => {
                 </div>
             </div> */}
 
-            <div className="edu-blog-widget widget-tags">
-                <div className="inner">
-                    <h4 className="widget-title">Tags</h4>
-                    <div className="content">
-                        <div className="tag-list">
-                            <a href="#">Language</a>
-                            <a href="#">eLearn</a>
-                            <a href="#">Tips</a>
-                            <a href="#">Course</a>
-                            <a href="#">Motivation</a>
-                        </div>
-                    </div>
-                </div>
+      <div className="edu-blog-widget widget-tags">
+        <div className="inner">
+          <h4 className="widget-title">Tags</h4>
+          <div className="content">
+            <div className="tag-list">
+              <a href="#">Language</a>
+              <a href="#">eLearn</a>
+              <a href="#">Tips</a>
+              <a href="#">Course</a>
+              <a href="#">Motivation</a>
             </div>
+          </div>
         </div>
-    )
-}
+      </div>
+    </div>
+  );
+};
 
 export default BlogSidebar;

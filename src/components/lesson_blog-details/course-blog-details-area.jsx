@@ -182,7 +182,7 @@ id,course_curriculum_lesson_header_content,content_img,content_2
                         </div>
 
                         {/*  Start Comment Area  */}
-                        <CommentArea />
+                        {/* <CommentArea /> to work on it later */}
                         {/*  End Comment Area  */}
                         {/* <div className="comment-form-area">
                             <h3 className="heading-title">Leave Your Comment Here</h3> */}
