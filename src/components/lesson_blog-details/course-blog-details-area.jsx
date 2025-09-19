@@ -21,7 +21,7 @@ const CourseBlogDetailsArea = ({lessons, courseLessons}) => {
         id,
         documentId
     }=lessons || {};
-   console.log('CourseBlogDetailsArea Rendered', courseLessons);
+
     return (
         <>
         <div className="blog-details-area section-gap-equal">
@@ -148,7 +148,7 @@ id,course_curriculum_lesson_header_content,content_img,content_2
           {prevLesson && (
             <div className="col-lg-6">
               <div className="blog-pagination-list prev-post">
-                <Link href={`/course-details/lesson/lesson-details/${prevLesson.id}`}>
+                <Link href={`/course-details/lesson/lesson-details/${prevLesson.documentId}`}>
                  
                     <i className="icon-west"></i>
                     <span>{prevLesson.curriculum_lesson_title || "Previous Lesson"}</span>
@@ -162,7 +162,7 @@ id,course_curriculum_lesson_header_content,content_img,content_2
           {nextLesson && (
             <div className="col-lg-6">
               <div className="blog-pagination-list next-post">
-                <Link href={`/course-details/lesson/lesson-details/${nextLesson.id}`}>
+                <Link href={`/course-details/lesson/lesson-details/${nextLesson.documentId}`}>
                  
                     <i className="icon-east"></i>
                     <span>{nextLesson.curriculum_lesson_title || "Next Lesson"}</span>
@@ -194,7 +194,7 @@ id,course_curriculum_lesson_header_content,content_img,content_2
 
                     <div className="col-lg-4">
                         {/* sidebar start */}
-                        <BlogSidebar id={id} lessons={courseLessons} />
+                        <BlogSidebar id={id} lessons={courseLessons} lessonId={documentId} />
                         {/* sidebar end */}
                     </div>
                 </div>

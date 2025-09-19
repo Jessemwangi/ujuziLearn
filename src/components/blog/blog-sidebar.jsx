@@ -7,9 +7,10 @@ import { QUERY_STRINGS } from "../../queries/endpoints";
 
 const latest_blog = blog_data.slice(0, 3);
 
-const BlogSidebar = ({ id, lessons }) => {
+const BlogSidebar = ({ id, lessons,lessonId }) => {
   const [course_, setCourse] = useState({});
-
+console.log('BlogSidebar Rendered', lessons);
+console.log('BlogSidebar Rendered', lessons?.documentId);
   useEffect(() => {
     const LST_course = getLocalStorage("course");
     if (LST_course) {
@@ -28,12 +29,13 @@ const BlogSidebar = ({ id, lessons }) => {
       <div className="edu-blog-widget widget-search">
         <div className="inner">
           <div className="header-btn">
+             {lessons &&
             <Link
-              href={`/course-details/lesson/${course_?.documentId}`}
+              href={`/course-details/lesson/${id}?docId=${lessonId}`}
               className="edu-btn btn-medium btn-rounded"
             >
               back to lessons <i className="icon-1"></i>
-            </Link>
+            </Link>}
           </div>
         </div>
       </div>

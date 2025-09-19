@@ -8,11 +8,9 @@ import useGetAllWkCourseData from '../../hooks/use_weekly_curriculum';
 const index = ({lessons, title, course_Id, docId}) => {
    
     const q = `populate=course_lessons&courses=${docId}`;
-    console.log('Query :', q);
+  
     const { all_wk_curri_list, isLoading } = useGetAllWkCourseData(q);
     const [courseLessons, setCourseLessons] = useState([]);
-
-    console.log('all_wk_curri_list :', all_wk_curri_list);
 
     useEffect(() => {
         if (!isLoading && all_wk_curri_list) {
