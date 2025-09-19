@@ -29,16 +29,17 @@ const HeaderContentAccordion = ({ serial, title, course_lessons }) => {
         >
             <div className="accordion-body">
                 <ul>
-                    {course_lessons?.data && course_lessons?.data.map(({attributes,id}) => (
-                         <div className="text" key={attributes.curriculum_lesson_reg}> 
+                    {course_lessons && course_lessons.map(({documentId,curriculum_lesson_reg,id,curriculum_lesson_title,curriculum_lesson_desc}) => (
+                         <div className="text" key={documentId}> 
 
 
                             <SingleTopicAccordion 
-                                title={attributes.curriculum_lesson_title}
-                                content={attributes.curriculum_lesson_desc}
+                                title={curriculum_lesson_title}
+                                content={curriculum_lesson_desc}
                                 parentId={uniqueId}
                                 id={id}
-                                
+                                docId={documentId}
+                                serial={curriculum_lesson_reg}
                             />
                         </div>
                     ))}
