@@ -6,12 +6,12 @@ const LessonListsAccordion = ({ weekly_curriculum:lessons }) => {
   return (
     <div className="accordion-item">
       {lessons &&
-        lessons?.map(({attributes,id}) => (
+        lessons?.map(({curriculum_reg,id,curriculum_title,course_lessons,documentId}) => (
           <HeaderContentAccordion
-            key={attributes.curriculum_reg}
-            serial={`${attributes.curriculum_reg}${id}`}
-            title={attributes.curriculum_title}
-            course_lessons={attributes.course_lessons}
+            key ={`${curriculum_reg}${documentId}`}
+            serial={`${curriculum_reg}${id}${documentId}`}
+            title={curriculum_title}
+            course_lessons={course_lessons}
            
           />
         ))}

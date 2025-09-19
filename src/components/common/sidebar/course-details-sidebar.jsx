@@ -16,6 +16,7 @@ const CourseDetailsSidebar = ({id, course, details_2 = false,docId, start=true }
     student,
     language,
   } = course || {};
+ // Debugging line to check data structure
   const { isVideoOpen, setIsVideoOpen } = useModal();
   return (
     <>
@@ -94,7 +95,7 @@ const CourseDetailsSidebar = ({id, course, details_2 = false,docId, start=true }
               </ul>
 
               {start && <div className="read-more-btn">
-             <Link href={`/course-details/lesson/${docId}`} className="edu-btn btn-medium">
+             <Link href={`/course-details/lesson/${id}?docId=${docId}`} className="edu-btn btn-medium">
                   
                     Start Now<i className="icon-4"></i>
                   

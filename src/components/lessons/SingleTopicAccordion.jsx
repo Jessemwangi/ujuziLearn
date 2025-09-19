@@ -7,6 +7,8 @@ const SingleTopicAccordion = ({
   content = "no lesson found",
   parentId,
   id,
+  docId,
+  serial
 }) => {
   const [show, setShow] = useState(true);
   const [course, setCourse] = useState({});
@@ -38,7 +40,7 @@ const SingleTopicAccordion = ({
           </div>
         </button>
       </h4>
-      <Link href={`/course-details/lesson/lesson-details/${id}`} passHref>
+      <Link href={`/course-details/lesson/lesson-details/${docId}`} passHref>
   <div 
     id={`question-${uniqueId}`} 
     className="accordion-collapse collapse show" 
