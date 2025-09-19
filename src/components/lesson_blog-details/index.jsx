@@ -7,22 +7,35 @@ import useGetAllWkCourseData from '../../hooks/use_weekly_curriculum';
 
 
 const index = ({lessons, title, course_Id,docId}) => {
-    const q = `populate=course_lessons&filters[courses]=${course_Id}`;
+    // console log props
+
+    // console.log('index Rendered lessons', lessons);
+    // console.log('index Rendered title', title);
+    // console.log('index Rendered course_Id', course_Id);
+    // console.log('index Rendered docId', docId );
+    
+   
+    const q = `populate=course_lessons&courses=${docId}`;
+    console.log('Query :', q);
     const { all_wk_curri_list, isLoading } = useGetAllWkCourseData(q);
     const [courseLessons,setCourseLessons] = useState([]);
 
+console.log('all_wk_curri_list :', all_wk_curri_list);
+
     useEffect(() =>{
             if (!isLoading) {
-                const lessons = all_wk_curri_list?.flatMap(({id,attributes}) => {
-                 const list =attributes?.course_lessons?.data.map(({id,attributes}) =>{
-return {id,...attributes}
+                const lessons = all_wk_curri_list?.flatMap((course_lessons) => {
+                 const list =course_lessons?.map((attr) =>{
+return {...attr}
              } );
                  return list;
+
             });
                 
                 setCourseLessons(lessons);
             }
     },[isLoading])
+    
     return (
         <div className='sticky-header'>
             <div id="main-wrapper" className="main-wrapper">

@@ -63,13 +63,13 @@ const DynamicBlogDetails = () => {
   if (courses_list || courses_list.length === 0) {
     return (
       <Wrapper>
-        <SEO pageTitle={_course?.title} />
+        <SEO pageTitle={_course?.name} />
         {!isLoading && (
           <LessonBlogDetails
             lessons={courses_list}
             course_Id={_course?.id}
-            title={_course?.title || "My Lessons"}
-            docId={_course?.documentId}
+            title={_course?.name || "My Lessons"}
+            docId={_course?.docId}
           />
         )}
       </Wrapper>
