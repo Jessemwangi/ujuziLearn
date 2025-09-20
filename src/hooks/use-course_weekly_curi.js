@@ -5,9 +5,8 @@ export const useSingleWkCourseData = (id,q) => {
     const { data: wk_curri_list, isLoading } = useQuery(
         ["courses-weekly_curriculum",id],
         () => COURSES_SERVICES.getSingleWkCurriculum(id,q).then((data) => {
-            const course_data = {
-                id: data?.data?.id,
-                ...data?.data?.attributes,
+            const course_data = {  
+                ...data?.data,
             };
 
             return course_data;
