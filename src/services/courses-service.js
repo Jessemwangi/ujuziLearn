@@ -23,7 +23,8 @@ export const COURSES_SERVICES= {
     return res?.data;
   },
   async getAllWkCurriculum(query){
-    const res = await httpClient.get(`${server_url}${COURSES_WK_CURRICULUM}?${query}`);
+    const url = `${server_url}${COURSES_WK_CURRICULUM}?${query}`;
+    const res = await httpClient.get(url);
 
     return res?.data;
   },

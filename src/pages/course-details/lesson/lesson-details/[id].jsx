@@ -18,8 +18,8 @@ const DynamicBlogDetails = () => {
       setCourse(course);
     }
   }, []);
-  const { id, docId } = router.query;
 
+  const { id, docId } = router.query;
   const q = QUERY_STRINGS.courses.lessonList.url;
 
   const { courses_list, isLoading, isError, error } = useCourseLessonData(
