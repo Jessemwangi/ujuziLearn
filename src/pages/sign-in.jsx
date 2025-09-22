@@ -8,7 +8,7 @@ export default function SignIn() {
      const {loginError, token, user} = useSelector((state) => state.authLogin)
     useEffect(() => {
         if (token && user) {
-            window.location.href = '/'; //
+            window.location.href = '/'; 
         }
     }, [token, user]);
 

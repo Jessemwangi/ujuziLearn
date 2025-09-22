@@ -1,6 +1,8 @@
 import { useQuery } from 'react-query';
-import { COURSES_SERVICES } from '../services/courses-service';
-import { QUERY_STRINGS } from '../queries/endpoints';
+import { COURSES_SERVICES, server_url } from '../services/courses-service';
+import { COURSES_ENDPOINT, QUERY_STRINGS } from '../queries/endpoints';
+import axios from 'axios';
+import { publicClient } from '../services/publicClient';
 
 const useCoursesData = () => {
 
@@ -17,8 +19,25 @@ const useCoursesData = () => {
     );
 
     return { courses_list, isLoading };
-};
 
+};
+export const usePublicCourses = () => {
+  //fetch public courses
+  const { data: Public_courses_list, isLoading } = useQuery(
+    ["Public-all-courses"],
+    async () => {
+        const url = `${server_url}${COURSES_ENDPOINT}?${QUERY_STRINGS.courses.all.url}`
+        console.log(url);
+      const response = await publicClient.get(url);
+      return response.data.data; 
+    },
+    {
+      refetchOnWindowFocus: false,
+    }
+  );
+
+  return { Public_courses_list, isLoading };
+};
 export const useSubscribedCourses = (studentId) => {
 
    try {

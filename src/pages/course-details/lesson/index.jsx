@@ -10,7 +10,7 @@ const index = () => {
 useEffect(() => {
         if (!token || !user) {
             const timer = setTimeout(() => {
-                window.location.href = '/sign-in'; // Redirect to login after 1 second
+                window.location.href = '/sign-in'; 
             }, 1000);
             return () => clearTimeout(timer);
         }

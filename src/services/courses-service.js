@@ -7,8 +7,8 @@ export const server_url = BASE_URL
 
 export const COURSES_SERVICES= {
   //query here is the student id
-    async getSubscibedCourses(query) {
-    const res = await httpClient.get(`${server_url}/${QUERY_STRINGS.courses.subscribed.url}/${query}`);
+    async getSubscibedCourses(studentId) {
+    const res = await httpClient.get(`${server_url}/${QUERY_STRINGS.courses.subscribed.url}/${studentId}`);
 
     return res?.data;
   },
