@@ -14,11 +14,11 @@ const DynamicCourseDetails = () => {
   // const { data: course, status, error } = useSelector((state) => state.courses);
   const { course, status, error } = useSelector((state) => state.courses);
 
-  const query = `?populate[courses_subcategories]=true&populate[courses_weekly_curricula][populate][course_lessons][populate][curriculum_lesson_headers]=true&populate[courses_categories]=true&populate[courses_instructors][populate][instructor_img]=true&populate[course_learn_lists]=true&populate[course_qualification_equirements]=true&populate[course_intro_video]=true&populate[course_intro_img]=true&populate[course_target_groups][populate]=*&populate[subscription_packages]=true&populate[course_reviews]=true&populate[courses_features]=true`;
-
+  // const query = `?populate[courses_subcategories]=true&populate[courses_weekly_curricula][populate][course_lessons][populate][curriculum_lesson_headers]=true&populate[courses_categories]=true&populate[courses_instructors][populate][instructor_img]=true&populate[course_learn_lists]=true&populate[course_qualification_equirements]=true&populate[course_intro_video]=true&populate[course_intro_img]=true&populate[course_target_groups][populate]=*&populate[subscription_packages]=true&populate[course_reviews]=true&populate[courses_features]=true`;
+const query = `/studentsite/students/course-details/${id}`;
   useEffect(() => {
     if (router.isReady && id && docId) {
-      const fullUrl = `/courses/${docId}${query}`;
+      const fullUrl = query;
       dispatch(fetchCourse(fullUrl));
     }
   }, [id, docId, router.isReady, dispatch, query]);
@@ -58,7 +58,7 @@ const DynamicCourseDetails = () => {
             There was an error loading the course details. Please try again
             later.
           </p>
-          <p>Error: {error?.message}</p>
+          <p>Error: {error?.error?.message}</p>
         </div>
       </Wrapper>
     );
@@ -68,8 +68,8 @@ const DynamicCourseDetails = () => {
   if (status === "succeeded" && course) {
     return (
       <Wrapper>
-        <SEO pageTitle={course?.attributes?.title || "Course Details"} />
-        <CourseDetailsMain id={id} docId={docId} course={course} start={true} />
+        <SEO pageTitle={course?.course_name || "Course Details"} />
+        <CourseDetailsMain id={id} docId={docId} course={course} start={false} />
       </Wrapper>
     );
   }

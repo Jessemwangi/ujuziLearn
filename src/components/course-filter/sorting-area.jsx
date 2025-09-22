@@ -23,14 +23,14 @@ const SortingArea = ({
       const lowToHigh = courses
         .slice()
         .sort(
-          (a, b) => parseFloat(a.course_price) - parseFloat(b.course_price)
+          (a, b) => parseFloat(a.id) - parseFloat(b.id)
         );
       setCourses(lowToHigh);
     } else if (e.target.value === "High To Low") {
       const highToHigh = courses
         .slice()
         .sort(
-          (a, b) => parseFloat(b.course_price) - parseFloat(a.course_price)
+          (a, b) => parseFloat(b.id) - parseFloat(a.id)
         );
       setCourses(highToHigh);
     }
