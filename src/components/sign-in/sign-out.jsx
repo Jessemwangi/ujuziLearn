@@ -12,6 +12,11 @@ const SignOut = () => {
         dispatch(setUser(null));
         dispatch(setToken(null));
         TokenService.deleteToken();
+        window.localStorage.clear();
+        // Clear session storage
+        sessionStorage.clear();
+
+
 
         const intervalId = setInterval(() => {
             setCountdown((currentCountdown) => {
