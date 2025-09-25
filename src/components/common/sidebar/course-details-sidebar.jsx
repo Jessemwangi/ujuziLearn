@@ -5,7 +5,7 @@ import { Books } from "../../../svg";
 import VideoModal from "../popup-modal/video-modal";
 import { extractVideoCode } from "../../../utils/extractVideoIdFromUrl";
 
-const CourseDetailsSidebar = ({id, course, details_2 = false,docId, start=true }) => {
+const CourseDetailsSidebar = ({id, course, details_2 = false,docId, start=false }) => {
   const {
     img,
     certificate,

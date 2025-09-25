@@ -10,18 +10,31 @@ import { fetchCourse } from "../../../services/course_redux_thunk";
 import { selectCourse } from "../../../redux/features/courses_slice";
 import { setLocalStorage } from "../../../utils/localstorage";
 import { QUERY_STRINGS } from "../../../queries/endpoints";
+import SessionExpiredModal from "../../../components/SessionExpiredModal";
 
 const DynamicCourseDetails = () => {
   const router = useRouter();
+
+        const { token, user } = useSelector((state) => state.authLogin);
+useEffect(() => {
+        if (!token || !user) {
+            const timer = setTimeout(() => {
+                window.location.href = '/sign-in'; 
+            }, 1000);
+            return () => clearTimeout(timer);
+        }
+    }, [token, user]);
+
   const { id, docId } = router.query;
   const dispatch = useDispatch();
   const { course, status, error } = useSelector((state) => state.courses);
 
-  const query = QUERY_STRINGS.courses.all.url;
-
+// const query = `?populate[courses_subcategories]=true&populate[courses_weekly_curricula][populate][course_lessons][populate][curriculum_lesson_headers]=true&populate[courses_categories]=true&populate[courses_instructors][populate][instructor_img]=true&populate[course_learn_lists]=true&populate[course_qualification_equirements]=true&populate[course_intro_video]=true&populate[course_intro_img]=true&populate[course_target_groups][populate]=*&populate[subscription_packages]=true&populate[course_reviews]=true&populate[courses_features]=true`; 
+  // const query = QUERY_STRINGS.courses.all.url;
+const query = `/studentsite/students/course-details/${id}`;
   useEffect(() => {
     if (router.isReady && id && docId) {
-      const fullUrl = `/courses/${docId}?${query}`;
+      const fullUrl = query;
       dispatch(fetchCourse(fullUrl));
     }
   }, [id, docId, router.isReady, dispatch, query]);
@@ -40,26 +53,34 @@ const DynamicCourseDetails = () => {
 
   // Handle error states
   if (status === "failed") {
-    if (error?.status === 404) {
+    if (error.error?.status === 404) {
       return (
         <Wrapper>
           <SEO pageTitle={"Course Not Found"} />
           <div style={{ textAlign: "center", padding: "80px 0" }}>
             <h2>Course Not Found 😕</h2>
-            <p>Sorry, we couldn't find the course you were looking for.</p>
+            <p>{error.error?.message ? error?.message : "Sorry, we couldn't find the course you were looking for."}</p>
           </div>
         </Wrapper>
       );
     }
+// handle error of token expire
+if(error?.error?.message == 'Token expired'){
 
+  return(
+<>
+<SessionExpiredModal />
+</>
+);
+}
     return (
       <Wrapper>
         <SEO pageTitle={"Error"} />
         <div style={{ textAlign: "center", padding: "80px 0" }}>
-          <h2>Something Went Wrong</h2>
+          <h2>{error?.message ? error?.message : "Something Went Wrong"}</h2>
           <p>
-            There was an error loading the course details. Please try again
-            later.
+            There was an error loading the course details. Either the Course was discontinue or
+            you dont have access to this course, Please try again later or contact your agent.
           </p>
           <p>Error: {error?.message}</p>
         </div>
@@ -86,7 +107,7 @@ const DynamicCourseDetails = () => {
           title={course?.course_name || "My Course"}
           course={course?.course_name || "My Course"}
         />
-        <SEO pageTitle={course?.title || "Course Details"} />
+        <SEO pageTitle={course?.course_name || "Course Details"} />
         {course?.id ? (
           <LessonDisplay course={course} />
         ) : (

@@ -3,7 +3,7 @@ import CourseDetailsSidebar from '../common/sidebar/course-details-sidebar';
 import CourseTabs from './course-details-area-components/CourseTabs';
 
 
-const CourseDetailsArea = ({ id, course,docId, start = true }) => {
+const CourseDetailsArea = ({ id, course,docId, start = false }) => {
   return (
     <section className="edu-section-gap course-details-area">
       <div className="container">

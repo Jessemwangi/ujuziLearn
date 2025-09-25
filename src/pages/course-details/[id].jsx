@@ -69,7 +69,7 @@ const query = `/studentsite/students/course-details/${id}`;
     return (
       <Wrapper>
         <SEO pageTitle={course?.course_name || "Course Details"} />
-        <CourseDetailsMain id={id} docId={docId} course={course} start={false} />
+        <CourseDetailsMain id={id} docId={docId} course={course} start={true} />
       </Wrapper>
     );
   }
