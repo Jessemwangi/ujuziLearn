@@ -25,11 +25,11 @@ const LoginForm = () => {
             resetForm()
         }
     })
-    useEffect(() => {
-        if (user !== null && token !== null) {
-          router.push('/'); 
-        }
-      }, [user, token]);
+useEffect(() => {
+  if (token && user && !loginError) {
+    router.push('/course-details/lesson');
+  }
+}, [user, token, loginError]);
 
     const handleResetPass = (email) => {
     }
