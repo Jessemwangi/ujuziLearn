@@ -15,7 +15,6 @@ const BlogSidebar = ({ id, courseLessons }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
   const lessons = courseLessons;
-  console.log("BlogSidebar Rendered with lessons:", lessons);
   useEffect(() => {
     const LST_course = getLocalStorage("course");
     if (LST_course) {

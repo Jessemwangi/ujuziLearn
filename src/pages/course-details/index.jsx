@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import SEO from '../../components/seo';
 import { Wrapper } from '../../layout';
 import CourseDetailsMain from '../../components/course-details';
-import useCoursesData from '../../hooks/useCoursesQuery';
+import {useCoursesData} from '../../hooks/useCoursesQuery';
 
 
 const CourseDetails = () => {

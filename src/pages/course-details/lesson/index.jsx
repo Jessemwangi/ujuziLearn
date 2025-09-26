@@ -1,7 +1,7 @@
 import { Footer, Header } from '../../../layout';
 import BreadcrumbThree from '../../../components/breadcrumb/breadcrumb-3';
 import CourseTwoArea from '../../../components/course-style-2/course-2-area';
-import useCoursesData, { useSubscribedCourses } from '../../../hooks/useCoursesQuery';
+import {useCoursesData,useSubscribedCourses } from '../../../hooks/useCoursesQuery';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
