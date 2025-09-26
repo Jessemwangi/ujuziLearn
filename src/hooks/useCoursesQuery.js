@@ -3,8 +3,9 @@ import { COURSES_SERVICES, server_url } from '../services/courses-service';
 import { COURSES_ENDPOINT, QUERY_STRINGS } from '../queries/endpoints';
 import axios from 'axios';
 import { publicClient } from '../services/publicClient';
+import httpClient from '../services/http-client';
 
-const useCoursesData = () => {
+export const useCoursesData = () => {
 
     const { data: courses_list, isLoading } = useQuery(
         ["courses-all"],
@@ -23,12 +24,12 @@ const useCoursesData = () => {
 };
 export const usePublicCourses = () => {
   //fetch public courses
-  const { data: Public_courses_list, isLoading } = useQuery(
+  const { data: courses_list, isLoading } = useQuery(
     ["Public-all-courses"],
     async () => {
         const url = `${server_url}${COURSES_ENDPOINT}?${QUERY_STRINGS.courses.all.url}`
         console.log(url);
-      const response = await publicClient.get(url);
+      const response = await httpClient.get(url, { public: true });
       return response.data.data; 
     },
     {
@@ -36,7 +37,7 @@ export const usePublicCourses = () => {
     }
   );
 
-  return { Public_courses_list, isLoading };
+  return { courses_list, isLoading };
 };
 export const useSubscribedCourses = (studentId) => {
 
@@ -62,4 +63,4 @@ export const useSubscribedCourses = (studentId) => {
     
    }
 };
-export default useCoursesData;
+

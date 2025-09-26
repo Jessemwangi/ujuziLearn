@@ -11,14 +11,13 @@ const DynamicCourseDetails = () => {
   const { id, docId } = router.query; // Get both id from route and docId from query
 
   const dispatch = useDispatch();
-  // const { data: course, status, error } = useSelector((state) => state.courses);
-  const { course, status, error } = useSelector((state) => state.courses);
 
-  // const query = `?populate[courses_subcategories]=true&populate[courses_weekly_curricula][populate][course_lessons][populate][curriculum_lesson_headers]=true&populate[courses_categories]=true&populate[courses_instructors][populate][instructor_img]=true&populate[course_learn_lists]=true&populate[course_qualification_equirements]=true&populate[course_intro_video]=true&populate[course_intro_img]=true&populate[course_target_groups][populate]=*&populate[subscription_packages]=true&populate[course_reviews]=true&populate[courses_features]=true`;
-const query = `/studentsite/students/course-details/${id}`;
+  const { course, status, error } = useSelector((state) => state.courses);
+  const query = `?populate[courses_subcategories]=true&populate[courses_weekly_curricula][populate][course_lessons][populate][curriculum_lesson_headers]=true&populate[courses_categories]=true&populate[courses_instructors][populate][instructor_img]=true&populate[course_learn_lists]=true&populate[course_qualification_equirements]=true&populate[course_intro_video]=true&populate[course_intro_img]=true&populate[course_target_groups][populate]=*&populate[subscription_packages]=true&populate[course_reviews]=true&populate[courses_features]=true`;
+
   useEffect(() => {
     if (router.isReady && id && docId) {
-      const fullUrl = query;
+      const fullUrl = `courses/${docId}/${query}`;
       dispatch(fetchCourse(fullUrl));
     }
   }, [id, docId, router.isReady, dispatch, query]);
@@ -69,7 +68,7 @@ const query = `/studentsite/students/course-details/${id}`;
     return (
       <Wrapper>
         <SEO pageTitle={course?.course_name || "Course Details"} />
-        <CourseDetailsMain id={id} docId={docId} course={course} start={false} />
+        <CourseDetailsMain id={id} docId={docId} course={course} start={true} />
       </Wrapper>
     );
   }

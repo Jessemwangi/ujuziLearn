@@ -51,7 +51,7 @@ const SignOut = () => {
                         You will be automatically redirected to the homepage in {countdown} seconds.
                     </p>
                     <div className="form-group">
-                        <Link href="/signin" className="edu-btn" style={{color:'#FFF'}}>Sign In Again 
+                        <Link href="/sign-in" className="edu-btn" style={{color:'#FFF'}}>Sign In Again 
                         <i className="icon-4"></i></Link>
                     </div>
                     <div className="form-group">
