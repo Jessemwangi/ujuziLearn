@@ -7,6 +7,7 @@ import SEO from "../../../../components/seo";
 import { blog_data } from "../../../../data";
 import { Wrapper } from "../../../../layout";
 import { getLocalStorage } from "../../../../utils/localstorage";
+import SectionLoader from "../../../../ui/SectionLoader";
 
 const DynamicBlogDetails = () => {
   const router = useRouter();
@@ -64,7 +65,9 @@ const DynamicBlogDetails = () => {
     return (
       <Wrapper>
         <SEO pageTitle={_course?.name} />
-        {!isLoading && (
+        {isLoading ? (
+          <SectionLoader />
+        ) : (
           <LessonBlogDetails
             lessons={courses_list}
             course_Id={_course?.id}
