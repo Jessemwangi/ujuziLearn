@@ -1,10 +1,10 @@
 import { Footer, Header } from '../../layout';
 import BreadcrumbThree from '../breadcrumb/breadcrumb-3';
 import CourseTwoArea from './course-2-area';
-import useCoursesData from '../../hooks/useCoursesQuery';
+import {usePublicCourses} from '../../hooks/useCoursesQuery';
 
 const index = () => {
-  const { courses_list, isLoading } = useCoursesData();
+  const { courses_list, isLoading } = usePublicCourses();
 
 if (isLoading) {
     return <div>Loading...</div>; 

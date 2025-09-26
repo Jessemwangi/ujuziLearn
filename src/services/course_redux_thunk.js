@@ -29,12 +29,11 @@ export const fetchCourses = createAsyncThunk(
         //bypass token for public access, to change in production later
         const tokenBypass = true;
         if (tokenBypass || TokenService.hasToken()) {
-          const response = await httpClient.get(endpoint);
+          const response = await httpClient.get(endpoint, { public: true });
           if (response.status === 400) {
             return thunkAPI.rejectWithValue(response);
           }
-        
-          return response.data.data.course;
+          return response.data.data;
         } else {
           return thunkAPI.rejectWithValue({message: 'invalid token session'});
         }
