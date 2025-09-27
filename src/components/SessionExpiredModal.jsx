@@ -26,23 +26,17 @@ const token = TokenService.getToken();
           'Authorization': `Bearer ${token}`,
         },
       });
-
       const result = await response.json();
-
       if (!response.ok) {
-        // If refreshing itself fails, the token is likely invalid, so sign out
         throw new Error('Failed to refresh session.');
       }
-
-      // 1. Update token in Redux Store
       dispatch(setToken(result.token));
       TokenService.setToken(result.token);
       
       window.location.reload();
 
     } catch (err) {
-      console.error('Session refresh failed:', err);
-      // If refresh fails for any reason, force the user to sign out
+    
       handleSignOut();
     }
   };

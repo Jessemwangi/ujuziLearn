@@ -9,7 +9,6 @@ import useModal from "../../hooks/use-modal";
 import { extractVideoCode } from "../../utils/extractVideoIdFromUrl";
 
 const CourseBlogDetailsArea = ({ lessons, courseLessons }) => {
-    //  console.log("Lessons : ", lessons);
 
   const { isVideoOpen, setIsVideoOpen } = useModal();
   const [video_url, setVideo_url] = useState();

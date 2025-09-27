@@ -24,7 +24,7 @@ export const login = (apiUrl, object) => async (dispatch) => {
       dispatch(setToken(null));
     }
   } catch (error) {
-    console.error('Login error:', error);
+  
     dispatch(setError({ message: 'Network or server error' }));
     dispatch(setUser(null));
     dispatch(setToken(null));
