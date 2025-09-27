@@ -23,6 +23,7 @@ const StateHandler = ({
   showHome = false,
   showRefetch = false,
   customErrorMessage,
+  headDisplay = true,
   
   // Empty state props
   showEmptyAction = false,
@@ -48,6 +49,7 @@ const StateHandler = ({
         showHome={showHome}
         showRefetch={showRefetch}
         customMessage={customErrorMessage}
+        headDisplay={headDisplay}
       />
     );
   }

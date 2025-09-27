@@ -5,6 +5,7 @@ import SEO from '../seo';
 import BreadcrumbThree from '../breadcrumb/breadcrumb-3';
 import { motion } from 'framer-motion';
 import { useMouseMoveUI } from '../../contexts/mouse-move-context';
+import SessionExpiredModal from '../SessionExpiredModal';
 
 const ErrorHandler = ({
   error,
@@ -15,11 +16,53 @@ const ErrorHandler = ({
   showHome = false,
   showRefetch = false,
   customMessage,
-  children
+  children,
+  headDisplay = true,
 }) => {
   const { mouseDirection, mouseReverse } = useMouseMoveUI();
-
+console.log("Error Handler Error: ", error);
   if (!error) return children || null;
+
+  const isSessionExpired =
+    error?.status === 401 ||
+    error?.message?.toLowerCase().includes('token') ||
+    error?.message?.toLowerCase().includes('authenticate') ||
+    error?.message?.toLowerCase().includes('expired');
+
+  if (isSessionExpired) {
+    return <SessionExpiredModal />;
+  }
+
+  const isRestrictedAccess =
+    error?.status === 403 ||
+    error?.message?.toLowerCase().includes('forbidden') ||
+    error?.message?.toLowerCase().includes('access denied') ||
+    error?.message?.toLowerCase().includes('not authorized');
+
+  if (isRestrictedAccess) {
+    return (
+      <div className="edu-auth-wrapper">
+        <div className="edu-auth-container">
+          <div className="edu-auth-box">
+            <div className="edu-auth-icon warning" style={{ fontSize: '5rem', marginBottom: '1.5rem' }}>
+              🚫
+            </div>
+            <h2 className="edu-auth-title">Access Restricted</h2>
+            <p className="edu-auth-message">
+              You are authenticated but do not have permission to access this resource.
+            </p>
+            {showHome && (
+              <div className="form-group" style={{ marginTop: '2rem' }}>
+                <button onClick={() => window.location.href = '/'} className="edu-btn btn-border">
+                  Back to Homepage
+                </button>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   // Determine error type
   const getErrorConfig = () => {
@@ -67,7 +110,7 @@ const ErrorHandler = ({
   return (
     <Wrapper>
       <SEO pageTitle={title} />
-      <Header no_top_bar={true} />
+      <Header no_top_bar={headDisplay} />
       <BreadcrumbThree title={title} subtitle={title} />
 
       <section className="section-gap-equal error-page-area">
