@@ -20,92 +20,107 @@ const ErrorHandler = ({
   headDisplay = true,
 }) => {
   const { mouseDirection, mouseReverse } = useMouseMoveUI();
-console.log("Error Handler Error: ", error);
+  
   if (!error) return children || null;
 
+  // --- Session Expired (Still uses separate modal) ---
   const isSessionExpired =
-    error?.status === 401 ||
-    error?.message?.toLowerCase().includes('token') ||
+    error?.status === 401 &&
+    (error?.message?.toLowerCase().includes('token') ||
     error?.message?.toLowerCase().includes('authenticate') ||
-    error?.message?.toLowerCase().includes('expired');
+    error?.message?.toLowerCase().includes('expired'));
 
   if (isSessionExpired) {
     return <SessionExpiredModal />;
   }
 
-  const isRestrictedAccess =
-    error?.status === 403 ||
-    error?.message?.toLowerCase().includes('forbidden') ||
-    error?.message?.toLowerCase().includes('access denied') ||
-    error?.message?.toLowerCase().includes('not authorized');
-
-  if (isRestrictedAccess) {
-    return (
-      <div className="edu-auth-wrapper">
-        <div className="edu-auth-container">
-          <div className="edu-auth-box">
-            <div className="edu-auth-icon warning" style={{ fontSize: '5rem', marginBottom: '1.5rem' }}>
-              🚫
-            </div>
-            <h2 className="edu-auth-title">Access Restricted</h2>
-            <p className="edu-auth-message">
-              You are authenticated but do not have permission to access this resource.
-            </p>
-            {showHome && (
-              <div className="form-group" style={{ marginTop: '2rem' }}>
-                <button onClick={() => window.location.href = '/'} className="edu-btn btn-border">
-                  Back to Homepage
-                </button>
-              </div>
-            )}
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  // Determine error type
+  // --- General Error Handling (Including Restricted Access) ---
   const getErrorConfig = () => {
-    if (error?.status === 401 || error?.message?.includes('token') || error?.message?.includes('authenticate')) {
+    
+    const isRestrictedAccess =
+      error?.status === 403 ||
+      error?.message?.toLowerCase().includes('forbidden') ||
+      error?.message?.toLowerCase().includes('access denied') ||
+      error?.message?.toLowerCase().includes('not authorized');
+      
+    // 1. ACCESS RESTRICTED (403) - REFRESH AND RETRY ARE EXPLICITLY FALSE
+    if (isRestrictedAccess) {
       return {
-        title: "Session Expired",
-        message: "Your session has expired. Please refresh to continue.",
-        emoji: "🔒"
+        title: "Access Restricted",
+        message: (
+          <>
+            You do not have the required permission to view this resource.
+            <br />
+            Please **view the list of courses you can access** or **contact your guardian to subscribe** for this course.
+          </>
+        ),
+        emoji: "🚨",
+        // Hiding generic buttons:
+        showHome: false, 
+        showRefetch: false, // <-- This is what was being ignored
+        showRetry: false,   // <-- This is what was being ignored
+        // Custom Action:
+        showAction: true,
+        actionText: "Courses You Can Access",
+        actionLink: "/course-details/lesson",
       };
     }
-
+    
+    // 2. NETWORK ERROR
     if (error?.message?.includes('Network') || error?.message?.includes('network')) {
       return {
         title: "Connection Error",
         message: "Unable to connect to the server. Please check your internet connection.",
-        emoji: "📡"
+        emoji: "📡",
+        showRetry: true,
       };
     }
 
+    // 3. NOT FOUND (404)
     if (error?.status === 404) {
       return {
-        title: "Not Found",
-        message: "The requested resource was not found.",
-        emoji: "🔍"
+        title: "Page Not Found",
+        message: "The requested resource was not found. Please check the URL.",
+        emoji: "🔍",
+        showHome: true,
       };
     }
 
+    // 4. SERVER ERROR (5xx)
     if (error?.status >= 500) {
       return {
         title: "Server Error",
         message: "Something went wrong on our end. Please try again later.",
-        emoji: "💥"
+        emoji: "💥",
+        showRetry: true,
       };
     }
 
+    // 5. DEFAULT/GENERIC ERROR
     return {
       title: "Something Went Wrong",
-      message: customMessage || error?.message || "An unexpected error occurred.",
-      emoji: "😕"
+      message: customMessage || error?.message || "An unexpected error occurred. Please try refreshing.",
+      emoji: "😕",
+      showRefetch: true,
+      showHome: true,
     };
   };
 
-  const { title, message, emoji } = getErrorConfig();
+  // Get configuration, including the optional action flags
+  const config = getErrorConfig();
+  const title = config.title;
+  const message = config.message;
+  const emoji = config.emoji;
+  
+  // 💥 FIX APPLIED HERE: Ensure config's explicit 'false' value overrides props.
+  const shouldShowRetry = config.showRetry !== undefined ? config.showRetry : showRetry;
+  const shouldShowRefetch = config.showRefetch !== undefined ? config.showRefetch : showRefetch;
+  const shouldShowHome = config.showHome !== undefined ? config.showHome : showHome;
+  // Custom actions don't use props, so no change needed here.
+  const shouldShowAction = config.showAction;
+  const actionText = config.actionText;
+  const actionLink = config.actionLink;
+
 
   return (
     <Wrapper>
@@ -132,17 +147,26 @@ console.log("Error Handler Error: ", error);
               <h2 className="title">{title}</h2>
               <h4 className="subtitle">{message}</h4>
               <div className="button-group" style={{ display: 'flex', justifyContent: 'center', gap: '15px', flexWrap: 'wrap' }}>
-                {showRetry && onRetry && (
+                
+                {/* Custom Action Button */}
+                {shouldShowAction && actionLink && (
+                  <Link href={actionLink} className="edu-btn">
+                    {actionText}
+                  </Link>
+                )}
+
+                {/* Other Actions - now respects the config's explicit 'false' setting */}
+                {shouldShowRetry && onRetry && (
                   <button onClick={onRetry} className="edu-btn">
                     <i className="icon-refresh"></i>Try Again
                   </button>
                 )}
-                {showRefetch && onRefetch && (
+                {shouldShowRefetch && onRefetch && (
                   <button onClick={onRefetch} className="edu-btn">
                     <i className="icon-refresh"></i>Refresh
                   </button>
                 )}
-                {showHome && (
+                {shouldShowHome && (
                   <Link href="/" className="edu-btn btn-border">
                     <i className="icon-west"></i>Back to Homepage
                   </Link>

@@ -30,7 +30,6 @@ export const fetchCourse = createAsyncThunk(
 
       if (tokenBypass || TokenService.hasToken()) {
         const response = await httpClient.get(endpoint, { public: true });
-        console.log("Fetch Course Response: ", response);
         // Handle known error status
         if (response.status === 400) {
           return thunkAPI.rejectWithValue({
@@ -73,7 +72,6 @@ export const fetchSecureCourse = createAsyncThunk(
       // Token bypass for public access (adjust for production)
       if (TokenService.hasToken()) {
         const response = await httpClient.get(endpoint);
-        console.log("Fetch secure Course Response: ", response.data.data.course);
         // Handle known error status
         if (response.status === 400) {
           return thunkAPI.rejectWithValue({
@@ -84,7 +82,7 @@ export const fetchSecureCourse = createAsyncThunk(
         }
 
         // Success: return course data
-        return response.data.data;
+        return response.data.data.course;
       } else {
         // Token missing or invalid
         return thunkAPI.rejectWithValue({

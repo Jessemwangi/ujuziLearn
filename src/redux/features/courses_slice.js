@@ -63,6 +63,8 @@ const initialState = {
 });
 
 export const selectCourses = (state) => state.courses.courses;
+export const selectsecureCourse = (state) => state.courses.secureCourse;
+
 export const selectCourse = (state) => state.courses.course;
 export const selectCourseStatus = (state) => state.courses.status;
 export const selectCourseError = (state) => state.courses.error;

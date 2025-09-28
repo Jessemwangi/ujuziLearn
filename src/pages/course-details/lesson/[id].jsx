@@ -16,9 +16,9 @@ const DynamicCourseDetails = () => {
   const dispatch = useDispatch();
   const { sessionInfo, user } = useSelector((state) => state.authLogin);
   const token = sessionInfo ? sessionInfo.token : null;
-  const { coursesecureCourse, status, error } = useSelector((state) => state.courses);
+  const { secureCourse, status, error } = useSelector((state) => state.courses);
   const { id, docId } = router.query;
-
+console.log(secureCourse)
   const query = `/studentsite/students/course-details/${id}`;
 
   useEffect(() => {
@@ -38,7 +38,7 @@ const DynamicCourseDetails = () => {
 
   const isLoading = !router.isReady || status === "loading" || !id || !docId;
   const isError = status === "failed";
-  const isEmpty = !coursesecureCourse && status === "succeeded";
+  const isEmpty = !secureCourse && status === "succeeded";
 
   const handleRetry = () => {
     dispatch(fetchCourse(query));
@@ -64,17 +64,17 @@ const DynamicCourseDetails = () => {
     };
   })();
 
-  if (status === "succeeded" && router.isReady && coursesecureCourse) {
+  if (status === "succeeded" && router.isReady && secureCourse) {
     setLocalStorage("course", {
-      name: coursesecureCourse?.course_name,
-      id: coursesecureCourse.id,
-      docId: coursesecureCourse?.documentId,
+      name: secureCourse?.course_name,
+      id: secureCourse.id,
+      docId: secureCourse?.documentId,
     });
   }
 
   return (
     <Wrapper>
-      <SEO pageTitle={coursesecureCourse?.course_name || "Course Details"} />
+      <SEO pageTitle={secureCourse?.course_name || "Course Details"} />
 
       {errorConfig.sessionExpired ? (
         <SessionExpiredModal />
@@ -83,7 +83,7 @@ const DynamicCourseDetails = () => {
           isLoading={isLoading}
           isError={isError}
           error={error}
-          data={coursesecureCourse}
+          data={secureCourse}
           isEmpty={isEmpty}
           headDisplay={false}
           // Loading
@@ -104,12 +104,12 @@ const DynamicCourseDetails = () => {
           onEmptyAction={() => router.push('/courses')}
         >
           <BreadcrumbSix
-            intro_mage={coursesecureCourse?.course_intro_img?.url}
-            title={coursesecureCourse?.course_name || "My Course"}
-            course={coursesecureCourse?.course_name || "My Course"}
+            intro_mage={secureCourse?.course_intro_img?.url}
+            title={secureCourse?.course_name || "My Course"}
+            course={secureCourse?.course_name || "My Course"}
           />
-          {coursesecureCourse?.id ? (
-            <LessonDisplay coursesecureCourse={course} />
+          {secureCourse?.id ? (
+            <LessonDisplay course={secureCourse} />
           ) : (
             <p>Failed to load the course</p>
           )}
