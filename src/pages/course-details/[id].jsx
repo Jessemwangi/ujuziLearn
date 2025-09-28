@@ -32,7 +32,6 @@ const DynamicCourseDetails = () => {
       dispatch(fetchSecureCourse(fullUrl));
     }
   };
-console.log("Course Details Error: ", error);
   // Custom error configuration for specific cases
   const getCustomErrorConfig = () => {
     if (error?.status === 404) {
