@@ -4,7 +4,8 @@ import Link from 'next/link';
 import menu_data from '../../../layout/headers/menu-data';
 
 const OffCanvas = ({ isOpen, setIsOpen }) => {
-  const { token, user } = useSelector((state) => state.authLogin);
+  const { sessionInfo, user } = useSelector((state) => state.authLogin);
+  const token = sessionInfo ? sessionInfo.token : null;
   const [navTitle, setNavTitle] = useState('');
 
   const openMobileMenu = (menu) => {

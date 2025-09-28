@@ -18,8 +18,8 @@ const BreadcrumbThree = ({ title, subtitle }) => {
                             Home
                             </Link>
                         </li>
-                        <li className="separator"><i className="icon-angle-right"></i></li>
-                        <li className="breadcrumb-item"><a href="#">Pages</a></li>
+                        {/* <li className="separator"><i className="icon-angle-right"></i></li> */}
+                        {/* <li className="breadcrumb-item"><a href="#">Course</a></li> */}
                         <li className="separator"><i className="icon-angle-right"></i></li>
                         <li className="breadcrumb-item active" aria-current="page">{subtitle}</li>
                     </ul>

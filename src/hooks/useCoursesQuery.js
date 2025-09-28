@@ -28,7 +28,7 @@ export const usePublicCourses = () => {
     ["Public-all-courses"],
     async () => {
         const url = `${server_url}${COURSES_ENDPOINT}?${QUERY_STRINGS.courses.all.url}`
-        console.log(url);
+       
       const response = await httpClient.get(url, { public: true });
       return response.data.data; 
     },

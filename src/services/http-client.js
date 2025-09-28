@@ -14,14 +14,18 @@ const httpClient = axios.create({
 
 httpClient.interceptors.request.use(
   (config) => {
-    
+ 
     if (config.skipAuth || config.noAuth || config.public) {
       delete config.headers?.Authorization;
       return config;
     }
-
-    const token = TokenService.getToken();
-    if (token) {
+const hasToken = TokenService.hasToken();
+    if (!hasToken) {
+      return config;
+    }
+    
+    const token = TokenService.getAccessToken();
+    if (hasToken && token ) {
       if (config.headers) {
         if (!config.headers["Authorization"]) {
           config.headers["Authorization"] = `Bearer ${token}`;

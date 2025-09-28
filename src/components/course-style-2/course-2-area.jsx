@@ -3,7 +3,7 @@ import { useState } from "react";
 import SortingArea from "../course-filter/sorting-area";
 import CourseTypeSix from "../course/course-type-six";
 
-const CourseTwoArea = ({ courses: _courses, lst = false }) => {
+const CourseTwoArea = ({ courses: _courses, loading, lst = false }) => {
   const coursePerView = 6;
   const [next, setNext] = useState(coursePerView);
   const [courses, setCourses] = useState(_courses);

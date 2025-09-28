@@ -11,25 +11,28 @@ import { BASE_URL } from '../../queries/endpoints';
 
 const LoginForm = () => {
     const dispatch = useDispatch()
-    const {loginError, token, user} = useSelector((state) => state.authLogin)
+    const {loginError, sessionInfo, user} = useSelector((state) => state.authLogin)
     const [showPass,setShowPass] = useState(false);
     const url = BASE_URL;
     const router = useRouter();
 
     const { handleChange, handleSubmit, handleBlur, errors, values, touched } = useFormik({
-        initialValues: { email: '', password: '' },
+        initialValues: { email: '', password: '',rememberMe: false },
         validationSchema: loginSchema,
         onSubmit: (values, { resetForm }) => {
-            const object ={studentName:values.email, studentPassword:values.password}
+            const object ={
+                studentName:values.email, 
+                studentPassword:values.password,
+            rememberMe: values.rememberMe,}
              dispatch(login(`${url}/student/login`,object));
             resetForm()
         }
     })
 useEffect(() => {
-  if (token && user && !loginError) {
+  if (sessionInfo && user && !loginError) {
     router.push('/course-details/lesson');
   }
-}, [user, token, loginError]);
+}, [user, sessionInfo, loginError]);
 
     const handleResetPass = (email) => {
     }
@@ -66,7 +69,12 @@ useEffect(() => {
 
             <div className="form-group chekbox-area">
                 <div className="edu-form-check">
-                    <input type="checkbox" id="remember-me" />
+                    <input type="checkbox" 
+                     id="remember-me" 
+                        name="rememberMe" 
+                        checked={values.rememberMe} 
+                        onChange={handleChange} 
+                        onBlur={handleBlur} />
                     <label htmlFor="remember-me">Remember Me</label>
                 </div>
                 <a href="#" onClick={()=> handleResetPass(values.email)} 

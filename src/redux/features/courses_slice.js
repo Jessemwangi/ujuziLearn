@@ -1,9 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchCourse, fetchCourses } from "../../services/course_redux_thunk";
+import { fetchCourse, fetchCourses,fetchSecureCourse } from "../../services/course_redux_thunk";
 
 const initialState = {
     courses: '',
     course: '',
+    secureCourse: '',
     error: '',
     status: 'idle', // Add a status field to handle the loading state
 };
@@ -38,6 +39,19 @@ const initialState = {
                 state.status = 'failed';
                 state.error = action.payload;
             })
+            // Secure Course Thunk Handlers
+            .addCase(fetchSecureCourse.pending, (state) => {
+                state.status = 'loading';
+            })
+            .addCase(fetchSecureCourse.fulfilled, (state, action) => {
+                state.status = 'succeeded';
+                state.secureCourse = action.payload;
+                state.error = {};
+            })
+            .addCase(fetchSecureCourse.rejected, (state, action) => {
+                state.status = 'failed';
+                state.error = action.payload;
+            });
             // Find the course in the state and update it
             // .addCase(updateCourse.fulfilled, (state, action) => {
             //     const index = state.courses.findIndex(course => course.id === action.payload.id);
@@ -49,6 +63,8 @@ const initialState = {
 });
 
 export const selectCourses = (state) => state.courses.courses;
+export const selectsecureCourse = (state) => state.courses.secureCourse;
+
 export const selectCourse = (state) => state.courses.course;
 export const selectCourseStatus = (state) => state.courses.status;
 export const selectCourseError = (state) => state.courses.error;
