@@ -4,10 +4,9 @@ import LessonBlogDetails from "../../../../components/lesson_blog-details";
 import useCourseLessonData from "../../../../hooks/use_Course_Lesson_Query";
 import { QUERY_STRINGS } from "../../../../queries/endpoints";
 import SEO from "../../../../components/seo";
-import { blog_data } from "../../../../data";
 import { Wrapper } from "../../../../layout";
 import { getLocalStorage } from "../../../../utils/localstorage";
-import SectionLoader from "../../../../ui/SectionLoader";
+import StateHandler from "../../../../components/ErrorStates/StateHandler";
 
 const DynamicBlogDetails = () => {
   const router = useRouter();
@@ -23,61 +22,66 @@ const DynamicBlogDetails = () => {
   const { id, docId } = router.query;
   const q = QUERY_STRINGS.courses.lessonList.url;
 
-  const { courses_list, isLoading, isError, error } = useCourseLessonData(
-    id,
-    q
+  const { courses_list, isLoading, isError, error } = useCourseLessonData(id, q);
+
+  const isReady = router.isReady && id;
+  const isEmpty = !courses_list || courses_list.length === 0;
+
+  const handleRetry = () => {
+    router.reload(); // or refetch logic if available
+  };
+
+  const errorConfig = error?.status === 404
+    ? {
+        title: "Course Not Found",
+        message: "Sorry, we couldn't find the course you were looking for.",
+        showHome: true,
+        showRetry: false
+      }
+    : {
+        title: "Error Loading Lessons",
+        message: error?.message || "Something went wrong while loading lesson data.",
+        showHome: true,
+        showRetry: true
+      };
+
+  return (
+    <Wrapper>
+      <SEO pageTitle={_course?.name || "Course Lessons"} />
+
+      <StateHandler
+        isLoading={!isReady || isLoading}
+        isError={isError}
+        error={error}
+        data={courses_list}
+        isEmpty={isEmpty && !isLoading && !isError}
+
+        // Loading
+        loadingMessage="Loading course details..."
+        showSkeleton={false}
+
+        // Error
+        onRetry={handleRetry}
+        onRefetch={handleRetry}
+        showRetry={errorConfig.showRetry}
+        showHome={errorConfig.showHome}
+        showRefetch={true}
+        customErrorMessage={errorConfig.message}
+
+        // Empty
+        showEmptyAction={true}
+        emptyActionText="Browse Courses"
+        onEmptyAction={() => router.push('/courses')}
+      >
+        <LessonBlogDetails
+          lessons={courses_list}
+          course_Id={_course?.id}
+          title={_course?.name || "My Lessons"}
+          docId={_course?.docId}
+        />
+      </StateHandler>
+    </Wrapper>
   );
-
-  if (!router.isReady || isLoading || !id) {
-    return (
-      <Wrapper>
-        <SEO pageTitle={"Loading..."} />
-        <div style={{ textAlign: "center", padding: "80px 0" }}>
-          <h2>Loading Course Details...</h2>
-        </div>
-      </Wrapper>
-    );
-  }
-
-  if (isError) {
-    if (error?.status === 404) {
-      return (
-        <Wrapper>
-          <SEO pageTitle={"Course Not Found"} />
-          <div style={{ textAlign: "center", padding: "80px 0" }}>
-            <h2>Course Not Found 😕</h2>
-            <p>Sorry, we couldn't find the course you were looking for.</p>
-          </div>
-        </Wrapper>
-      );
-    }
-    return (
-      <Wrapper>
-        <SEO pageTitle={"Error"} />
-        <div style={{ textAlign: "center", padding: "80px 0" }}>
-          <h2>Error loading lesson data.</h2>
-          <p>{error.message}</p>
-        </div>
-      </Wrapper>
-    );
-  }
-  if (courses_list || courses_list.length === 0) {
-    return (
-      <Wrapper>
-        <SEO pageTitle={_course?.name} />
-        {isLoading ? (
-          <SectionLoader />
-        ) : (
-          <LessonBlogDetails
-            lessons={courses_list}
-            course_Id={_course?.id}
-            title={_course?.name || "My Lessons"}
-            docId={_course?.docId}
-          />
-        )}
-      </Wrapper>
-    );
-  }
-  return null;
 };
+
 export default DynamicBlogDetails;

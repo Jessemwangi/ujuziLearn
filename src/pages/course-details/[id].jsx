@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Wrapper } from "../../layout";
 import SEO from "../../components/seo";
 import CourseDetailsMain from "../../components/course-details";
-import { fetchCourse } from "../../services/course_redux_thunk";
+import { fetchCourse, fetchSecureCourse } from "../../services/course_redux_thunk";
 import StateHandler from "../../components/ErrorStates/StateHandler";
 
 const DynamicCourseDetails = () => {
@@ -29,10 +29,10 @@ const DynamicCourseDetails = () => {
   const handleRetry = () => {
     if (router.isReady && id && docId) {
       const fullUrl = `courses/${docId}/${query}`;
-      dispatch(fetchCourse(fullUrl));
+      dispatch(fetchSecureCourse(fullUrl));
     }
   };
-
+console.log("Course Details Error: ", error);
   // Custom error configuration for specific cases
   const getCustomErrorConfig = () => {
     if (error?.status === 404) {
