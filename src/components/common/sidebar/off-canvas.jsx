@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import Link from 'next/link';
 import menu_data from '../../../layout/headers/menu-data';
@@ -7,6 +7,12 @@ const OffCanvas = ({ isOpen, setIsOpen }) => {
   const { sessionInfo, user } = useSelector((state) => state.authLogin);
   const token = sessionInfo ? sessionInfo.token : null;
   const [navTitle, setNavTitle] = useState('');
+  const [isClient, setIsClient] = useState(false);
+
+  // Ensure we only render auth-dependent content on client side
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   const openMobileMenu = (menu) => {
     if (navTitle === menu) {
@@ -16,6 +22,15 @@ const OffCanvas = ({ isOpen, setIsOpen }) => {
     }
   };
 
+  const shouldShowDashboard = (menu) => {
+    if (!isClient) {
+      // During SSR, don't show Dashboard to avoid hydration mismatch
+      return menu.title !== 'Dashboard';
+    }
+    // On client side, show Dashboard only if user is logged in
+    return menu.title !== 'Dashboard' || (user && token);
+  };
+
   return (
     <>
       <div className={`popup-mobile-menu ${isOpen ? 'active' : ''}`}>
@@ -23,18 +38,16 @@ const OffCanvas = ({ isOpen, setIsOpen }) => {
           <div className="header-top">
             <div className="logo">
               <Link href="/">
-               
-                  <img
-                    className="logo-light"
-                    src="/assets/images/logo/logo-dark.png"
-                    alt="logo"
-                  />
-                  <img
-                    className="logo-dark"
-                    src="/assets/images/logo/logo-white.png"
-                    alt="logo"
-                  />
-               
+                <img
+                  className="logo-light"
+                  src="/assets/images/logo/logo-dark.png"
+                  alt="logo"
+                />
+                <img
+                  className="logo-dark"
+                  src="/assets/images/logo/logo-white.png"
+                  alt="logo"
+                />
               </Link>
             </div>
 
@@ -92,11 +105,8 @@ const OffCanvas = ({ isOpen, setIsOpen }) => {
                     </ul>
                   )}
 
-                  {!menu.submenus && (
-                    // Conditionally render the Dashboard link if the user is logged in
-                    menu.title === 'Dashboard' && !(user && token) ? null : (
-                      <Link href={menu.link}>{menu.title}</Link>
-                    )
+                  {!menu.submenus && shouldShowDashboard(menu) && (
+                    <Link href={menu.link}>{menu.title}</Link>
                   )}
                 </li>
               ))}
