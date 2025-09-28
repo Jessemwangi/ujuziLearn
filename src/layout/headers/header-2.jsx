@@ -15,7 +15,8 @@ const HeaderTwo = ({ style_3, no_topBar = false }) => {
     const [isSearchOpen, setIsSearchOpen] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
     const wishlists = useSelector(wishlistItems);
-    const {token, user} = useSelector((state) => state.authLogin)
+    const {sessionInfo, user} = useSelector((state) => state.authLogin)
+    const token = sessionInfo ? sessionInfo.token : null;
     return (
         <>
             <header className={`edu-header header-style-${style_3 ? '3' : '2'} ${no_topBar ? 'no-topbar' : ''}`}>

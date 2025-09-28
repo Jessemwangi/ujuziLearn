@@ -5,7 +5,8 @@ import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
 
 export default function SignIn() {
-     const {loginError, token, user} = useSelector((state) => state.authLogin)
+     const {loginError, sessionInfo, user} = useSelector((state) => state.authLogin)
+    const token = sessionInfo ? sessionInfo.token : null;
     useEffect(() => {
         if (token && user) {
             window.location.href = '/'; 

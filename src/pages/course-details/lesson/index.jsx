@@ -10,7 +10,9 @@ import { useSelector } from "react-redux";
 import SectionLoader from "../../../ui/SectionLoader";
 
 const index = () => {
-  const { token, user } = useSelector((state) => state.authLogin);
+  const { sessionInfo, user } = useSelector((state) => state.authLogin);
+  const token = sessionInfo ? sessionInfo.token : null;
+  
   useEffect(() => {
     if (!token || !user) {
       const timer = setTimeout(() => {

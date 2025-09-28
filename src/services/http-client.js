@@ -19,11 +19,11 @@ httpClient.interceptors.request.use(
       return config;
     }
 
-    const token = TokenService.getToken();
-    if (token) {
+    const sessionInfo = TokenService.getToken();
+    if (sessionInfo) {
       if (config.headers) {
         if (!config.headers["Authorization"]) {
-          config.headers["Authorization"] = `Bearer ${token}`;
+          config.headers["Authorization"] = `Bearer ${sessionInfo.token}`;
         }
       }
     }

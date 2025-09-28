@@ -1,13 +1,13 @@
 import secureLocalStorage from "react-secure-storage";
 
 export const TokenService = {
-  token: "",
+  sessionInfo: "",
   getToken() {
     return secureLocalStorage.getItem("ts::tk");
   },
-  setToken(value) {
+  setToken(sessionInfo) {
     if (typeof window !== "undefined") {
-    secureLocalStorage.setItem("ts::tk", value);
+    secureLocalStorage.setItem("ts::tk", JSON.stringify(sessionInfo));
     }
   },
   deleteToken(){
@@ -20,6 +20,23 @@ export const TokenService = {
     }
     return false;
   },
+   getAccessToken() {
+    const sessionInfo = this.getToken();
+    return sessionInfo ? JSON.parse(sessionInfo).token : null;
+  },
+  getRefreshToken() {
+    const sessionInfo = this.getToken();
+    return sessionInfo ? JSON.parse(sessionInfo).refreshToken : null;
+  },
+  getTokenExpiry() {
+    const sessionInfo = this.getToken();
+    return sessionInfo ? JSON.parse(sessionInfo).tokenExpiry : null;
+  },
+  isTokenExpired() {
+    const expiry = this.getTokenExpiry();
+    return expiry ? new Date() > new Date(expiry) : true;
+  },
+
   getUser() {
     return JSON.parse(secureLocalStorage.getItem("ts::user"));
   },

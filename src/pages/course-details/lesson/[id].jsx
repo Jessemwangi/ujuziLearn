@@ -14,7 +14,8 @@ import StateHandler from "../../../components/ErrorStates/StateHandler";
 const DynamicCourseDetails = () => {
   const router = useRouter();
   const dispatch = useDispatch();
-  const { token, user } = useSelector((state) => state.authLogin);
+  const { sessionInfo, user } = useSelector((state) => state.authLogin);
+  const token = sessionInfo ? sessionInfo.token : null;
   const { coursesecureCourse, status, error } = useSelector((state) => state.courses);
   const { id, docId } = router.query;
 

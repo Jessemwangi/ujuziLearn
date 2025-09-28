@@ -23,8 +23,8 @@ const SessionExpiredModal = () => {
     return null;
   }
 
-  const token = TokenService.getToken();
-
+  const sessionInfo = TokenService.getToken();
+const token = sessionInfo.token ? sessionInfo.token : null;
   const handleRefresh = async () => {
     try {
       const response = await fetch(`${BASE_URL}/student/refresh-token`, {
@@ -35,8 +35,8 @@ const SessionExpiredModal = () => {
       });
       const result = await response.json();
       if (!response.ok) throw new Error('Failed to refresh session.');
-      dispatch(setToken(result.token));
-      TokenService.setToken(result.token);
+      dispatch(setToken(result.sessionInfo));
+      TokenService.setToken(result.sessionInfo);
       window.location.reload();
     } catch (err) {
       handleSignOut();
