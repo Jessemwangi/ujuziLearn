@@ -182,7 +182,7 @@ const CourseBlogDetailsArea = ({ lessons, courseLessons }) => {
                               <div className="col-lg-6">
                                 <div className="blog-pagination-list prev-post">
                                   <Link
-                                    href={`/course-details/lesson/lesson-details/${prevLesson.documentId}`}
+                                    href={`/course-details/lesson/lesson-details/${prevLesson.id}?lessonId${prevLesson.documentId}`}
                                   >
                                     <i className="icon-west"></i>
                                     <span>
@@ -199,7 +199,7 @@ const CourseBlogDetailsArea = ({ lessons, courseLessons }) => {
                               <div className="col-lg-6">
                                 <div className="blog-pagination-list next-post">
                                   <Link
-                                    href={`/course-details/lesson/lesson-details/${nextLesson.documentId}`}
+                                    href={`/course-details/lesson/lesson-details/${nextLesson.id}?lessonId${nextLesson.documentId}`}
                                   >
                                     <i className="icon-east"></i>
                                     <span>

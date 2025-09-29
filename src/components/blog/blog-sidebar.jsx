@@ -130,7 +130,7 @@ const BlogSidebar = ({ id, courseLessons,documentId }) => {
                         href={`/course-details/lesson/lesson-details/${lesson.documentId}`}
                       >
                         <Image
-                          src={lesson.intro_pic} 
+                          src={lesson.intro_pic.url} 
                           alt={lesson.curriculum_lesson_title || "Lesson Image"}
                           width={100}
                           height={75}
@@ -168,7 +168,7 @@ const BlogSidebar = ({ id, courseLessons,documentId }) => {
                         href={`/course-details/lesson/lesson-details/${lesson.documentId}`}
                         style={{ textDecoration: "none" }}
                       >
-                        {lesson.curriculum_lesson_title.length > 40
+                        {lesson?.curriculum_lesson_title?.length > 40
                           ? `${lesson.curriculum_lesson_title.substring(
                               0,
                               40
