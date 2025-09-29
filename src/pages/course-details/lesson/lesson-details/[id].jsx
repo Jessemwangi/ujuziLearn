@@ -19,16 +19,15 @@ const DynamicBlogDetails = () => {
     }
   }, []);
 
-  const { id, docId } = router.query;
-  const q = QUERY_STRINGS.courses.lessonList.url;
+  const { id, lessonId } = router.query;
+  const q = `/studentsite/students/lesson-details`;
 
   const { courses_list, isLoading, isError, error } = useCourseLessonData(id, q);
-
   const isReady = router.isReady && id;
   const isEmpty = !courses_list || courses_list.length === 0;
 
   const handleRetry = () => {
-    router.reload(); // or refetch logic if available
+    router.reload(); 
   };
 
   const errorConfig = error?.status === 404
@@ -44,13 +43,13 @@ const DynamicBlogDetails = () => {
         showHome: true,
         showRetry: true
       };
-
+const loading = !isReady || isLoading;
   return (
     <Wrapper>
       <SEO pageTitle={_course?.name || "Course Lessons"} />
 
       <StateHandler
-        isLoading={!isReady || isLoading}
+        isLoading={loading}
         isError={isError}
         error={error}
         data={courses_list}
@@ -73,12 +72,12 @@ const DynamicBlogDetails = () => {
         emptyActionText="Browse Courses"
         onEmptyAction={() => router.push('/courses')}
       >
-        <LessonBlogDetails
-          lessons={courses_list}
+        {courses_list?.lesson && !loading && <LessonBlogDetails
+          lessons={courses_list.lesson}
           course_Id={_course?.id}
           title={_course?.name || "My Lessons"}
           docId={_course?.docId}
-        />
+        />}
       </StateHandler>
     </Wrapper>
   );

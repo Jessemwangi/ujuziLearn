@@ -9,7 +9,7 @@ import Image from "next/image";
 const latest_blog = blog_data.slice(0, 3);
 const LESSONS_PER_PAGE = 10;
 
-const BlogSidebar = ({ id, courseLessons }) => {
+const BlogSidebar = ({ id, courseLessons,documentId }) => {
   const [course_, setCourse] = useState({});
   const [displayedLessons, setDisplayedLessons] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -130,7 +130,7 @@ const BlogSidebar = ({ id, courseLessons }) => {
                         href={`/course-details/lesson/lesson-details/${lesson.documentId}`}
                       >
                         <Image
-                          src={lesson.intro_pic} 
+                          src={lesson.intro_pic.url} 
                           alt={lesson.curriculum_lesson_title || "Lesson Image"}
                           width={100}
                           height={75}
@@ -168,7 +168,7 @@ const BlogSidebar = ({ id, courseLessons }) => {
                         href={`/course-details/lesson/lesson-details/${lesson.documentId}`}
                         style={{ textDecoration: "none" }}
                       >
-                        {lesson.curriculum_lesson_title.length > 40
+                        {lesson?.curriculum_lesson_title?.length > 40
                           ? `${lesson.curriculum_lesson_title.substring(
                               0,
                               40

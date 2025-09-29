@@ -18,7 +18,7 @@ const DynamicCourseDetails = () => {
   const token = sessionInfo ? sessionInfo.token : null;
   const { secureCourse, status, error } = useSelector((state) => state.courses);
   const { id, docId } = router.query;
-console.log(secureCourse)
+
   const query = `/studentsite/students/course-details/${id}`;
 
   useEffect(() => {
@@ -79,8 +79,9 @@ console.log(secureCourse)
       {errorConfig.sessionExpired ? (
         <SessionExpiredModal />
       ) : (
+        
         <StateHandler
-          isLoading={isLoading}
+          isLoading={!user && !token ? true : isLoading}
           isError={isError}
           error={error}
           data={secureCourse}
