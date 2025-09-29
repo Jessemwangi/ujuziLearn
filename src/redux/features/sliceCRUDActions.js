@@ -20,6 +20,6 @@ export const CRUD_Action_Get = (endpoint, setData, setError) => async (dispatch)
     }
     } catch (error) {
       setError('error')
-      console.error( error);
+      
     }
   };

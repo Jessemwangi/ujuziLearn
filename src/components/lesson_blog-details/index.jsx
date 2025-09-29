@@ -6,9 +6,9 @@ import { QUERY_STRINGS } from "../../queries/endpoints";
 import useGetAllWkCourseData from "../../hooks/use_weekly_curriculum";
 import SectionLoader from "../../ui/SectionLoader";
 
-const index = ({ lessons, title, docId }) => {
-  const q = `populate=intro_pic&populate=course_lessons&courses=${docId}`;
-
+const index = ({ lessons, course_Id,title, docId }) => {
+  // const q = `populate=intro_pic&populate=course_lessons&courses=${course_Id}`;
+const q =`/studentsite/students/weekly-curriculums?courseId=${course_Id}`;
   const { all_wk_curri_list, isLoading } = useGetAllWkCourseData(q);
   const [courseLessons, setCourseLessons] = useState([]);
 

@@ -9,7 +9,7 @@ import Image from "next/image";
 const latest_blog = blog_data.slice(0, 3);
 const LESSONS_PER_PAGE = 10;
 
-const BlogSidebar = ({ id, courseLessons }) => {
+const BlogSidebar = ({ id, courseLessons,documentId }) => {
   const [course_, setCourse] = useState({});
   const [displayedLessons, setDisplayedLessons] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);

@@ -40,7 +40,7 @@ const SingleTopicAccordion = ({
           </div>
         </button>
       </h4>
-      <Link href={`/course-details/lesson/lesson-details/${docId}`} passHref>
+      <Link href={`/course-details/lesson/lesson-details/${id}?lessonId=${docId}`} passHref>
   <div 
     id={`question-${uniqueId}`} 
     className="accordion-collapse collapse show" 

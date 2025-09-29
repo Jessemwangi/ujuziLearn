@@ -23,7 +23,7 @@ export const COURSES_SERVICES= {
     return res?.data;
   },
   async getAllWkCurriculum(query){
-    const url = `${server_url}${COURSES_WK_CURRICULUM}?${query}`;
+    let url = `${server_url}${query}`;
     const res = await httpClient.get(url);
 
     return res?.data;
@@ -33,8 +33,9 @@ export const COURSES_SERVICES= {
 
     return res?.data;
   },
-  async getSingleLesson(docId, query) {
-    const res = await httpClient.get(`${server_url}${COURSES_LESSON}/${docId}?${query}`);
+  async getSingleLesson(id, query) {
+    const url = `${server_url}${query}/${id}`;
+    const res = await httpClient.get(url);
 
     return res?.data;
   },
