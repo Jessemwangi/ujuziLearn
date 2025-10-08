@@ -127,7 +127,7 @@ const BlogSidebar = ({ id, courseLessons,documentId }) => {
                   <div style={{ flexShrink: 0 }}>
                     <div className="thumbnail">
                       <Link
-                        href={`/course-details/lesson/lesson-details/${lesson.documentId}`}
+                        href={`/course-details/lesson/lesson-details/${lesson.id}?lessonId=${lesson.documentId}`}
                       >
                         <Image
                           src={lesson.intro_pic.url} 
@@ -165,7 +165,7 @@ const BlogSidebar = ({ id, courseLessons,documentId }) => {
                   <div className="post-content">
                     <h6 className="title">
                       <Link
-                        href={`/course-details/lesson/lesson-details/${lesson.documentId}`}
+                        href={`/course-details/lesson/lesson-details/${lesson.id}?lessonId=${lesson.documentId}`}
                         style={{ textDecoration: "none" }}
                       >
                         {lesson?.curriculum_lesson_title?.length > 40
