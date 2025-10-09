@@ -10,7 +10,10 @@ const CourseBlogDetailsWrapper = ({ lessons, course_Id, title, docId }) => {
   // const q = `populate=intro_pic&populate=course_lessons&courses=${course_Id}`;
   const q = `/studentsite/students/weekly-curriculums?courseId=${course_Id}`;
   const { all_wk_curri_list, isLoading, isError, error } = useGetAllWkCourseData(q);
+
   const [courseLessons, setCourseLessons] = useState([]);
+  const [currentLesson, setCurrentLesson] = useState(null);
+
   useEffect(() => {
     if (!isLoading && all_wk_curri_list) {
       const lessonsWithPicUrl = all_wk_curri_list.flatMap((curriculum) => {
@@ -20,6 +23,14 @@ const CourseBlogDetailsWrapper = ({ lessons, course_Id, title, docId }) => {
       });
 
       setCourseLessons(lessonsWithPicUrl);
+      if (lessons?.id) {
+        const completeCurrentLesson = lessonsWithPicUrl.find(
+          lesson => lesson.id === lessons.id || lesson.documentId === lessons.documentId
+        );
+        setCurrentLesson(completeCurrentLesson || lessons);
+      } else {
+        setCurrentLesson(lessons);
+      }
     }
   }, [isLoading, all_wk_curri_list]);
   const isEmpty = !courseLessons || courseLessons.length === 0;
@@ -55,7 +66,7 @@ const CourseBlogDetailsWrapper = ({ lessons, course_Id, title, docId }) => {
           onEmptyAction={() => window.location.href = '/courses'}
         >
           <CourseBlogDetailsArea
-            lessons={lessons}
+            lessons={currentLesson}
             courseLessons={courseLessons}
           />
         </StateHandler>
