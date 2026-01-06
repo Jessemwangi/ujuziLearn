@@ -110,6 +110,26 @@ const OffCanvas = ({ isOpen, setIsOpen }) => {
                   )}
                 </li>
               ))}
+              
+              {/* Login/Logout section for mobile menu */}
+              {isClient && (
+                <li className="mobile-auth-menu">
+                  {token && user ? (
+                    <>
+                      <div className="mobile-user-info">
+                        Hi, {user.studentName}!
+                      </div>
+                      <Link href="/sign-out">
+                        <i className="icon-73"></i> Logout
+                      </Link>
+                    </>
+                  ) : (
+                    <Link href="/sign-in">
+                      <i className="icon-4"></i> Login
+                    </Link>
+                  )}
+                </li>
+              )}
             </ul>
           </div>
         </div>
