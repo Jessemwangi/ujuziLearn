@@ -1,11 +1,13 @@
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 import useModal from "../../../hooks/use-modal";
 import { Books } from "../../../svg";
 import VideoModal from "../popup-modal/video-modal";
 import { extractVideoCode } from "../../../utils/extractVideoIdFromUrl";
+import { downloadOfflineFile, showDownloadMessage, isOfflineFileAvailable } from "../../../utils/downloadFile";
 
 const CourseDetailsSidebar = ({id, course, details_2 = false,docId, start=false }) => {
+  const [isDownloading, setIsDownloading] = useState(false);
   const {
     img,
     certificate,
@@ -15,9 +17,20 @@ const CourseDetailsSidebar = ({id, course, details_2 = false,docId, start=false 
     duration,
     student,
     language,
+    OfflineCourseFile,
+    course_name,
   } = course || {};
  // Debugging line to check data structure
   const { isVideoOpen, setIsVideoOpen } = useModal();
+
+  const hasOfflineFile = isOfflineFileAvailable(OfflineCourseFile);
+
+  const handleDownloadOffline = async () => {
+    setIsDownloading(true);
+    const result = downloadOfflineFile(OfflineCourseFile, course_name);
+    showDownloadMessage(result);
+    setIsDownloading(false);
+  };
   return (
     <>
       <div
@@ -101,6 +114,26 @@ const CourseDetailsSidebar = ({id, course, details_2 = false,docId, start=false 
                   
                 </Link> 
               </div>}
+
+              {start && hasOfflineFile && (
+                <div className="download-btn" style={{ marginTop: "10px" }}>
+                  <button 
+                    onClick={handleDownloadOffline}
+                    disabled={isDownloading}
+                    className="edu-btn btn-medium"
+                    style={{
+                      width: "100%",
+                      backgroundColor: isDownloading ? "#ccc" : "#27ae60",
+                      cursor: isDownloading ? "not-allowed" : "pointer",
+                      opacity: isDownloading ? 0.7 : 1,
+                      transition: "all 0.3s ease"
+                    }}
+                  >
+                    <i className="icon-4" style={{ marginRight: "8px" }}></i>
+                    {isDownloading ? "Downloading..." : "Download Offline"}
+                  </button>
+                </div>
+              )}
 
               <div className="share-area">
                 <h4 className="title">Share On:</h4>

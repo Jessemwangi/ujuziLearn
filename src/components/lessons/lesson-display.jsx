@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import SingleProgressbar from "../course-details/single-progressbar";
 import SingleComment from "../course-details/single-comment";
 import CourseDetailsSidebarNoStart from "../common/sidebar/course-details-sidebar-no-start-button";
 import LessonListsAccordion from "./LessonListsAccordion";
 import { server } from "../../utils/envVariable";
+import { downloadOfflineFile, showDownloadMessage, isOfflineFileAvailable } from "../../utils/downloadFile";
 
 const LessonDisplay = ({ course }) => {
+  const [isDownloading, setIsDownloading] = useState(false);
   const {
     id,
     short_desc,
@@ -31,7 +33,17 @@ const LessonDisplay = ({ course }) => {
     weekly_curriculum_intro,
     course_reviews,
     course_ratings,
+    OfflineCourseFile,
   } = course;
+
+  const hasOfflineFile = isOfflineFileAvailable(OfflineCourseFile);
+
+  const handleDownloadOffline = async () => {
+    setIsDownloading(true);
+    const result = downloadOfflineFile(OfflineCourseFile, course_name);
+    showDownloadMessage(result);
+    setIsDownloading(false);
+  };
   return (
     <section className="edu-section-gap course-details-area">
       <div className="container">
@@ -68,6 +80,44 @@ const LessonDisplay = ({ course }) => {
                 <p data-sal-delay="150" data-sal-duration="800">
                   {weekly_curriculum_intro}
                 </p>
+
+                {hasOfflineFile && (
+                  <div 
+                    style={{
+                      marginBottom: "20px",
+                      padding: "15px",
+                      backgroundColor: "#f0f8ff",
+                      borderRadius: "8px",
+                      border: "1px solid #27ae60"
+                    }}
+                  >
+                    <button 
+                      onClick={handleDownloadOffline}
+                      disabled={isDownloading}
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "10px",
+                        width: "100%",
+                        padding: "12px 20px",
+                        backgroundColor: "#27ae60",
+                        color: "white",
+                        border: "none",
+                        borderRadius: "6px",
+                        cursor: isDownloading ? "not-allowed" : "pointer",
+                        fontSize: "16px",
+                        fontWeight: "600",
+                        opacity: isDownloading ? 0.7 : 1,
+                        transition: "all 0.3s ease",
+                        justifyContent: "center"
+                      }}
+                    >
+                      <i className="icon-4" style={{ fontSize: "18px" }}></i>
+                      {isDownloading ? "Downloading Offline Course..." : "📥 Download Offline Course"}
+                    </button>
+                  </div>
+                )}
+
                 <div
                   className="accordion edu-accordion"
                   id="accordionExample"
