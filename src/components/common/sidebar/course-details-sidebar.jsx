@@ -115,26 +115,6 @@ const CourseDetailsSidebar = ({id, course, details_2 = false,docId, start=false 
                 </Link> 
               </div>}
 
-              {start && hasOfflineFile && (
-                <div className="download-btn" style={{ marginTop: "10px" }}>
-                  <button 
-                    onClick={handleDownloadOffline}
-                    disabled={isDownloading}
-                    className="edu-btn btn-medium"
-                    style={{
-                      width: "100%",
-                      backgroundColor: isDownloading ? "#ccc" : "#27ae60",
-                      cursor: isDownloading ? "not-allowed" : "pointer",
-                      opacity: isDownloading ? 0.7 : 1,
-                      transition: "all 0.3s ease"
-                    }}
-                  >
-                    <i className="icon-4" style={{ marginRight: "8px" }}></i>
-                    {isDownloading ? "Downloading..." : "Download Offline"}
-                  </button>
-                </div>
-              )}
-
               <div className="share-area">
                 <h4 className="title">Share On:</h4>
                 <ul className="social-share">

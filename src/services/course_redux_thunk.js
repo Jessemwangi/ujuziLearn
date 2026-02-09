@@ -88,7 +88,6 @@ export const fetchSecureCourse = createAsyncThunk(
         return thunkAPI.rejectWithValue({
           status: 401,
           message: "Invalid Token or Authentication required",
-          raw: error,
         });
       }
     } catch (error) {
